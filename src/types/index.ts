@@ -1,0 +1,156 @@
+// User Types
+export interface User {
+  id: string
+  email: string
+  name: string
+  avatar?: string
+  school?: string
+  department?: string
+  subscriptionStatus: 'free' | 'daily' | 'monthly'
+  subscriptionExpiry?: Date
+  createdAt: Date
+  lastActive: Date
+}
+
+// Paper Types
+export interface Paper {
+  id: string
+  title: string
+  courseCode: string
+  courseName: string
+  school: string
+  department: string
+  year: number
+  semester: 'first' | 'second'
+  examType: 'main' | 'supplementary' | 'special'
+  fileUrl: string
+  fileSize: number
+  uploadedBy: string
+  uploadedAt: Date
+  downloads: number
+  verified: boolean
+  topics?: string[]
+}
+
+// School Types
+export interface School {
+  id: string
+  name: string
+  abbreviation: string
+  icon: string
+  color: string
+  description: string
+  departments: Department[]
+  paperCount: number
+}
+
+export interface Department {
+  id: string
+  name: string
+  schoolId: string
+  courses: Course[]
+  paperCount: number
+}
+
+export interface Course {
+  id: string
+  code: string
+  name: string
+  departmentId: string
+  level: number
+}
+
+// Subscription Types
+export interface Subscription {
+  id: string
+  userId: string
+  type: 'daily' | 'monthly'
+  amount: number
+  startDate: Date
+  endDate: Date
+  status: 'active' | 'expired' | 'cancelled'
+  paymentMethod: 'mpesa'
+  transactionId: string
+}
+
+// Payment Types
+export interface MpesaPayment {
+  phoneNumber: string
+  amount: number
+  accountReference: string
+  transactionDesc: string
+}
+
+export interface PaymentResponse {
+  success: boolean
+  message: string
+  checkoutRequestId?: string
+  transactionId?: string
+}
+
+// Chat Types
+export interface ChatMessage {
+  id: string
+  role: 'user' | 'assistant'
+  content: string
+  timestamp: Date
+}
+
+export interface ChatSession {
+  id: string
+  userId: string
+  messages: ChatMessage[]
+  createdAt: Date
+  updatedAt: Date
+}
+
+// Study Group Types
+export interface StudyGroup {
+  id: string
+  name: string
+  description: string
+  school: string
+  department?: string
+  createdBy: string
+  members: string[]
+  maxMembers: number
+  isPrivate: boolean
+  createdAt: Date
+  lastActivity: Date
+}
+
+// Search Types
+export interface SearchFilters {
+  school?: string
+  department?: string
+  year?: number
+  semester?: 'first' | 'second'
+  courseCode?: string
+  topic?: string
+}
+
+export interface SearchResult {
+  papers: Paper[]
+  total: number
+  page: number
+  perPage: number
+}
+
+// Download Types
+export interface Download {
+  id: string
+  userId: string
+  paperId: string
+  paper: Paper
+  downloadedAt: Date
+  fileType: 'pdf' | 'image'
+  fileSize: number
+}
+
+// Stats Types
+export interface PlatformStats {
+  totalPapers: number
+  totalSchools: number
+  totalDepartments: number
+  totalStudents: number
+}

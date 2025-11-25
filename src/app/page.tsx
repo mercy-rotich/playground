@@ -1,65 +1,163 @@
-import Image from "next/image";
+import Hero from '../app/components/home/Hero/Hero'
+import FeaturesSection from '../app/components/home/Features/FeaturesSection'
+import SchoolsSection from '../app/components/home/Schools/SchoolsSection'
+import PricingSection from '../app/components/home/Pricing/PricingSection'
+import TestimonialsSection from '../app/components/home/Testimonials/TestimonialsSection'
+import FAQSection from '../app/components/home/FAQ/FAQSection'
+import Link from 'next/link'
+import { ROUTES } from '@/lib/constants'
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main>
+      {/* Hero Section */}
+      <Hero />
+
+      {/* Features Section */}
+      <FeaturesSection />
+
+      {/* Schools Section */}
+      <SchoolsSection />
+
+      {/* How It Works Section */}
+      <section id="how-it-works" className="section-padding bg-dark">
+        <div className="container-custom max-w-6xl">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              How It Works
+            </h2>
+            <p className="text-xl text-text-gray">
+              Get started in three simple steps
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-12">
+            {[
+              {
+                number: '1',
+                title: 'Sign Up',
+                description: 'Create your account using Google to access all features and personalized content',
+              },
+              {
+                number: '2',
+                title: 'Choose Your Plan',
+                description: 'Select a subscription plan - Daily (KSh 10) or Monthly (KSh 100) via secure M-Pesa payment',
+              },
+              {
+                number: '3',
+                title: 'Study & Excel',
+                description: 'Download papers, generate practice questions, chat with AI, and collaborate with peers',
+              },
+            ].map((step) => (
+              <div key={step.number} className="text-center">
+                <div className="w-16 h-16 bg-primary text-dark rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6">
+                  {step.number}
+                </div>
+                <h3 className="text-2xl font-bold mb-4">{step.title}</h3>
+                <p className="text-text-gray leading-relaxed">
+                  {step.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits Section */}
+      <section id="benefits" className="section-padding bg-[#0F0F0F]">
+        <div className="container-custom">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              Premium Features & Benefits
+            </h2>
+            <p className="text-xl text-text-gray">
+              Everything you get with a premium subscription
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                icon: '🤖',
+                title: 'Premium AI Chat',
+                description: 'Unlock intelligent conversations with our AI study assistant',
+                features: [
+                  'AI-Powered Assistance - Get instant help with your academic questions',
+                  'Unlimited Conversations - Chat without limits on any topic',
+                  'Study Guidance - Personalized learning recommendations',
+                ],
+              },
+              {
+                icon: '📥',
+                title: 'Offline Downloads',
+                description: 'Access your study materials anytime, anywhere',
+                features: [
+                  'Download unlimited PDFs',
+                  'Save images and notes',
+                  'Track storage usage',
+                  'Filter by file type',
+                ],
+              },
+              {
+                icon: '👤',
+                title: 'Verified Account',
+                description: 'Secure and personalized experience',
+                features: [
+                  'Verified account status',
+                  'Email-based authentication',
+                  'Track membership history',
+                  'Monitor last activity',
+                ],
+              },
+            ].map((benefit, index) => (
+              <div
+                key={benefit.title}
+                className="bg-[#1A1A1A] rounded-3xl p-8 border-2 border-dark-lighter transition-all hover:-translate-y-2 hover:border-primary hover:shadow-2xl hover:shadow-primary/15"
+              >
+                <span className="text-5xl block mb-6 animate-float" style={{ animationDelay: `${index * 0.5}s` }}>
+                  {benefit.icon}
+                </span>
+                <h3 className="text-2xl font-bold mb-3">{benefit.title}</h3>
+                <p className="text-text-gray mb-6">{benefit.description}</p>
+                <ul className="space-y-3 bg-black/40 p-6 rounded-xl border border-dark-lighter">
+                  {benefit.features.map((feature) => (
+                    <li key={feature} className="text-text-gray text-sm leading-relaxed border-b border-white/5 pb-3 last:border-0 last:pb-0 transition-all hover:text-primary hover:pl-2">
+                      ✨ {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Section */}
+      <PricingSection />
+
+      {/* Testimonials Section */}
+      <TestimonialsSection />
+
+      {/* FAQ Section */}
+      <FAQSection />
+
+      {/* CTA Section */}
+      <section className="section-padding bg-gradient-to-br from-primary to-primary-dark text-dark">
+        <div className="container-custom text-center">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            Ready to Ace Your Exams?
+          </h2>
+          <p className="text-xl mb-8 opacity-80">
+            Join thousands of students already using Okoa Sem to excel in their studies
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href={ROUTES.SIGNUP}
+            className="inline-block px-8 py-4 bg-dark text-primary rounded-xl font-semibold text-lg transition-all hover:bg-dark/90 hover:-translate-y-1"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            Get Started Free →
+          </Link>
         </div>
-      </main>
-    </div>
-  );
+      </section>
+    </main>
+  )
 }
