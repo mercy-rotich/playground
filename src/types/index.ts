@@ -160,9 +160,12 @@ export interface YouTubeVideo {
   id: string
   title: string
   channel: string
+  channelId?: string
   thumbnailUrl?: string
   views: string
   publishedAt: string
+  description?: string
+  duration?: string
 }
 
 export interface YouTubeSearchResult {
@@ -173,8 +176,12 @@ export interface YouTubeSearchResult {
     title: string
     channelTitle: string
     publishedAt: string
+    description: string
     thumbnails: {
       medium: {
+        url: string
+      }
+      high?: {
         url: string
       }
     }
@@ -185,4 +192,19 @@ export interface PopularTopic {
   icon: string
   label: string
   query: string
+}
+
+// Saved Videos & Playlists
+export interface SavedVideo {
+  video: YouTubeVideo
+  savedAt: Date
+}
+
+export interface Playlist {
+  id: string
+  name: string
+  description?: string
+  videos: YouTubeVideo[]
+  createdAt: Date
+  updatedAt: Date
 }

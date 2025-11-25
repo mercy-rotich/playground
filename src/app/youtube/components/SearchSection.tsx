@@ -16,19 +16,19 @@ export default function SearchSection({ searchQuery, setSearchQuery, onSearch }:
   }
 
   return (
-    <div className="bg-dark-card p-6 rounded-2xl border-2 border-dark-lighter mb-8 sticky top-20 z-50 backdrop-blur-lg">
-      <div className="flex flex-col md:flex-row gap-4 max-w-[900px] mx-auto">
+    <div className="bg-dark-card/95 p-4 md:p-6 rounded-2xl border-2 border-dark-lighter mb-6 backdrop-blur-xl">
+      <div className="flex flex-col sm:flex-row gap-3 max-w-[900px] mx-auto">
         <input
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           onKeyPress={handleKeyPress}
           placeholder="Search for topics like 'calculus', 'physics', or 'programming'..."
-          className="flex-1 px-6 py-4 bg-dark border-2 border-dark-lighter rounded-xl text-white placeholder:text-text-gray focus:outline-none focus:border-primary transition-colors"
+          className="flex-1 px-5 py-3.5 bg-dark border-2 border-dark-lighter rounded-xl text-white placeholder:text-text-gray focus:outline-none focus:border-primary transition-colors"
         />
         <button
           onClick={onSearch}
-          className="px-8 py-4 bg-primary text-dark rounded-xl font-semibold flex items-center justify-center gap-2 transition-all hover:bg-primary-dark hover:-translate-y-0.5 whitespace-nowrap"
+          className="px-6 py-3.5 bg-primary text-dark rounded-xl font-semibold flex items-center justify-center gap-2 transition-all hover:bg-primary-dark hover:-translate-y-0.5 whitespace-nowrap"
         >
           <Search className="w-5 h-5" />
           Search

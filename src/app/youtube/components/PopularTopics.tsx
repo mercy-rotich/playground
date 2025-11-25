@@ -8,14 +8,14 @@ interface PopularTopicsProps {
 
 export default function PopularTopics({ onTopicClick }: PopularTopicsProps) {
   return (
-    <div className="mb-8">
-      <h2 className="text-xl font-bold text-primary mb-4">🔥 Popular Topics</h2>
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
+    <div className="mb-6">
+      <h2 className="text-base font-bold text-primary mb-3">🔥 Popular Topics</h2>
+      <div className="flex flex-wrap gap-2">
         {YOUTUBE_TOPICS.map((topic) => (
           <button
             key={topic.query}
             onClick={() => onTopicClick(topic.query)}
-            className="bg-dark-card px-5 py-3 rounded-xl border-2 border-dark-lighter text-center font-semibold text-sm transition-all hover:border-primary hover:bg-primary/10 hover:-translate-y-1"
+            className="bg-dark-card px-4 py-2 rounded-lg border border-dark-lighter text-sm font-medium transition-all hover:border-primary hover:bg-primary/10 hover:scale-105"
           >
             {topic.icon} {topic.label}
           </button>
