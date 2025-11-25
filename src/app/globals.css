@@ -3,6 +3,20 @@
 /* Explicitly load your config file so custom colors like 'bg-dark' work */
 @config "../../tailwind.config.ts";
 
+/* Define custom theme colors for Tailwind v4 */
+@theme {
+  --color-primary: #C4F82A;
+  --color-primary-dark: #A8D624;
+  --color-primary-light: #D4FF4A;
+  --color-secondary: #B4A7FF;
+  --color-secondary-dark: #9A8CFF;
+  --color-secondary-light: #C8BDFF;
+  --color-dark: #0A0A0A;
+  --color-dark-card: #1A1A1A;
+  --color-dark-lighter: #2A2A2A;
+  --color-text-gray: #A0A0A0;
+}
+
 @layer base {
   :root {
     --primary: #C4F82A;
@@ -10,12 +24,15 @@
     --secondary: #B4A7FF;
     --dark: #0A0A0A;
     --dark-card: #1A1A1A;
+    --dark-lighter: #2A2A2A;
     --text-gray: #A0A0A0;
   }
 
-  /* Fixed: Removed the stray '*' that was here */
   body {
-    @apply bg-dark text-white antialiased;
+    background-color: #0A0A0A;
+    color: white;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
@@ -115,4 +132,27 @@
   animation: shimmer 2s infinite linear;
   background: linear-gradient(to right, #1a1a1a 4%, #2a2a2a 25%, #1a1a1a 36%);
   background-size: 1000px 100%;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
 }

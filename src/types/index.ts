@@ -154,3 +154,35 @@ export interface PlatformStats {
   totalDepartments: number
   totalStudents: number
 }
+
+// YouTube Types
+export interface YouTubeVideo {
+  id: string
+  title: string
+  channel: string
+  thumbnailUrl?: string
+  views: string
+  publishedAt: string
+}
+
+export interface YouTubeSearchResult {
+  id: {
+    videoId: string
+  }
+  snippet: {
+    title: string
+    channelTitle: string
+    publishedAt: string
+    thumbnails: {
+      medium: {
+        url: string
+      }
+    }
+  }
+}
+
+export interface PopularTopic {
+  icon: string
+  label: string
+  query: string
+}

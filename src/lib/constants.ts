@@ -175,3 +175,25 @@ export const STORAGE_KEYS = {
   USER_DATA: 'okoa_sem_user_data',
   THEME: 'okoa_sem_theme',
 } as const
+
+// YouTube Popular Topics
+export const YOUTUBE_TOPICS = [
+  { icon: '📐', label: 'Calculus', query: 'calculus' },
+  { icon: '⚛️', label: 'Physics', query: 'physics' },
+  { icon: '💻', label: 'Programming', query: 'programming' },
+  { icon: '🧪', label: 'Chemistry', query: 'chemistry' },
+  { icon: '🧬', label: 'Biology', query: 'biology' },
+  { icon: '🔢', label: 'Mathematics', query: 'mathematics' },
+  { icon: '📊', label: 'Data Structures', query: 'data structures' },
+  { icon: '🔄', label: 'Algorithms', query: 'algorithms' },
+] as const
+
+// YouTube Demo Videos 
+export const generateDemoVideos = (query: string) => [
+  { id: '1', title: `Introduction to ${query}`, channel: 'EduChannel', views: '1.2M', publishedAt: '2 weeks ago' },
+  { id: '2', title: `${query} Tutorial for Beginners`, channel: 'Learn Tech', views: '856K', publishedAt: '1 month ago' },
+  { id: '3', title: `Advanced ${query} Concepts`, channel: 'Pro Learning', views: '543K', publishedAt: '3 weeks ago' },
+  { id: '4', title: `${query} Explained Simply`, channel: 'Simple Science', views: '2.1M', publishedAt: '1 week ago' },
+  { id: '5', title: `Master ${query} in 30 Minutes`, channel: 'Quick Learn', views: '987K', publishedAt: '5 days ago' },
+  { id: '6', title: `${query} Project Examples`, channel: 'Code Masters', views: '654K', publishedAt: '2 months ago' },
+]
