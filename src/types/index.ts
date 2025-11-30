@@ -234,3 +234,32 @@ export interface Playlist {
   createdAt: Date
   updatedAt: Date
 }
+
+// My Account Types
+export interface UserProfile extends User {
+  isVerified: boolean
+  memberSince: Date
+  lastActiveTime: string
+}
+
+export interface PaymentTransaction {
+  id: string
+  planType: 'daily' | 'monthly'
+  amount: number
+  currency: string
+  status: 'pending' | 'completed' | 'failed'
+  transactionDate: Date
+  expiryDate: Date
+  mpesaRef?: string
+}
+
+export interface AccountDetails {
+  profile: UserProfile
+  subscription: {
+    isActive: boolean
+    currentPlan?: SubscriptionPlan
+    expiryDate?: Date
+    paymentHistory: PaymentTransaction[]
+  }
+}
+
