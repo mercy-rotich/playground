@@ -120,8 +120,9 @@ export const FEATURES = [
 // Routes
 export const ROUTES = {
   HOME: '/',
+  GET_STARTED: '/get-started',
   LOGIN: '/login',
-  SIGNUP: '/signup',
+  SIGNUP: '/get-started',
   DASHBOARD: '/dashboard',
   MY_ACCOUNT: '/my-account',
   DOWNLOADS: '/downloads',
