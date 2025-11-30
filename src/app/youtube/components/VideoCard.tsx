@@ -1,6 +1,6 @@
 'use client'
 
-import { Bookmark, BookmarkCheck, ListPlus, Play } from 'lucide-react'
+import { Bookmark, BookmarkCheck, ListPlus, Play, Eye, Calendar } from 'lucide-react'
 import { YouTubeVideo } from '@/types'
 
 interface VideoCardProps {
@@ -23,7 +23,7 @@ export default function VideoCard({
       {/* Thumbnail */}
       <div 
         onClick={onClick}
-        className="relative w-full h-[180px] bg-gradient-to-br from-dark-lighter to-dark-card flex items-center justify-center text-5xl cursor-pointer overflow-hidden"
+        className="relative w-full h-[180px] bg-gradient-to-br from-dark-lighter to-dark-card flex items-center justify-center cursor-pointer overflow-hidden"
       >
         {video.thumbnailUrl ? (
           <img 
@@ -32,7 +32,7 @@ export default function VideoCard({
             className="w-full h-full object-cover"
           />
         ) : (
-          <span>📺</span>
+          <Play className="w-12 h-12 text-text-gray" />
         )}
         
         {/* Play Button Overlay */}
@@ -89,8 +89,16 @@ export default function VideoCard({
           {video.channel}
         </p>
         <div className="flex items-center gap-3 text-text-gray text-xs">
-          {video.views && <span>👁️ {video.views} views</span>}
-          <span>📅 {video.publishedAt}</span>
+          {video.views && (
+            <span className="flex items-center gap-1">
+              <Eye className="w-3.5 h-3.5" />
+              {video.views} views
+            </span>
+          )}
+          <span className="flex items-center gap-1">
+            <Calendar className="w-3.5 h-3.5" />
+            {video.publishedAt}
+          </span>
         </div>
       </div>
     </div>

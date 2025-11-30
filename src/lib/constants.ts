@@ -29,7 +29,6 @@ export const SCHOOLS = [
     id: 'sci',
     name: 'School of Computing and Informatics',
     abbreviation: 'SCI',
-    icon: '💻',
     color: 'blue',
     description: 'Computer Science, IT, Software Engineering',
   },
@@ -37,7 +36,6 @@ export const SCHOOLS = [
     id: 'safs',
     name: 'School of Agriculture and Food Sciences',
     abbreviation: 'SAFS',
-    icon: '🌾',
     color: 'green',
     description: 'Agriculture, Food Technology, Nutrition',
   },
@@ -45,7 +43,6 @@ export const SCHOOLS = [
     id: 'sbe',
     name: 'School of Business and Economics',
     abbreviation: 'SBE',
-    icon: '🏢',
     color: 'amber',
     description: 'Business, Economics, Management',
   },
@@ -53,7 +50,6 @@ export const SCHOOLS = [
     id: 'sea',
     name: 'School of Engineering and Architecture',
     abbreviation: 'SEA',
-    icon: '🏗️',
     color: 'gray',
     description: 'Engineering, Architecture, Construction',
   },
@@ -61,7 +57,6 @@ export const SCHOOLS = [
     id: 'sed',
     name: 'School of Education',
     abbreviation: 'SED',
-    icon: '🎓',
     color: 'purple',
     description: 'Education, Teaching, Curriculum Development',
   },
@@ -69,7 +64,6 @@ export const SCHOOLS = [
     id: 'shs',
     name: 'School of Health Sciences',
     abbreviation: 'SHS',
-    icon: '🏥',
     color: 'pink',
     description: 'Medicine, Nursing, Public Health',
   },
@@ -77,7 +71,6 @@ export const SCHOOLS = [
     id: 'son',
     name: 'School of Nursing',
     abbreviation: 'SON',
-    icon: '💉',
     color: 'cyan',
     description: 'Nursing, Healthcare, Patient Care',
   },
@@ -85,7 +78,6 @@ export const SCHOOLS = [
     id: 'spas',
     name: 'School of Pure and Applied Sciences',
     abbreviation: 'SPAS',
-    icon: '🔬',
     color: 'teal',
     description: 'Mathematics, Physics, Chemistry, Biology',
   },
@@ -94,37 +86,31 @@ export const SCHOOLS = [
 // Features
 export const FEATURES = [
   {
-    icon: '📚',
     title: 'Find Past Papers',
     description: 'Search and access past papers from your specific school and department. Browse by year, semester, and course code.',
     color: 'purple',
   },
   {
-    icon: '🧠',
     title: 'Smart Topic Search',
     description: 'Type any topic or unit you\'re studying and get relevant exam questions with AI-powered sample answers instantly.',
     color: 'green',
   },
   {
-    icon: '📸',
     title: 'Notes to Questions',
     description: 'Upload images of your study notes and get automatically generated questions to test your understanding.',
     color: 'pink',
   },
   {
-    icon: '🤖',
     title: 'AI Study Bot',
     description: 'Get instant answers to your academic questions, explanations, and guidance from our intelligent study companion.',
     color: 'blue',
   },
   {
-    icon: '👥',
     title: 'Study Groups',
     description: 'Join or create study groups, collaborate with peers, and share resources to succeed together.',
     color: 'orange',
   },
   {
-    icon: '📤',
     title: 'Share & Collaborate',
     description: 'Share questions with friends and study groups. Help each other succeed in your academic journey.',
     color: 'cyan',
@@ -174,18 +160,60 @@ export const STORAGE_KEYS = {
   AUTH_TOKEN: 'okoa_sem_auth_token',
   USER_DATA: 'okoa_sem_user_data',
   THEME: 'okoa_sem_theme',
+  CHAT_HISTORY: 'okoa_sem_chat_history',
+  SUBSCRIPTION: 'okoa_sem_subscription',
+} as const
+
+// AI Chatbot Configuration
+export const CHATBOT_CONFIG = {
+  BOT_NAME: 'AI Study Bot',
+  WELCOME_MESSAGE: `Hello! I'm your AI Study Assistant. How can I help you with your studies today?
+
+I can help you with:
+• Understanding complex concepts
+• Solving math and science problems
+• Brainstorming essay ideas
+• Explaining historical events
+• And much more!
+
+Just ask me anything, and we'll tackle it together!`,
+  DEMO_RESPONSES: [
+    "That's a very thoughtful question! Let me help you understand this concept better. Could you provide more details about which specific aspect you'd like to explore?",
+    "Great question! This topic is fascinating. Here's what you need to know...",
+    "I'd be happy to help you with that! Let's break this down step by step.",
+    "Interesting question! This relates to several key concepts. Let me explain...",
+    "I can definitely help with that. To give you the best answer, could you tell me more about your current understanding?",
+  ],
+} as const
+
+// Subscription Plans
+export const SUBSCRIPTION_PLANS = {
+  daily: {
+    id: 'daily' as const,
+    name: 'Daily Plan',
+    duration: '24 hours access',
+    durationLabel: '1 Day',
+    price: 10,
+  },
+  monthly: {
+    id: 'monthly' as const,
+    name: 'Monthly Plan',
+    duration: '30 days access',
+    durationLabel: '30 Days',
+    price: 100,
+  },
 } as const
 
 // YouTube Popular Topics
 export const YOUTUBE_TOPICS = [
-  { icon: '📐', label: 'Calculus', query: 'calculus' },
-  { icon: '⚛️', label: 'Physics', query: 'physics' },
-  { icon: '💻', label: 'Programming', query: 'programming' },
-  { icon: '🧪', label: 'Chemistry', query: 'chemistry' },
-  { icon: '🧬', label: 'Biology', query: 'biology' },
-  { icon: '🔢', label: 'Mathematics', query: 'mathematics' },
-  { icon: '📊', label: 'Data Structures', query: 'data structures' },
-  { icon: '🔄', label: 'Algorithms', query: 'algorithms' },
+  { label: 'Calculus', query: 'calculus' },
+  { label: 'Physics', query: 'physics' },
+  { label: 'Programming', query: 'programming' },
+  { label: 'Chemistry', query: 'chemistry' },
+  { label: 'Biology', query: 'biology' },
+  { label: 'Mathematics', query: 'mathematics' },
+  { label: 'Data Structures', query: 'data structures' },
+  { label: 'Algorithms', query: 'algorithms' },
 ] as const
 
 // YouTube Demo Videos 

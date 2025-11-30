@@ -1,0 +1,5 @@
+
+body.chatbot-page > nav:first-of-type,
+body.chatbot-page > footer {
+  display: none !important;
+}

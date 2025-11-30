@@ -3,12 +3,12 @@
 import { FEATURES } from '@/lib/constants'
 
 const colorClasses = {
-  purple: 'bg-purple-500/15 text-purple-400',
-  green: 'bg-green-500/15 text-green-400',
-  pink: 'bg-pink-500/15 text-pink-400',
-  blue: 'bg-blue-500/15 text-blue-400',
-  orange: 'bg-orange-500/15 text-orange-400',
-  cyan: 'bg-cyan-500/15 text-cyan-400',
+  purple: 'bg-purple-500/15 border-purple-500/30',
+  green: 'bg-green-500/15 border-green-500/30',
+  pink: 'bg-pink-500/15 border-pink-500/30',
+  blue: 'bg-blue-500/15 border-blue-500/30',
+  orange: 'bg-orange-500/15 border-orange-500/30',
+  cyan: 'bg-cyan-500/15 border-cyan-500/30',
 }
 
 export default function FeaturesSection() {
@@ -33,14 +33,12 @@ export default function FeaturesSection() {
               className="card group"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              {/* Icon */}
+              {/* Color indicator */}
               <div
-                className={`w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center text-3xl md:text-4xl mb-6 transition-transform group-hover:scale-110 ${
+                className={`w-full h-1 rounded-full mb-6 ${
                   colorClasses[feature.color as keyof typeof colorClasses]
                 }`}
-              >
-                {feature.icon}
-              </div>
+              />
 
               {/* Content */}
               <h3 className="text-xl md:text-2xl font-bold mb-3">

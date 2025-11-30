@@ -23,8 +23,8 @@ export default function Navigation() {
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
           <Link href={ROUTES.HOME} className="flex items-center gap-3 group">
-            <div className="w-11 h-11 bg-primary rounded-xl flex items-center justify-center text-2xl transition-transform group-hover:scale-110">
-              🎓
+            <div className="w-11 h-11 bg-primary rounded-xl flex items-center justify-center text-dark font-bold text-lg transition-transform group-hover:scale-110">
+              OS
             </div>
             <span className="text-xl font-bold text-primary">Okoa Sem</span>
           </Link>

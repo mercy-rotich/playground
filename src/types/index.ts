@@ -98,10 +98,37 @@ export interface ChatMessage {
 
 export interface ChatSession {
   id: string
-  userId: string
+  title: string
   messages: ChatMessage[]
   createdAt: Date
   updatedAt: Date
+}
+
+export interface ChatHistoryItem {
+  id: string
+  title: string
+  time: string
+  date: Date
+}
+
+export interface ChatHistorySection {
+  label: string
+  items: ChatHistoryItem[]
+}
+
+// Subscription Types
+export interface SubscriptionPlan {
+  id: 'daily' | 'monthly'
+  name: string
+  duration: string
+  durationLabel: string
+  price: number
+}
+
+export interface UserSubscription {
+  isActive: boolean
+  plan?: SubscriptionPlan
+  expiresAt?: Date
 }
 
 // Study Group Types
@@ -189,7 +216,6 @@ export interface YouTubeSearchResult {
 }
 
 export interface PopularTopic {
-  icon: string
   label: string
   query: string
 }

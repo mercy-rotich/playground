@@ -9,7 +9,7 @@ interface PopularTopicsProps {
 export default function PopularTopics({ onTopicClick }: PopularTopicsProps) {
   return (
     <div className="mb-6">
-      <h2 className="text-base font-bold text-primary mb-3">🔥 Popular Topics</h2>
+      <h2 className="text-base font-bold text-white mb-3">Popular Topics</h2>
       <div className="flex flex-wrap gap-2">
         {YOUTUBE_TOPICS.map((topic) => (
           <button
@@ -17,7 +17,7 @@ export default function PopularTopics({ onTopicClick }: PopularTopicsProps) {
             onClick={() => onTopicClick(topic.query)}
             className="bg-dark-card px-4 py-2 rounded-lg border border-dark-lighter text-sm font-medium transition-all hover:border-primary hover:bg-primary/10 hover:scale-105"
           >
-            {topic.icon} {topic.label}
+            {topic.label}
           </button>
         ))}
       </div>

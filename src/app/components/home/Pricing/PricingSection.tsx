@@ -2,13 +2,11 @@
 
 import { Check } from 'lucide-react'
 import { PRICING } from '@/lib/constants'
-import { formatCurrency } from '@/lib/utils'
 
 const plans = [
   {
     id: 'daily',
     name: PRICING.DAILY.name,
-    icon: '📅',
     price: PRICING.DAILY.amount,
     duration: '24 hours access',
     features: [
@@ -22,7 +20,6 @@ const plans = [
   {
     id: 'monthly',
     name: PRICING.MONTHLY.name,
-    icon: '📆',
     price: PRICING.MONTHLY.amount,
     duration: '30 days access',
     features: [
@@ -71,7 +68,6 @@ export default function PricingSection() {
 
               {/* Plan Header */}
               <div className="text-center mb-8">
-                <div className="text-5xl mb-4">{plan.icon}</div>
                 <h3 className="text-2xl font-bold mb-4">{plan.name}</h3>
                 
                 {/* Price */}
@@ -113,11 +109,8 @@ export default function PricingSection() {
 
         {/* Payment Info */}
         <div className="text-center">
-          <div className="inline-flex items-center gap-2 bg-green-500/20 text-green-400 px-6 py-3 rounded-xl font-semibold mb-3">
-            🔒 Secure M-Pesa payments
-          </div>
           <p className="text-text-gray">
-            Easy and secure payment via M-Pesa STK Push
+            Secure payment via <span className="text-primary font-semibold">M-Pesa</span>
           </p>
         </div>
       </div>

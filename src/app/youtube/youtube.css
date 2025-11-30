@@ -1,0 +1,5 @@
+
+body.youtube-page > nav:first-of-type,
+body.youtube-page > footer {
+  display: none !important;
+}

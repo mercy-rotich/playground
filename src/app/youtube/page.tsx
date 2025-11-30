@@ -1,10 +1,10 @@
 'use client'
 
 import { useState, useRef, useEffect, useCallback } from 'react'
-import { FolderOpen } from 'lucide-react'
+import Link from 'next/link'
+import { FolderOpen, ArrowLeft } from 'lucide-react'
 import { YouTubeVideo, Playlist, SavedVideo } from '@/types'
 import { generateDemoVideos } from '@/lib/constants'
-import YouTubeHeader from './components/YouTubeHeader'
 import SearchSection from './components/SearchSection'
 import PopularTopics from './components/PopularTopics'
 import VideoResults from './components/VideoResults'
@@ -209,55 +209,85 @@ export default function YouTubePage() {
   const savedVideoIds = savedVideos.map(sv => sv.video.id)
 
   return (
-    <main className="min-h-screen bg-dark">
-      <div className="max-w-[1600px] mx-auto px-[5%] py-8">
-        {/* Header with Library Button */}
-        <div className="flex items-start justify-between gap-4 mb-6">
-          <div className="flex-1">
-            <YouTubeHeader />
-          </div>
-          <button
-            onClick={() => setIsSidebarOpen(true)}
-            className="flex items-center gap-2 px-4 py-3 bg-dark-card border-2 border-dark-lighter rounded-xl font-semibold text-white hover:border-primary hover:text-primary transition-all"
+    <div className="min-h-screen bg-dark flex flex-col">
+      {/* Navigation Header - Integrated into the page */}
+      <nav className="bg-dark border-b border-[#2A2A2A] px-4 md:px-[5%] py-4 flex-shrink-0">
+        <div className="max-w-[1400px] mx-auto flex justify-between items-center">
+          <Link href="/" className="flex items-center gap-3 text-primary font-bold text-xl md:text-2xl">
+            <div className="w-10 h-10 md:w-11 md:h-11 bg-primary text-dark rounded-xl flex items-center justify-center font-bold text-lg">
+              OS
+            </div>
+            <span>Okoa Sem</span>
+          </Link>
+          
+          <Link 
+            href="/"
+            className="flex items-center gap-2 px-4 py-2 border-2 border-[#2A2A2A] rounded-lg text-white font-semibold hover:border-primary hover:text-primary transition-colors"
           >
-            <FolderOpen className="w-5 h-5" />
-            <span className="hidden sm:inline">My Library</span>
-            {(savedVideos.length > 0 || playlists.length > 0) && (
-              <span className="px-2 py-0.5 bg-primary text-dark text-xs rounded-full font-bold">
-                {savedVideos.length + playlists.length}
-              </span>
+            <ArrowLeft className="w-4 h-4" />
+            <span className="hidden sm:inline">Back to Home</span>
+          </Link>
+        </div>
+      </nav>
+
+      {/* Main Content */}
+      <main className="flex-1">
+        <div className="max-w-[1600px] mx-auto px-[5%] py-8">
+          {/* Header Section */}
+          <div className="flex items-start justify-between gap-4 mb-6">
+            <div className="flex-1">
+              <div className="text-center mb-2">
+                <h1 className="text-3xl md:text-4xl font-bold text-white mb-3">
+                  Learn with <span className="text-primary">YouTube</span>
+                </h1>
+                <p className="text-text-gray text-lg">
+                  Search for educational videos to supplement your studies
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={() => setIsSidebarOpen(true)}
+              className="flex items-center gap-2 px-4 py-3 bg-dark-card border-2 border-dark-lighter rounded-xl font-semibold text-white hover:border-primary hover:text-primary transition-all"
+            >
+              <FolderOpen className="w-5 h-5" />
+              <span className="hidden sm:inline">My Library</span>
+              {(savedVideos.length > 0 || playlists.length > 0) && (
+                <span className="px-2 py-0.5 bg-primary text-dark text-xs rounded-full font-bold">
+                  {savedVideos.length + playlists.length}
+                </span>
+              )}
+            </button>
+          </div>
+          
+          <SearchSection
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            onSearch={handleSearch}
+          />
+          
+          <PopularTopics onTopicClick={handleTopicClick} />
+          
+          <div ref={resultsRef}>
+            {searchState === 'idle' && <EmptyState />}
+            
+            {searchState === 'loading' && <LoadingState query={currentQuery} />}
+            
+            {searchState === 'results' && (
+              <VideoResults
+                videos={videos}
+                query={currentQuery}
+                onVideoClick={handleVideoClick}
+                savedVideoIds={savedVideoIds}
+                onSaveVideo={handleSaveVideo}
+                onUnsaveVideo={handleUnsaveVideo}
+                onAddToPlaylist={openPlaylistModalForVideo}
+              />
             )}
-          </button>
+            
+            {searchState === 'empty' && <EmptyState hasSearched />}
+          </div>
         </div>
-        
-        <SearchSection
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-          onSearch={handleSearch}
-        />
-        
-        <PopularTopics onTopicClick={handleTopicClick} />
-        
-        <div ref={resultsRef}>
-          {searchState === 'idle' && <EmptyState />}
-          
-          {searchState === 'loading' && <LoadingState query={currentQuery} />}
-          
-          {searchState === 'results' && (
-            <VideoResults
-              videos={videos}
-              query={currentQuery}
-              onVideoClick={handleVideoClick}
-              savedVideoIds={savedVideoIds}
-              onSaveVideo={handleSaveVideo}
-              onUnsaveVideo={handleUnsaveVideo}
-              onAddToPlaylist={openPlaylistModalForVideo}
-            />
-          )}
-          
-          {searchState === 'empty' && <EmptyState hasSearched />}
-        </div>
-      </div>
+      </main>
 
       {/* Video Player Modal */}
       {selectedVideo && (
@@ -301,6 +331,6 @@ export default function YouTubePage() {
         }}
         onCreate={handleCreatePlaylist}
       />
-    </main>
+    </div>
   )
 }

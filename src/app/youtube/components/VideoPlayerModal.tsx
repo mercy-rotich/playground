@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { X, Bookmark, BookmarkCheck, ListPlus, Share2, ExternalLink, Maximize, Minimize } from 'lucide-react'
+import { X, Bookmark, BookmarkCheck, ListPlus, Share2, ExternalLink, Maximize, Minimize, Eye, Calendar, Folder, Plus } from 'lucide-react'
 import { YouTubeVideo, Playlist } from '@/types'
 
 interface VideoPlayerModalProps {
@@ -163,10 +163,18 @@ export default function VideoPlayerModal({
                 <h1 className="text-lg font-bold text-white mb-2 leading-snug">
                   {video.title}
                 </h1>
-                <div className="flex items-center gap-2 text-sm text-text-gray mb-4">
-                  {video.views && <span>👁️ {video.views} views</span>}
+                <div className="flex items-center gap-3 text-sm text-text-gray mb-4">
+                  {video.views && (
+                    <span className="flex items-center gap-1">
+                      <Eye className="w-4 h-4" />
+                      {video.views} views
+                    </span>
+                  )}
                   {video.views && <span>•</span>}
-                  <span>📅 {video.publishedAt}</span>
+                  <span className="flex items-center gap-1">
+                    <Calendar className="w-4 h-4" />
+                    {video.publishedAt}
+                  </span>
                 </div>
 
                 {/* Channel Info */}
@@ -236,7 +244,7 @@ export default function VideoPlayerModal({
                                 }}
                                 className="w-full px-4 py-3 text-left text-white hover:bg-dark-lighter transition-colors flex items-center gap-3"
                               >
-                                <span>📁</span>
+                                <Folder className="w-4 h-4 text-text-gray" />
                                 <span className="truncate text-sm">{playlist.name}</span>
                                 <span className="ml-auto text-xs text-text-gray">{playlist.videos.length}</span>
                               </button>
@@ -250,7 +258,7 @@ export default function VideoPlayerModal({
                           }}
                           className="w-full px-4 py-3 text-left text-primary hover:bg-dark-lighter transition-colors flex items-center gap-3 border-t border-dark-lighter text-sm"
                         >
-                          <span>➕</span>
+                          <Plus className="w-4 h-4" />
                           <span>Create new playlist</span>
                         </button>
                       </div>

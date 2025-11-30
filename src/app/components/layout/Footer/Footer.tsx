@@ -41,8 +41,8 @@ export default function Footer() {
           {/* Brand Section */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-xl">
-                🎓
+              <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-dark font-bold text-lg">
+                OS
               </div>
               <span className="text-xl font-bold text-primary">Okoa Sem</span>
             </div>

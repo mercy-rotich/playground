@@ -39,11 +39,11 @@ export default function SchoolsSection() {
               {/* School Header */}
               <div className="flex items-center gap-3 mb-4">
                 <div
-                  className={`w-12 h-12 rounded-xl flex items-center justify-center text-2xl ${
+                  className={`w-12 h-12 rounded-xl flex items-center justify-center text-lg font-bold ${
                     colorClasses[school.color as keyof typeof colorClasses]
                   }`}
                 >
-                  {school.icon}
+                  {school.abbreviation.slice(0, 2)}
                 </div>
                 <div className="text-sm font-bold text-text-gray uppercase">
                   {school.abbreviation}

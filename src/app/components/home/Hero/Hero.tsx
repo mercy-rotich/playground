@@ -6,10 +6,10 @@ import { Search, ArrowRight } from 'lucide-react'
 import { ROUTES, PLATFORM_STATS } from '@/lib/constants'
 
 const stats = [
-  { icon: '📚', number: `${PLATFORM_STATS.TOTAL_PAPERS / 1000}k+`, label: 'Total Papers' },
-  { icon: '🏫', number: PLATFORM_STATS.TOTAL_SCHOOLS, label: 'Schools' },
-  { icon: '📊', number: `${PLATFORM_STATS.TOTAL_DEPARTMENTS}+`, label: 'Departments' },
-  { icon: '👥', number: `${PLATFORM_STATS.TOTAL_STUDENTS / 1000}k+`, label: 'Students' },
+  { number: `${PLATFORM_STATS.TOTAL_PAPERS / 1000}k+`, label: 'Past Papers' },
+  { number: PLATFORM_STATS.TOTAL_SCHOOLS, label: 'Schools' },
+  { number: `${PLATFORM_STATS.TOTAL_DEPARTMENTS}+`, label: 'Departments' },
+  { number: `${PLATFORM_STATS.TOTAL_STUDENTS / 1000}k+`, label: 'Students' },
 ]
 
 export default function Hero() {
@@ -81,7 +81,7 @@ export default function Hero() {
                 Try AI Study Bot
               </Link>
               <Link href={ROUTES.YOUTUBE} className="btn-secondary">
-                📺 Study with YouTube
+                Study with YouTube
               </Link>
             </div>
           </div>
@@ -101,9 +101,6 @@ export default function Hero() {
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-0 h-0 rounded-full bg-primary/20 group-hover:w-48 group-hover:h-48 transition-all duration-700" />
 
                 <div className="relative z-10">
-                  <span className="text-4xl block mb-4 drop-shadow-[0_0_20px_rgba(196,248,42,0.3)] group-hover:animate-float">
-                    {stat.icon}
-                  </span>
                   <span className="block text-4xl lg:text-5xl font-extrabold bg-gradient-to-br from-primary to-white bg-clip-text text-transparent mb-2">
                     {stat.number}
                   </span>
