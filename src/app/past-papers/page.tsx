@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useMemo, useCallback } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { PastPaper } from '@/types'
 import { PAST_PAPERS_SCHOOLS, generateDemoPastPapers } from '@/lib/constants'
 import SchoolTabs from './components/SchoolTabs'
@@ -15,9 +15,14 @@ import LoadingState from './components/LoadingState'
 
 export default function PastPapersPage() {
   const router = useRouter()
+  const searchParams = useSearchParams()
+  
+  // Get school from URL params, default to first school
+  const schoolFromUrl = searchParams.get('school')
+  const initialSchool = PAST_PAPERS_SCHOOLS.find(s => s.id === schoolFromUrl)?.id || PAST_PAPERS_SCHOOLS[0].id
   
   // State
-  const [activeSchool, setActiveSchool] = useState<string>(PAST_PAPERS_SCHOOLS[0].id)
+  const [activeSchool, setActiveSchool] = useState<string>(initialSchool)
   const [selectedYear, setSelectedYear] = useState<number | null>(null)
   const [searchQuery, setSearchQuery] = useState('')
   const [examFilter, setExamFilter] = useState<'all' | 'main' | 'supplementary' | 'cat'>('all')
@@ -26,6 +31,16 @@ export default function PastPapersPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [previewPaper, setPreviewPaper] = useState<PastPaper | null>(null)
   const [isPreviewOpen, setIsPreviewOpen] = useState(false)
+
+  // Update active school when URL changes
+  useEffect(() => {
+    if (schoolFromUrl) {
+      const school = PAST_PAPERS_SCHOOLS.find(s => s.id === schoolFromUrl)
+      if (school) {
+        setActiveSchool(school.id)
+      }
+    }
+  }, [schoolFromUrl])
 
   // Get current school data
   const currentSchool = useMemo(() => {
@@ -89,7 +104,9 @@ export default function PastPapersPage() {
     setSearchQuery('')
     setExamFilter('all')
     setSemesterFilter('all')
-  }, [])
+    
+    router.push(`/past-papers?school=${schoolId}`, { scroll: false })
+  }, [router])
 
   const handleYearChange = useCallback((year: number) => {
     setSelectedYear(year)

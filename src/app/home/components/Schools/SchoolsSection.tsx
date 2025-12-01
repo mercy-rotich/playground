@@ -60,7 +60,7 @@ export default function SchoolsSection() {
 
               {/* Browse Button */}
               <Link
-                href={`${ROUTES.SCHOOLS}/${school.id}`}
+                href={`${ROUTES.PAST_PAPERS}?school=${school.id}`}
                 className="w-full flex items-center justify-between px-4 py-3 bg-transparent border border-dark-lighter rounded-lg text-sm font-medium transition-all hover:bg-primary hover:text-dark hover:border-primary"
               >
                 <span>Browse Papers</span>
@@ -75,7 +75,7 @@ export default function SchoolsSection() {
         {/* View All Link */}
         <div className="text-center mt-12">
           <Link
-            href={ROUTES.SCHOOLS}
+            href={ROUTES.PAST_PAPERS}
             className="inline-flex items-center gap-2 text-primary hover:text-primary-dark font-semibold transition-colors"
           >
             View All Schools & Departments
