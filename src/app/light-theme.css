@@ -1,4 +1,4 @@
-
+/* src/app/light-theme.css */
 
 body.light-theme {
   background: #F5F7FA !important;
@@ -25,54 +25,76 @@ body.light-theme .hero-section p,
 body.light-theme .hero-section span,
 body.light-theme .hero-section .hero-title {
   color: #1F2937 !important;
+  /* ADDED: Soft white text shadow to improve readability against clearer background image */
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 /* Hero subtitle/description */
 body.light-theme .hero-section .text-text-gray,
 body.light-theme .hero-section .hero-subtitle {
   color: #4B5563 !important;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
 
-/* Stat cards in Hero for light theme */
+/* 1. STAT CARDS: Clearer borders and background */
 body.light-theme .hero-section .stat-card {
-  background: rgba(255, 255, 255, 0.85) !important;
-  border-color: rgba(200, 200, 200, 0.5) !important;
+  /* Solid white background for clarity */
+  background: #FFFFFF !important;
+  /* Darker border (Gray-400) to define the edges clearly */
+  border: 2px solid #9CA3AF !important;
+  /* Soft shadow for depth */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
 }
 
+/* Ensure text inside stat cards is dark */
 body.light-theme .hero-section .stat-card span,
 body.light-theme .hero-section .stat-card p {
   color: #1F2937 !important;
 }
-
-/* Search bar in Hero for light theme */
-body.light-theme .hero-section .search-container,
+/* 2. SEARCH BAR: Distinct border and shadow */
 body.light-theme .hero-section input[type="text"] {
-  background: rgba(255, 255, 255, 0.9) !important;
+  /* Nearly solid white background */
+  background: rgba(255, 255, 255, 0.95) !important;
   color: #1F2937 !important;
-  border-color: rgba(200, 200, 200, 0.6) !important;
+  /* Darker border (Gray-600) for high visibility */
+  border: 2px solid #4B5563 !important;
+  /* Prominent shadow */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
 }
 
 body.light-theme .hero-section input::placeholder {
   color: #6B7280 !important;
 }
 
-/* CTA buttons in Hero - keep primary accent color */
+/* 3. CTA BUTTONS */
+
+/* Primary Button (Browse Past Papers) */
 body.light-theme .hero-section .btn-primary {
   background: #C4F82A !important;
   color: #0A0A0A !important;
+  /* Add a border to match the solid feel of other elements */
+  border: 2px solid #A3D615 !important; 
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
 }
 
-/* Secondary/outline button in Hero */
-body.light-theme .hero-section .btn-outline,
-body.light-theme .hero-section button[class*="border-white"] {
-  border-color: #1F2937 !important;
+/* Secondary Buttons (AI Bot & YouTube) - Make them distinct outlines */
+body.light-theme .hero-section .btn-secondary {
+  /* Solid Dark Gray Border */
+  border: 2px solid #1F2937 !important;
   color: #1F2937 !important;
+  font-weight: 600 !important;
+  /* Semi-transparent white background to ensure text is readable over image */
+  background: rgba(255, 255, 255, 0.6) !important;
+  backdrop-filter: blur(4px);
 }
 
-body.light-theme .hero-section button[class*="border-white"]:hover {
+body.light-theme .hero-section .btn-secondary:hover {
   background: #1F2937 !important;
   color: #FFFFFF !important;
+  border-color: #1F2937 !important;
 }
+
+/* ... (Rest of the file remains unchanged) ... */
 
 /* Navigation */
 body.light-theme nav {

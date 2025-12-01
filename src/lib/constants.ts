@@ -127,6 +127,7 @@ export const ROUTES = {
   MY_ACCOUNT: '/my-account',
   DOWNLOADS: '/downloads',
   PAPERS: '/papers',
+  PAST_PAPERS: '/past-papers',
   SCHOOLS: '/schools',
   CHATBOT: '/chatbot',
   STUDY_GROUPS: '/study-groups',
@@ -226,3 +227,179 @@ export const generateDemoVideos = (query: string) => [
   { id: '5', title: `Master ${query} in 30 Minutes`, channel: 'Quick Learn', views: '987K', publishedAt: '5 days ago' },
   { id: '6', title: `${query} Project Examples`, channel: 'Code Masters', views: '654K', publishedAt: '2 months ago' },
 ]
+
+// Past Papers Schools Data
+export const PAST_PAPERS_SCHOOLS = [
+  {
+    id: 'sci',
+    name: 'School of Computing and Informatics',
+    abbreviation: 'SCI',
+    years: [2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015],
+  },
+  {
+    id: 'safs',
+    name: 'School of Agriculture and Food Sciences',
+    abbreviation: 'SAFS',
+    years: [2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015],
+  },
+  {
+    id: 'sbe',
+    name: 'School of Business and Economics',
+    abbreviation: 'SBE',
+    years: [2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015],
+  },
+  {
+    id: 'sea',
+    name: 'School of Engineering and Architecture',
+    abbreviation: 'SEA',
+    years: [2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015],
+  },
+  {
+    id: 'sed',
+    name: 'School of Education',
+    abbreviation: 'SED',
+    years: [2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015],
+  },
+  {
+    id: 'shs',
+    name: 'School of Health Sciences',
+    abbreviation: 'SHS',
+    years: [2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015],
+  },
+  {
+    id: 'son',
+    name: 'School of Nursing',
+    abbreviation: 'SON',
+    years: [2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015],
+  },
+  {
+    id: 'spas',
+    name: 'School of Pure and Applied Sciences',
+    abbreviation: 'SPAS',
+    years: [2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015],
+  },
+  {
+    id: 'tvet',
+    name: 'Technical and Vocational Education',
+    abbreviation: 'TVET',
+    years: [2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015],
+  },
+] as const
+
+// Generate demo past papers
+export const generateDemoPastPapers = (school: string, schoolAbbr: string, year: number) => {
+  const courses = {
+    SCI: [
+      { code: 'BIT 2101', name: 'Object Oriented Programming I' },
+      { code: 'BIT 2102', name: 'Data Structures and Algorithms' },
+      { code: 'BIT 2103', name: 'Database Management Systems' },
+      { code: 'BIT 2104', name: 'Computer Networks' },
+      { code: 'BIT 2105', name: 'Software Engineering' },
+      { code: 'BIT 2106', name: 'Web Development' },
+      { code: 'BIT 2107', name: 'Mobile Application Development' },
+      { code: 'BIT 2108', name: 'Operating Systems' },
+      { code: 'BCS 2201', name: 'Computer Architecture' },
+      { code: 'BCS 2202', name: 'Artificial Intelligence' },
+      { code: 'BCS 2203', name: 'Machine Learning' },
+      { code: 'BCS 2204', name: 'Cybersecurity Fundamentals' },
+    ],
+    SBE: [
+      { code: 'BBA 2101', name: 'Principles of Management' },
+      { code: 'BBA 2102', name: 'Financial Accounting' },
+      { code: 'BBA 2103', name: 'Business Statistics' },
+      { code: 'BBA 2104', name: 'Marketing Management' },
+      { code: 'BBA 2105', name: 'Human Resource Management' },
+      { code: 'BBA 2106', name: 'Organizational Behavior' },
+      { code: 'ECO 2201', name: 'Microeconomics' },
+      { code: 'ECO 2202', name: 'Macroeconomics' },
+      { code: 'FIN 2301', name: 'Corporate Finance' },
+      { code: 'ACC 2401', name: 'Cost Accounting' },
+    ],
+    SEA: [
+      { code: 'ENG 2101', name: 'Engineering Mathematics I' },
+      { code: 'ENG 2102', name: 'Thermodynamics' },
+      { code: 'ENG 2103', name: 'Fluid Mechanics' },
+      { code: 'ENG 2104', name: 'Strength of Materials' },
+      { code: 'ENG 2105', name: 'Electrical Engineering' },
+      { code: 'ARC 2201', name: 'Architectural Design' },
+      { code: 'CIV 2301', name: 'Structural Analysis' },
+      { code: 'MEC 2401', name: 'Machine Design' },
+    ],
+    SAFS: [
+      { code: 'AGR 2101', name: 'Crop Production' },
+      { code: 'AGR 2102', name: 'Soil Science' },
+      { code: 'AGR 2103', name: 'Animal Husbandry' },
+      { code: 'FST 2201', name: 'Food Processing Technology' },
+      { code: 'FST 2202', name: 'Food Microbiology' },
+      { code: 'NUT 2301', name: 'Human Nutrition' },
+    ],
+    SED: [
+      { code: 'EDU 2101', name: 'Educational Psychology' },
+      { code: 'EDU 2102', name: 'Curriculum Development' },
+      { code: 'EDU 2103', name: 'Teaching Methods' },
+      { code: 'EDU 2104', name: 'Educational Technology' },
+      { code: 'EDU 2105', name: 'Assessment and Evaluation' },
+    ],
+    SHS: [
+      { code: 'MED 2101', name: 'Human Anatomy' },
+      { code: 'MED 2102', name: 'Physiology' },
+      { code: 'MED 2103', name: 'Pharmacology' },
+      { code: 'PUH 2201', name: 'Public Health' },
+      { code: 'CLM 2301', name: 'Clinical Medicine' },
+    ],
+    SON: [
+      { code: 'NUR 2101', name: 'Fundamentals of Nursing' },
+      { code: 'NUR 2102', name: 'Medical-Surgical Nursing' },
+      { code: 'NUR 2103', name: 'Community Health Nursing' },
+      { code: 'NUR 2104', name: 'Pediatric Nursing' },
+      { code: 'NUR 2105', name: 'Mental Health Nursing' },
+    ],
+    SPAS: [
+      { code: 'MAT 2101', name: 'Calculus I' },
+      { code: 'MAT 2102', name: 'Linear Algebra' },
+      { code: 'PHY 2201', name: 'Classical Mechanics' },
+      { code: 'PHY 2202', name: 'Electromagnetism' },
+      { code: 'CHM 2301', name: 'Organic Chemistry' },
+      { code: 'CHM 2302', name: 'Inorganic Chemistry' },
+      { code: 'BIO 2401', name: 'Cell Biology' },
+      { code: 'BIO 2402', name: 'Genetics' },
+    ],
+    TVET: [
+      { code: 'TEC 2101', name: 'Technical Drawing' },
+      { code: 'TEC 2102', name: 'Workshop Technology' },
+      { code: 'TEC 2103', name: 'Electrical Installation' },
+      { code: 'TEC 2104', name: 'Plumbing Technology' },
+      { code: 'TEC 2105', name: 'Automotive Technology' },
+    ],
+  }
+
+  const schoolCourses = courses[schoolAbbr as keyof typeof courses] || courses.SCI
+  const examTypes: Array<'main' | 'supplementary' | 'cat'> = ['main', 'supplementary', 'cat']
+  const semesters: Array<'first' | 'second'> = ['first', 'second']
+
+  const papers = []
+  
+  for (const course of schoolCourses) {
+    for (const semester of semesters) {
+      for (const examType of examTypes) {
+        papers.push({
+          id: `${schoolAbbr}-${year}-${course.code}-${semester}-${examType}`,
+          title: `${course.code} - ${course.name} (${examType === 'cat' ? 'CAT' : examType.charAt(0).toUpperCase() + examType.slice(1)} Exam)`,
+          courseCode: course.code,
+          courseName: course.name,
+          school: school,
+          schoolAbbreviation: schoolAbbr,
+          year: year,
+          semester: semester,
+          examType: examType,
+          fileUrl: `/papers/${schoolAbbr}/${year}/${course.code.replace(' ', '-')}-${semester}-${examType}.pdf`,
+          fileSize: `${Math.floor(Math.random() * 3) + 1}.${Math.floor(Math.random() * 9)}MB`,
+          uploadedAt: new Date(year, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1),
+          downloads: Math.floor(Math.random() * 5000) + 100,
+        })
+      }
+    }
+  }
+
+  return papers
+}

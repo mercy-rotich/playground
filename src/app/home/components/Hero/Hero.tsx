@@ -1,3 +1,5 @@
+// src/app/home/components/Hero/Hero.tsx
+
 'use client'
 
 import { useState } from 'react'
@@ -18,7 +20,7 @@ export default function Hero() {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
     
-    window.location.href = `${ROUTES.PAPERS}?q=${encodeURIComponent(searchQuery)}`
+    window.location.href = `${ROUTES.PAST_PAPERS}?q=${encodeURIComponent(searchQuery)}`
   }
 
   return (
@@ -32,9 +34,10 @@ export default function Hero() {
       {/* Dark Theme Overlay (default) */}
       <div className="dark-overlay absolute inset-0 bg-gradient-to-br from-[rgba(10,10,10,0.85)] to-[rgba(10,10,10,0.75)] z-[1] transition-opacity duration-300" />
       
-      {/* Light Theme Overlay - Only shows when body has light-theme class */}
+      {/* Light Theme Overlay - Reduced opacity for clarity, as requested */}
       <div className="light-overlay absolute inset-0 z-[1] opacity-0 transition-opacity duration-300" style={{ 
-        background: 'linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(243,244,246,0.80) 50%, rgba(229,231,235,0.75) 100%)'
+        // Reduced opacity to ~55% so the image is clear and not "too white"
+        background: 'linear-gradient(135deg, rgba(255,255,255,0.55) 0%, rgba(243,244,246,0.50) 50%, rgba(229,231,235,0.45) 100%)'
       }} />
       
       {/* Decorative glow */}
@@ -66,7 +69,8 @@ export default function Hero() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search for papers, topics, or courses..."
-                className="w-full px-6 py-4 pr-14 bg-dark-card/80 backdrop-blur-xl border-2 border-dark-lighter rounded-xl text-white placeholder:text-text-gray focus:outline-none focus:border-primary transition-all"
+                // Added shadow-2xl for high visibility
+                className="w-full px-6 py-4 pr-14 bg-dark-card/80 backdrop-blur-xl border-2 border-dark-lighter rounded-xl text-white placeholder:text-text-gray focus:outline-none focus:border-primary transition-all shadow-2xl"
               />
               <button
                 type="submit"
@@ -76,19 +80,21 @@ export default function Hero() {
                 <Search className="w-6 h-6" />
               </button>
             </form>
- {/* CTA Buttons */}
+            
+            {/* CTA Buttons */}
             <div className="flex flex-wrap gap-4 animate-fade-in-up animation-delay-600">
               <Link
-                href={ROUTES.PAPERS}
-                className="inline-flex items-center gap-2 btn-primary"
+                href={ROUTES.PAST_PAPERS}
+                // Added shadow-lg
+                className="inline-flex items-center gap-2 btn-primary shadow-lg hover:shadow-primary/25"
               >
                 Browse Past Papers
                 <ArrowRight className="w-5 h-5" />
               </Link>
-              <Link href={ROUTES.CHATBOT} className="btn-secondary">
+              <Link href={ROUTES.CHATBOT} className="btn-secondary shadow-lg">
                 Try AI Study Bot
               </Link>
-              <Link href={ROUTES.YOUTUBE} className="btn-secondary">
+              <Link href={ROUTES.YOUTUBE} className="btn-secondary shadow-lg">
                 Study with YouTube
               </Link>
             </div>
@@ -99,7 +105,8 @@ export default function Hero() {
             {stats.map((stat, index) => (
               <div
                 key={stat.label}
-                className="stat-card group relative overflow-hidden bg-gradient-to-br from-dark-card/85 to-dark-card/70 backdrop-blur-2xl border-2 border-primary/15 rounded-3xl p-6 lg:p-8 transition-all duration-500 hover:-translate-y-2 hover:border-primary hover:shadow-2xl hover:shadow-primary/25 animate-fade-in-right"
+                // Added shadow-xl to stat cards
+                className="stat-card group relative overflow-hidden bg-gradient-to-br from-dark-card/85 to-dark-card/70 backdrop-blur-2xl border-2 border-primary/15 rounded-3xl p-6 lg:p-8 transition-all duration-500 hover:-translate-y-2 hover:border-primary hover:shadow-2xl hover:shadow-primary/25 animate-fade-in-right shadow-xl"
                 style={{ animationDelay: `${(index + 3) * 200}ms` }}
               >
                 {/* Gradient bar on top */}

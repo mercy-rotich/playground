@@ -235,6 +235,30 @@ export interface Playlist {
   updatedAt: Date
 }
 
+// Past Papers Types
+export interface PastPaper {
+  id: string
+  title: string
+  courseCode: string
+  courseName: string
+  school: string
+  schoolAbbreviation: string
+  year: number
+  semester: 'first' | 'second'
+  examType: 'main' | 'supplementary' | 'special' | 'cat'
+  fileUrl: string
+  fileSize: string
+  uploadedAt: Date
+  downloads: number
+}
+
+export interface SchoolTab {
+  id: string
+  name: string
+  abbreviation: string
+  years: number[]
+}
+
 // My Account Types
 export interface UserProfile extends User {
   isVerified: boolean
