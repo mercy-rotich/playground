@@ -1,0 +1,302 @@
+
+
+body.light-theme {
+  background: #F5F7FA !important;
+  color: #1F2937 !important;
+}
+
+/* =============================================
+   HERO SECTION - Light Theme Overlay Swap
+   ============================================= */
+
+/* Hide dark overlay, show light overlay when light-theme is active */
+body.light-theme .hero-section .dark-overlay {
+  opacity: 0 !important;
+}
+
+body.light-theme .hero-section .light-overlay {
+  opacity: 1 !important;
+}
+
+/* Hero text colors for light theme */
+body.light-theme .hero-section h1,
+body.light-theme .hero-section h2,
+body.light-theme .hero-section p,
+body.light-theme .hero-section span,
+body.light-theme .hero-section .hero-title {
+  color: #1F2937 !important;
+}
+
+/* Hero subtitle/description */
+body.light-theme .hero-section .text-text-gray,
+body.light-theme .hero-section .hero-subtitle {
+  color: #4B5563 !important;
+}
+
+/* Stat cards in Hero for light theme */
+body.light-theme .hero-section .stat-card {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border-color: rgba(200, 200, 200, 0.5) !important;
+}
+
+body.light-theme .hero-section .stat-card span,
+body.light-theme .hero-section .stat-card p {
+  color: #1F2937 !important;
+}
+
+/* Search bar in Hero for light theme */
+body.light-theme .hero-section .search-container,
+body.light-theme .hero-section input[type="text"] {
+  background: rgba(255, 255, 255, 0.9) !important;
+  color: #1F2937 !important;
+  border-color: rgba(200, 200, 200, 0.6) !important;
+}
+
+body.light-theme .hero-section input::placeholder {
+  color: #6B7280 !important;
+}
+
+/* CTA buttons in Hero - keep primary accent color */
+body.light-theme .hero-section .btn-primary {
+  background: #C4F82A !important;
+  color: #0A0A0A !important;
+}
+
+/* Secondary/outline button in Hero */
+body.light-theme .hero-section .btn-outline,
+body.light-theme .hero-section button[class*="border-white"] {
+  border-color: #1F2937 !important;
+  color: #1F2937 !important;
+}
+
+body.light-theme .hero-section button[class*="border-white"]:hover {
+  background: #1F2937 !important;
+  color: #FFFFFF !important;
+}
+
+/* Navigation */
+body.light-theme nav {
+  background: #FFFFFF !important;
+  border-color: #D1D5DB !important;
+}
+
+body.light-theme nav a,
+body.light-theme nav button {
+  color: #1F2937 !important;
+}
+
+body.light-theme nav a:hover,
+body.light-theme nav button:hover {
+  color: #C4F82A !important;
+}
+
+/* Main backgrounds and cards */
+body.light-theme .bg-dark {
+  background: #FFFFFF !important;
+}
+
+body.light-theme .bg-dark-card {
+  background: #F8F9FA !important;
+}
+
+body.light-theme .bg-dark-lighter {
+  background: #E8ECEF !important;
+}
+
+body.light-theme .border-dark-lighter {
+  border-color: #D1D5DB !important;
+}
+
+body.light-theme .border-dark {
+  border-color: #D1D5DB !important;
+}
+
+/* Text colors */
+body.light-theme .text-white {
+  color: #1F2937 !important;
+}
+
+body.light-theme .text-text-gray {
+  color: #6B7280 !important;
+}
+
+/* Input fields */
+body.light-theme input,
+body.light-theme textarea,
+body.light-theme select {
+  background: #F8F9FA !important;
+  color: #1F2937 !important;
+  border-color: #D1D5DB !important;
+}
+
+body.light-theme input::placeholder,
+body.light-theme textarea::placeholder {
+  color: #6B7280 !important;
+}
+
+body.light-theme input:focus,
+body.light-theme textarea:focus,
+body.light-theme select:focus {
+  border-color: #C4F82A !important;
+}
+
+/* Section backgrounds */
+body.light-theme section {
+  background: #FFFFFF !important;
+}
+
+/* Footer */
+body.light-theme footer {
+  background: #F8F9FA !important;
+  border-color: #D1D5DB !important;
+}
+
+body.light-theme footer * {
+  color: inherit;
+}
+
+/* Cards */
+body.light-theme .card {
+  background: #F8F9FA !important;
+  border-color: #D1D5DB !important;
+}
+
+body.light-theme .card:hover {
+  border-color: #C4F82A !important;
+}
+
+/* Dividers */
+body.light-theme hr,
+body.light-theme [class*="border-t"],
+body.light-theme [class*="border-b"],
+body.light-theme [class*="border-l"],
+body.light-theme [class*="border-r"] {
+  border-color: #D1D5DB !important;
+}
+
+/* Tables */
+body.light-theme table {
+  background: #F8F9FA !important;
+}
+
+body.light-theme tr:nth-child(even) {
+  background: #E8ECEF !important;
+}
+
+body.light-theme td,
+body.light-theme th {
+  border-color: #D1D5DB !important;
+  color: #1F2937 !important;
+}
+
+/* Links */
+body.light-theme a {
+  color: #C4F82A !important;
+}
+
+body.light-theme a:hover {
+  color: #A8D624 !important;
+}
+
+/* Headers */
+body.light-theme h1,
+body.light-theme h2,
+body.light-theme h3,
+body.light-theme h4,
+body.light-theme h5,
+body.light-theme h6 {
+  color: #1F2937 !important;
+}
+
+/* Lists */
+body.light-theme ul,
+body.light-theme ol,
+body.light-theme li {
+  color: #1F2937 !important;
+}
+
+/* Code blocks */
+body.light-theme code,
+body.light-theme pre {
+  background: #E8ECEF !important;
+  color: #1F2937 !important;
+  border-color: #D1D5DB !important;
+}
+
+/* Buttons */
+body.light-theme .btn-secondary {
+  color: #1F2937 !important;
+  border-color: #1F2937 !important;
+}
+
+body.light-theme .btn-secondary:hover {
+  background: #1F2937 !important;
+  color: #FFFFFF !important;
+}
+
+/* Smooth transitions */
+body.light-theme * {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
+}
+
+/* Specific component overrides */
+body.light-theme [class*="dropdown"],
+body.light-theme [class*="menu"],
+body.light-theme [class*="modal"] {
+  background: #FFFFFF !important;
+  border-color: #D1D5DB !important;
+}
+
+body.light-theme [class*="dropdown"] > *,
+body.light-theme [class*="menu"] > *,
+body.light-theme [class*="modal"] > * {
+  color: #1F2937 !important;
+}
+
+body.light-theme [class*="dropdown"] > *:hover,
+body.light-theme [class*="menu"] > *:hover {
+  background: #E8ECEF !important;
+}
+
+/* Alert boxes */
+body.light-theme [class*="alert"],
+body.light-theme [class*="banner"],
+body.light-theme [class*="notification"] {
+  background: #F8F9FA !important;
+  border-color: #D1D5DB !important;
+  color: #1F2937 !important;
+}
+
+/* Badges and tags */
+body.light-theme [class*="badge"],
+body.light-theme [class*="tag"] {
+  background: #E8ECEF !important;
+  color: #1F2937 !important;
+  border-color: #D1D5DB !important;
+}
+
+/* Status colors */
+body.light-theme [class*="success"] {
+  background: #ECFDF5 !important;
+  color: #065F46 !important;
+  border-color: #A7F3D0 !important;
+}
+
+body.light-theme [class*="warning"] {
+  background: #FFFBEB !important;
+  color: #92400E !important;
+  border-color: #FCD34D !important;
+}
+
+body.light-theme [class*="error"],
+body.light-theme [class*="danger"] {
+  background: #FEF2F2 !important;
+  color: #991B1B !important;
+  border-color: #FECACA !important;
+}
+
+body.light-theme [class*="info"] {
+  background: #EFF6FF !important;
+  color: #1E40AF !important;
+  border-color: #BFDBFE !important;
+}

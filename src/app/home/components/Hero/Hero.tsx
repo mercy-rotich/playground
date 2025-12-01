@@ -22,13 +22,22 @@ export default function Hero() {
   }
 
   return (
-    <section className="relative h-screen w-full flex items-center overflow-hidden">
-      {/* Background Image with Overlays */}
+    <section className="hero-section relative w-full flex items-center overflow-hidden min-h-screen">
+      {/* Background Image - Always visible */}
       <div
         className="absolute inset-0 bg-cover bg-center z-0"
         style={{ backgroundImage: 'url(/images/hero-bg.jpg)' }}
       />
-      <div className="absolute inset-0 bg-gradient-to-br from-[rgba(10,10,10,0.9)] to-[rgba(10,10,10,0.8)] z-[1]" />
+      
+      {/* Dark Theme Overlay (default) */}
+      <div className="dark-overlay absolute inset-0 bg-gradient-to-br from-[rgba(10,10,10,0.85)] to-[rgba(10,10,10,0.75)] z-[1] transition-opacity duration-300" />
+      
+      {/* Light Theme Overlay - Only shows when body has light-theme class */}
+      <div className="light-overlay absolute inset-0 z-[1] opacity-0 transition-opacity duration-300" style={{ 
+        background: 'linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(243,244,246,0.80) 50%, rgba(229,231,235,0.75) 100%)'
+      }} />
+      
+      {/* Decorative glow */}
       <div className="absolute inset-0 z-[1]" style={{ background: 'radial-gradient(circle at 30% 50%, rgba(196, 248, 42, 0.12), transparent 50%)' }} />
 
       {/* Content */}
@@ -36,13 +45,13 @@ export default function Hero() {
         <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-15 items-center">
           {/* Left Content */}
           <div className="max-w-2xl">
-            <h1 className="text-4xl md:text-4xl lg:text-6xl font-bold mb-6 animate-fade-in-up">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fade-in-up text-white">
               Never Miss An Exam
               <br />
               <span className="text-primary">Question Pattern</span> Again
             </h1>
 
-            <p className="text-xl text-text-gray mb-8 animate-fade-in-up animation-delay-200">
+            <p className="text-lg md:text-xl text-text-gray mb-8 animate-fade-in-up animation-delay-200">
               Access 24,000+ past papers from 8 schools and 50+ departments. Search by topic,
               upload notes, and collaborate with study groups.
             </p>
@@ -67,8 +76,7 @@ export default function Hero() {
                 <Search className="w-6 h-6" />
               </button>
             </form>
-
-            {/* CTA Buttons */}
+ {/* CTA Buttons */}
             <div className="flex flex-wrap gap-4 animate-fade-in-up animation-delay-600">
               <Link
                 href={ROUTES.PAPERS}
@@ -91,7 +99,7 @@ export default function Hero() {
             {stats.map((stat, index) => (
               <div
                 key={stat.label}
-                className="group relative overflow-hidden bg-gradient-to-br from-dark-card/85 to-dark-card/70 backdrop-blur-2xl border-2 border-primary/15 rounded-3xl p-6 lg:p-8 transition-all duration-500 hover:-translate-y-2 hover:border-primary hover:shadow-2xl hover:shadow-primary/25 animate-fade-in-right"
+                className="stat-card group relative overflow-hidden bg-gradient-to-br from-dark-card/85 to-dark-card/70 backdrop-blur-2xl border-2 border-primary/15 rounded-3xl p-6 lg:p-8 transition-all duration-500 hover:-translate-y-2 hover:border-primary hover:shadow-2xl hover:shadow-primary/25 animate-fade-in-right"
                 style={{ animationDelay: `${(index + 3) * 200}ms` }}
               >
                 {/* Gradient bar on top */}

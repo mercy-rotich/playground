@@ -3,6 +3,9 @@
 /* Explicitly load your config file so custom colors like 'bg-dark' work */
 @config "../../tailwind.config.ts";
 
+/* Import light theme styles */
+@import "./light-theme.css";
+
 /* Define custom theme colors for Tailwind v4 */
 @theme {
   --color-primary: #C4F82A;
@@ -15,10 +18,18 @@
   --color-dark-card: #1A1A1A;
   --color-dark-lighter: #2A2A2A;
   --color-text-gray: #A0A0A0;
+  
+  /* Light theme colors */
+  --color-light: #FFFFFF;
+  --color-light-card: #F8F9FA;
+  --color-light-lighter: #E8ECEF;
+  --color-light-text: #1F2937;
+  --color-light-text-gray: #6B7280;
 }
 
 @layer base {
   :root {
+    /* Dark theme (default) */
     --primary: #C4F82A;
     --primary-dark: #A8D624;
     --secondary: #B4A7FF;
@@ -26,6 +37,14 @@
     --dark-card: #1A1A1A;
     --dark-lighter: #2A2A2A;
     --text-gray: #A0A0A0;
+    
+    /* Light theme colors */
+    --light: #FFFFFF;
+    --light-card: #F8F9FA;
+    --light-lighter: #E8ECEF;
+    --light-text: #1F2937;
+    --light-text-gray: #6B7280;
+    --light-border: #D1D5DB;
   }
 
   body {
@@ -34,12 +53,260 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-feature-settings: "rlig" 1, "calt" 1;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* Light theme body */
+  body.light-theme {
+    background-color: #F5F7FA;
+    color: #1F2937;
   }
 
   html {
     scroll-behavior: smooth;
   }
 }
+
+@layer components {
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-dark-card;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-dark-lighter rounded-lg;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary;
+  }
+
+  /* Light theme scrollbar */
+  body.light-theme ::-webkit-scrollbar-track {
+    @apply bg-light-card;
+  }
+
+  body.light-theme ::-webkit-scrollbar-thumb {
+    @apply bg-light-lighter;
+  }
+
+  /* Button styles */
+  .btn-primary {
+    @apply bg-primary text-dark px-6 py-3 rounded-lg font-semibold transition-all hover:bg-primary-dark hover:-translate-y-0.5;
+  }
+
+  .btn-secondary {
+    @apply bg-transparent text-white px-6 py-3 rounded-lg font-semibold border-2 border-white transition-all hover:bg-white hover:text-dark;
+  }
+
+  /* Light theme button secondary */
+  body.light-theme .btn-secondary {
+    @apply text-light-text border-light-text hover:bg-light-text hover:text-light;
+  }
+
+  /* Card styles */
+  .card {
+    @apply bg-dark-card border border-dark-lighter rounded-2xl p-6 transition-all hover:-translate-y-1 hover:border-primary;
+  }
+
+  body.light-theme .card {
+    @apply bg-light-card border border-light-lighter hover:border-primary;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent;
+  }
+
+  /* Glassmorphism */
+  .glass {
+    @apply bg-dark-card/80 backdrop-blur-xl border border-dark-lighter;
+  }
+
+  body.light-theme .glass {
+    @apply bg-light-card/80 border border-light-lighter;
+  }
+
+  /* Section padding */
+  .section-padding {
+    @apply py-16 md:py-24 px-4 md:px-8 lg:px-16;
+  }
+
+  /* Container */
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 md:px-8;
+  }
+}
+
+@layer utilities {
+  /* Animation delays */
+  .animation-delay-200 {
+    animation-delay: 0.2s;
+  }
+
+  .animation-delay-400 {
+    animation-delay: 0.4s;
+  }
+
+  .animation-delay-600 {
+    animation-delay: 0.6s;
+  }
+
+  /* Text shadows */
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .text-shadow-lg {
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* Custom animations */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.shimmer {
+  animation: shimmer 2s infinite linear;
+  background: linear-gradient(to right, #1a1a1a 4%, #2a2a2a 25%, #1a1a1a 36%);
+  background-size: 1000px 100%;
+}
+
+body.light-theme .shimmer {
+  background: linear-gradient(to right, #f8f9fa 4%, #e8ecef 25%, #f8f9fa 36%);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes progress {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 70%;
+  }
+}
+
+@keyframes typing {
+  0%, 60%, 100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+.animate-slideIn {
+  animation: slideIn 0.3s ease-out;
+}
+
+.animate-modalSlideIn {
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+.animate-progress {
+  animation: progress 2s ease-in-out forwards;
+}
+
+.animate-typing {
+  animation: typing 1.4s infinite;
+}
+
+/* Custom scrollbar for chat */
+.custom-scrollbar::-webkit-scrollbar,
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track,
+.scrollbar-track-transparent::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb,
+.scrollbar-thumb-dark-lighter::-webkit-scrollbar-thumb {
+  background: #2A2A2A;
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover,
+.scrollbar-thumb-dark-lighter::-webkit-scrollbar-thumb:hover {
+  background: #3A3A3A;
+}
+
+body.light-theme .custom-scrollbar::-webkit-scrollbar-thumb,
+body.light-theme .scrollbar-thumb-dark-lighter::-webkit-scrollbar-thumb {
+  background: #D1D5DB;
+  border-radius: 3px;
+}
+
+body.light-theme .custom-scrollbar::-webkit-scrollbar-thumb:hover,
+body.light-theme .scrollbar-thumb-dark-lighter::-webkit-scrollbar-thumb:hover {
+  background: #9CA3AF;
+}
+
+/* Light theme text colors */
+body.light-theme {
+  --text-gray: #6B7280;
+}
+
+body.light-theme * {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
 
 @layer components {
   /* Custom scrollbar */
