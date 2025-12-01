@@ -27,33 +27,29 @@ export default function AccountDetails({ user }: AccountDetailsProps) {
       label: 'Account Status',
       value: user.isVerified ? 'Verified' : 'Not Verified',
       icon: CheckCircle,
-      color: user.isVerified ? 'text-success' : 'text-text-gray',
-      bgColor: user.isVerified ? 'bg-success/15' : 'bg-text-gray/15',
+      color: user.isVerified ? 'text-green-400' : 'text-text-gray',
+      bgColor: user.isVerified ? 'bg-green-500/15' : 'bg-text-gray/15',
     },
   ]
 
   return (
-    <div>
-      <div className="flex items-center gap-3 mb-6">
-        <h2 className="text-2xl font-bold text-primary">Account Details</h2>
-      </div>
+    <div className="bg-dark-card border border-dark-lighter rounded-2xl p-6 h-fit">
+      <h3 className="text-lg font-semibold text-white mb-5">Account Details</h3>
 
-      <div className="bg-dark-card border-2 border-dark-lighter rounded-2xl p-8">
+      <div className="space-y-4">
         {infoRows.map((row, idx) => {
           const Icon = row.icon
           return (
             <div
               key={idx}
-              className={`flex items-center gap-4 py-4 ${
-                idx !== infoRows.length - 1 ? 'border-b border-dark-lighter' : ''
-              }`}
+              className="flex items-center gap-3"
             >
-              <div className={`w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 ${row.bgColor}`}>
-                <Icon className={`w-6 h-6 ${row.color}`} />
+              <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${row.bgColor}`}>
+                <Icon className={`w-5 h-5 ${row.color}`} />
               </div>
-              <div className="flex-1">
-                <div className="text-text-gray text-sm mb-1">{row.label}</div>
-                <div className="text-white text-lg font-semibold">{row.value}</div>
+              <div className="flex-1 min-w-0">
+                <div className="text-text-gray text-xs mb-0.5">{row.label}</div>
+                <div className="text-white font-medium truncate">{row.value}</div>
               </div>
             </div>
           )

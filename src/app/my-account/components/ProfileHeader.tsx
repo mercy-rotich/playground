@@ -1,6 +1,6 @@
 'use client'
 
-import { CheckCircle } from 'lucide-react'
+import { CheckCircle, Calendar, Clock } from 'lucide-react'
 import { UserProfile } from '@/types'
 
 interface ProfileHeaderProps {
@@ -15,36 +15,56 @@ export default function ProfileHeader({ user }: ProfileHeaderProps) {
   })
 
   return (
-    <div className="bg-gradient-to-r from-primary to-primary-dark rounded-2xl p-8 mb-8 flex flex-col md:flex-row items-center gap-6 animate-fadeInUp">
+    <div className="bg-dark-card border border-dark-lighter rounded-2xl p-6 h-fit sticky top-8">
       {/* Profile Image */}
-      <div className="relative flex-shrink-0">
-        <div className="w-24 h-24 rounded-full border-4 border-dark bg-dark-card flex items-center justify-center text-4xl font-bold text-dark">
-          {user.name.charAt(0).toUpperCase()}
-        </div>
-        {user.isVerified && (
-          <div className="absolute bottom-0 right-0 w-8 h-8 bg-success border-4 border-primary rounded-full flex items-center justify-center text-dark">
-            <CheckCircle className="w-5 h-5" />
+      <div className="flex flex-col items-center text-center mb-6">
+        <div className="relative mb-4">
+          <div className="w-24 h-24 rounded-full bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center text-4xl font-bold text-dark">
+            {user.name.charAt(0).toUpperCase()}
           </div>
+          {user.isVerified && (
+            <div className="absolute -bottom-1 -right-1 w-8 h-8 bg-dark-card border-2 border-primary rounded-full flex items-center justify-center">
+              <CheckCircle className="w-5 h-5 text-primary" />
+            </div>
+          )}
+        </div>
+
+        <h2 className="text-xl font-bold text-white mb-1">{user.name}</h2>
+        <p className="text-text-gray text-sm mb-3">{user.email}</p>
+
+        {user.isVerified && (
+          <span className="inline-flex items-center gap-1.5 text-xs font-medium text-primary bg-primary/10 px-3 py-1.5 rounded-full">
+            <CheckCircle className="w-3.5 h-3.5" />
+            Verified Account
+          </span>
         )}
       </div>
 
-      {/* Profile Info */}
-      <div className="flex-1 text-center md:text-left">
-        <h1 className="text-3xl md:text-4xl font-bold text-dark mb-1">{user.name}</h1>
-        <p className="text-dark/80 text-lg mb-3">{user.email}</p>
+      {/* Divider */}
+      <div className="border-t border-dark-lighter my-5"></div>
 
-        <div className="flex flex-col md:flex-row gap-4 md:gap-6">
-          {user.isVerified && (
-            <div className="inline-flex items-center gap-2 bg-success/30 text-dark px-4 py-2 rounded-full font-semibold w-fit mx-auto md:mx-0">
-              <CheckCircle className="w-4 h-4" />
-              <span>Verified Account</span>
-            </div>
-          )}
-          <div className="text-dark/80 font-medium">
-            Member since {formattedMemberDate}
+      {/* Stats */}
+      <div className="space-y-4">
+        <div className="flex items-center gap-3">
+          <div className="w-9 h-9 rounded-lg bg-dark-lighter flex items-center justify-center">
+            <Calendar className="w-4 h-4 text-text-gray" />
           </div>
-          <div className="text-dark/80 font-medium">
-            Active {user.lastActiveTime}
+          <div>
+            <p className="text-xs text-text-gray">Member since</p>
+            <p className="text-sm font-medium text-white">{formattedMemberDate}</p>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-3">
+          <div className="w-9 h-9 rounded-lg bg-dark-lighter flex items-center justify-center">
+            <Clock className="w-4 h-4 text-text-gray" />
+          </div>
+          <div>
+            <p className="text-xs text-text-gray">Last active</p>
+            <p className="text-sm font-medium text-white flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-green-500"></span>
+              {user.lastActiveTime}
+            </p>
           </div>
         </div>
       </div>

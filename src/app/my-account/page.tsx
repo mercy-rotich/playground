@@ -9,7 +9,7 @@ import AccountDetails from './components/AccountDetails'
 import SubscriptionCard from './components/SubscriptionCard'
 import PaymentPlans from './components/PaymentPlans'
 
-// Mock user data - in production, fetch from API
+
 const mockUser: UserProfile = {
   id: '1',
   email: 'cherotichm182@gmail.com',
@@ -50,7 +50,7 @@ export default function MyAccountPage() {
   const [subscription, setSubscription] = useState<UserSubscription | null>(null)
 
   useEffect(() => {
-    // In production, fetch real user data from API
+    
     // Simulate loading delay
     const timer = setTimeout(() => {
       setUser(mockUser)
@@ -61,7 +61,7 @@ export default function MyAccountPage() {
   }, [])
 
   const handleSelectPlan = (plan: SubscriptionPlan) => {
-    // In production, this would initiate the payment flow
+  
     console.log('Selected plan:', plan)
   }
 
@@ -83,25 +83,33 @@ export default function MyAccountPage() {
 
       {/* Main Content */}
       <main className="container-custom py-8">
-        {/* Profile Header */}
-        <ProfileHeader user={user} />
+        <div className="grid lg:grid-cols-[280px_1fr] gap-8">
+          {/* Left Sidebar - Profile */}
+          <aside className="order-2 lg:order-1">
+            <ProfileHeader user={user} />
+          </aside>
 
-       
-        <div className="grid lg:grid-cols-3 gap-8 mb-8">
-          <div className="lg:col-span-2">
-            <AccountDetails user={user} />
-          </div>
+          {/* Right Content */}
+          <div className="order-1 lg:order-2 space-y-8">
+            {/* Page Title */}
+            <div>
+              <h1 className="text-2xl md:text-3xl font-bold text-white mb-2">My Account</h1>
+              <p className="text-text-gray">Manage your account settings and subscription</p>
+            </div>
 
-          <div>
-            <SubscriptionCard
-              subscription={subscription}
-              onViewHistory={handleViewHistory}
-            />
+            {/* Account Details & Subscription */}
+            <div className="grid md:grid-cols-2 gap-6">
+              <AccountDetails user={user} />
+              <SubscriptionCard
+                subscription={subscription}
+                onViewHistory={handleViewHistory}
+              />
+            </div>
+
+            {/* Payment Plans */}
+            <PaymentPlans plans={subscriptionPlans} onSelectPlan={handleSelectPlan} />
           </div>
         </div>
-
-        {/* Payment Plans - Full Width */}
-        <PaymentPlans plans={subscriptionPlans} onSelectPlan={handleSelectPlan} />
       </main>
     </div>
   )
