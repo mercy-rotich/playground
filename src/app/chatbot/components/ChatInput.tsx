@@ -104,7 +104,7 @@ export default function ChatInput({ onSend, disabled = false, placeholder = 'Ask
           rows={1}
           className={`
             flex-1 rounded-3xl px-6 py-4 text-base outline-none resize-none 
-            max-h-[150px] min-h-[52px] transition-all disabled:opacity-50 font-[inherit]
+            max-h-[150px] min-h-[52px] transition-all disabled:opacity-50 font-[inherit] scrollbar-hide
             ${isLight ? 'placeholder:text-gray-400' : 'placeholder:text-gray-500'}
           `}
           style={getTextareaStyle()}

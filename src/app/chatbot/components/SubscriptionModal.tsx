@@ -104,7 +104,7 @@ export default function SubscriptionModal({
       />
 
       {/* Modal */}
-      <div className="relative bg-dark rounded-2xl max-w-[500px] w-full max-h-[90vh] overflow-y-auto animate-modalSlideIn">
+      <div className="relative bg-dark rounded-2xl max-w-[500px] w-full max-h-[90vh] overflow-y-auto animate-modalSlideIn shadow-2xl" style={{ boxShadow: '0 25px 50px -12px rgba(16, 216, 69, 0.3), 0 0 0 1px rgba(16, 216, 69, 0.1)' }}>
         {/* Step 1: Plan Selection */}
         {step === 'plan-selection' && (
           <>

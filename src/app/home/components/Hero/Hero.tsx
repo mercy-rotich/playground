@@ -1,133 +1,315 @@
-// src/app/home/components/Hero/Hero.tsx
-
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Search, ArrowRight } from 'lucide-react'
+import Image from 'next/image'
+import { Search, ArrowRight, Sparkles, BookOpen, Users, GraduationCap, FileText } from 'lucide-react'
 import { ROUTES, PLATFORM_STATS } from '@/lib/constants'
 
 const stats = [
-  { number: `${PLATFORM_STATS.TOTAL_PAPERS / 1000}k+`, label: 'Past Papers' },
-  { number: PLATFORM_STATS.TOTAL_SCHOOLS, label: 'Schools' },
-  { number: `${PLATFORM_STATS.TOTAL_DEPARTMENTS}+`, label: 'Departments' },
-  { number: `${PLATFORM_STATS.TOTAL_STUDENTS / 1000}k+`, label: 'Students' },
+  { 
+    number: `${PLATFORM_STATS.TOTAL_PAPERS / 1000}k+`, 
+    label: 'Past Papers',
+    icon: FileText 
+  },
+  { 
+    number: PLATFORM_STATS.TOTAL_SCHOOLS, 
+    label: 'Schools',
+    icon: GraduationCap 
+  },
+  { 
+    number: `${PLATFORM_STATS.TOTAL_DEPARTMENTS}+`, 
+    label: 'Departments',
+    icon: BookOpen 
+  },
+  { 
+    number: `${PLATFORM_STATS.TOTAL_STUDENTS / 1000}k+`, 
+    label: 'Students',
+    icon: Users 
+  },
 ]
+
+const floatingElements: Array<{ icon: string; delay: string; duration: string; top: string; left: string }> = []
 
 export default function Hero() {
   const [searchQuery, setSearchQuery] = useState('')
+  const [isSearchFocused, setIsSearchFocused] = useState(false)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
-    
     window.location.href = `${ROUTES.PAST_PAPERS}?q=${encodeURIComponent(searchQuery)}`
   }
 
   return (
-    <section className="hero-section relative w-full flex items-center overflow-hidden min-h-screen">
-      {/* Background Image - Always visible */}
-      <div
-        className="absolute inset-0 bg-cover bg-center z-0"
-        style={{ backgroundImage: 'url(/images/hero-bg.jpg)' }}
+    <section className="hero-section relative w-full min-h-screen overflow-hidden">
+      {/* Background Image - Full coverage */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/images/hero-bg.jpg"
+          alt="Students studying"
+          fill
+          priority
+          className="object-cover object-center"
+          quality={90}
+        />
+      </div>
+      
+      {/* Dark Theme Overlay - Gradient from left */}
+      <div 
+        className="dark-overlay absolute inset-0 z-[1] transition-opacity duration-500"
+        style={{
+          background: `
+            linear-gradient(
+              105deg,
+              rgba(0, 0, 0, 0.92) 0%,
+              rgba(0, 0, 0, 0.85) 40%,
+              rgba(0, 0, 0, 0.6) 60%,
+              rgba(0, 0, 0, 0.3) 80%,
+              rgba(0, 0, 0, 0.15) 100%
+            )
+          `
+        }}
       />
       
-      {/* Dark Theme Overlay (default) */}
-      <div className="dark-overlay absolute inset-0 bg-gradient-to-br from-[rgba(10,10,10,0.85)] to-[rgba(10,10,10,0.75)] z-[1] transition-opacity duration-300" />
-      
-      {/* Light Theme Overlay - Reduced opacity for clarity, as requested */}
-      <div className="light-overlay absolute inset-0 z-[1] opacity-0 transition-opacity duration-300" style={{ 
-        // Reduced opacity to ~55% so the image is clear and not "too white"
-        background: 'linear-gradient(135deg, rgba(255,255,255,0.55) 0%, rgba(243,244,246,0.50) 50%, rgba(229,231,235,0.45) 100%)'
-      }} />
-      
-      {/* Decorative glow */}
-      <div className="absolute inset-0 z-[1]" style={{ background: 'radial-gradient(circle at 30% 50%, rgba(196, 248, 42, 0.12), transparent 50%)' }} />
+      {/* Light Theme Overlay - Sophisticated gradient */}
+      <div 
+        className="light-overlay absolute inset-0 z-[1] opacity-0 transition-opacity duration-500"
+        style={{ 
+          background: `
+            linear-gradient(
+              105deg,
+              rgba(255, 255, 255, 0.98) 0%,
+              rgba(255, 255, 255, 0.95) 35%,
+              rgba(255, 255, 255, 0.75) 50%,
+              rgba(255, 255, 255, 0.4) 65%,
+              rgba(255, 255, 255, 0) 80%
+            )
+          `
+        }} 
+      />
 
-      {/* Content */}
-      <div className="relative z-10 w-[90%] max-w-[1800px] mx-auto py-20">
-        <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-15 items-center">
-          {/* Left Content */}
-          <div className="max-w-2xl">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fade-in-up text-white">
-              Never Miss An Exam
-              <br />
-              <span className="text-primary">Question Pattern</span> Again
-            </h1>
+      {/* Accent glow for light theme */}
+      <div 
+        className="light-accent-glow absolute inset-0 z-[1] opacity-0 pointer-events-none transition-opacity duration-500"
+        style={{
+          background: `
+            radial-gradient(ellipse 80% 60% at 0% 50%, rgba(16, 216, 69, 0.12), transparent 60%),
+            radial-gradient(ellipse 50% 50% at 20% 80%, rgba(16, 216, 69, 0.08), transparent 50%)
+          `
+        }}
+      />
 
-            <p className="text-lg md:text-xl text-text-gray mb-8 animate-fade-in-up animation-delay-200">
-              Access 24,000+ past papers from 8 schools and 50+ departments. Search by topic,
-              upload notes, and collaborate with study groups.
-            </p>
+      {/* Floating decorative elements */}
+      {mounted && floatingElements.map((el, i) => (
+        <div
+          key={i}
+          className="absolute z-[2] text-3xl opacity-20 animate-float pointer-events-none"
+          style={{
+            top: el.top,
+            left: el.left,
+            animationDelay: el.delay,
+            animationDuration: el.duration,
+          }}
+        >
+          {el.icon}
+        </div>
+      ))}
 
-            {/* Search Bar */}
-            <form
-              onSubmit={handleSearch}
-              className="relative mb-8 animate-fade-in-up animation-delay-400"
-            >
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search for papers, topics, or courses..."
-                // Added shadow-2xl for high visibility
-                className="w-full px-6 py-4 pr-14 bg-dark-card/80 backdrop-blur-xl border-2 border-dark-lighter rounded-xl text-white placeholder:text-text-gray focus:outline-none focus:border-primary transition-all shadow-2xl"
-              />
-              <button
-                type="submit"
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-text-gray hover:text-primary transition-colors"
-                aria-label="Search"
-              >
-                <Search className="w-6 h-6" />
-              </button>
-            </form>
-            
-            {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-4 animate-fade-in-up animation-delay-600">
-              <Link
-                href={ROUTES.PAST_PAPERS}
-                // Added shadow-lg
-                className="inline-flex items-center gap-2 btn-primary shadow-lg hover:shadow-primary/25"
-              >
-                Browse Past Papers
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-              <Link href={ROUTES.CHATBOT} className="btn-secondary shadow-lg">
-                Try AI Study Bot
-              </Link>
-              <Link href={ROUTES.YOUTUBE} className="btn-secondary shadow-lg">
-                Study with YouTube
-              </Link>
-            </div>
-          </div>
+      {/* Main Content Grid */}
+      <div className="relative z-10 w-full min-h-screen flex flex-col">
+        {/* Hero Content */}
+        <div className="flex-1 flex items-center pt-20 pb-16">
+          <div className="w-[90%] max-w-[1800px] mx-auto">
+            <div className="grid lg:grid-cols-12 gap-8 items-center">
+              {/* Left Content - Takes up more space */}
+              <div className="lg:col-span-7 xl:col-span-6">
+                {/* Animated badge */}
+                <div 
+                  className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6 backdrop-blur-sm transform transition-all duration-700 ${
+                    mounted ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+                  }`}
+                >
+                  <Sparkles className="w-4 h-4 text-primary animate-pulse" />
+                  <span className="text-sm font-semibold text-primary">Your Ultimate Study Companion</span>
+                </div>
 
-          {/* Right Stats Grid */}
-          <div className="grid grid-cols-2 gap-4 lg:gap-6">
-            {stats.map((stat, index) => (
-              <div
-                key={stat.label}
-                // Added shadow-xl to stat cards
-                className="stat-card group relative overflow-hidden bg-gradient-to-br from-dark-card/85 to-dark-card/70 backdrop-blur-2xl border-2 border-primary/15 rounded-3xl p-6 lg:p-8 transition-all duration-500 hover:-translate-y-2 hover:border-primary hover:shadow-2xl hover:shadow-primary/25 animate-fade-in-right shadow-xl"
-                style={{ animationDelay: `${(index + 3) * 200}ms` }}
-              >
-                {/* Gradient bar on top */}
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity" />
+                {/* Main headline with staggered animation */}
+                <h1 
+                  className={`hero-title text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold mb-6 tracking-tight leading-[1.1] transform transition-all duration-700 delay-100 ${
+                    mounted ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+                  }`}
+                >
+                  <span className="text-white block">Never Miss An</span>
+                  <span className="text-white block">Exam{' '}
+                    <span className="relative inline-block">
+                      <span className="text-primary relative z-10">Question</span>
+                    </span>
+                  </span>
+                  <span className="text-primary block">Pattern Again</span>
+                </h1>
+
+                {/* Subtitle */}
+                <p 
+                  className={`hero-subtitle text-lg md:text-xl text-text-gray mb-8 leading-relaxed max-w-xl transform transition-all duration-700 delay-200 ${
+                    mounted ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+                  }`}
+                >
+                  Access thousands of past papers, AI-powered study tools, and collaborative 
+                  learning features designed for students who want to excel.
+                </p>
+
+                {/* Search Bar */}
+                <form
+                  onSubmit={handleSearch}
+                  className={`relative mb-8 max-w-xl transform transition-all duration-700 delay-300 ${
+                    mounted ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+                  } ${isSearchFocused ? 'scale-[1.02]' : ''}`}
+                >
+                  <div 
+                    className={`absolute -inset-1 bg-gradient-to-r from-primary/30 to-green-400/30 rounded-2xl blur-lg transition-opacity duration-300 ${
+                      isSearchFocused ? 'opacity-100' : 'opacity-0'
+                    }`} 
+                  />
+                  <div className="relative">
+                    <input
+                      type="text"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      onFocus={() => setIsSearchFocused(true)}
+                      onBlur={() => setIsSearchFocused(false)}
+                      placeholder="Search for papers, topics, or courses..."
+                      className="w-full px-6 py-4 pr-14 bg-dark-card/90 backdrop-blur-xl border-2 border-dark-lighter/50 rounded-xl text-white placeholder:text-text-gray/70 focus:outline-none focus:border-primary transition-all duration-300 shadow-2xl"
+                    />
+                    <button
+                      type="submit"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 p-2 bg-primary rounded-lg text-white hover:bg-primary-dark transition-all duration-200 hover:scale-105"
+                      aria-label="Search"
+                    >
+                      <Search className="w-5 h-5" />
+                    </button>
+                  </div>
+                </form>
                 
-                {/* Radial glow effect */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-0 h-0 rounded-full bg-primary/20 group-hover:w-48 group-hover:h-48 transition-all duration-700" />
+                {/* CTA Buttons */}
+                <div 
+                  className={`flex flex-wrap gap-4 transform transition-all duration-700 delay-400 ${
+                    mounted ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+                  }`}
+                >
+                  <Link
+                    href={ROUTES.PAST_PAPERS}
+                    className="group inline-flex items-center gap-2 btn-primary shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all duration-300 hover:-translate-y-1"
+                  >
+                    Browse Past Papers
+                    <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                  </Link>
+                  <Link 
+                    href={ROUTES.CHATBOT} 
+                    className="btn-secondary shadow-lg transition-all duration-300 hover:-translate-y-1 backdrop-blur-sm"
+                  >
+                    Try AI Study Bot
+                  </Link>
+                  <Link 
+                    href={ROUTES.YOUTUBE} 
+                    className="btn-secondary shadow-lg transition-all duration-300 hover:-translate-y-1 backdrop-blur-sm"
+                  >
+                    Study with YouTube
+                  </Link>
+                </div>
 
-                <div className="relative z-10">
-                  <span className="block text-4xl lg:text-5xl font-extrabold bg-gradient-to-br from-primary to-white bg-clip-text text-transparent mb-2">
-                    {stat.number}
-                  </span>
-                  <span className="block text-text-gray font-semibold tracking-wide">
-                    {stat.label}
-                  </span>
+                {/* Quick stats inline - visible on larger screens */}
+                <div 
+                  className={`hidden lg:flex items-center gap-8 mt-10 pt-8 transform transition-all duration-700 delay-500 ${
+                    mounted ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+                  }`}
+                >
+                  {stats.slice(0, 3).map((stat) => (
+                    <div key={stat.label} className="flex items-center gap-3">
+                      <div>
+                        <div className="text-2xl font-bold text-white">{stat.number}</div>
+                        <div className="text-sm text-text-gray">{stat.label}</div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
-            ))}
+
+              {/* Right side - Can add floating cards or leave for image visibility */}
+              <div className="hidden lg:block lg:col-span-5 xl:col-span-6">
+                <div className="relative h-[500px]">
+                  <div 
+                    className={`absolute top-10 right-20 bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/20 shadow-2xl transform transition-all duration-1000 delay-600 ${
+                      mounted ? 'translate-y-0 opacity-100 rotate-3' : 'translate-y-8 opacity-0'
+                    }`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
+                        <FileText className="w-6 h-6 text-primary" />
+                      </div>
+                      <div>
+                        <div className="text-white font-semibold">24,000+</div>
+                        <div className="text-white/60 text-sm">Past Papers</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div 
+                    className={`absolute top-40 right-0 bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/20 shadow-2xl transform transition-all duration-1000 delay-700 ${
+                      mounted ? 'translate-y-0 opacity-100 -rotate-2' : 'translate-y-8 opacity-0'
+                    }`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-xl bg-green-400/20 flex items-center justify-center">
+                        <Sparkles className="w-6 h-6 text-green-400" />
+                      </div>
+                      <div>
+                        <div className="text-white font-semibold">AI Powered</div>
+                        <div className="text-white/60 text-sm">Study Assistant</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div 
+                    className={`absolute bottom-20 right-32 bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/20 shadow-2xl transform transition-all duration-1000 delay-800 ${
+                      mounted ? 'translate-y-0 opacity-100 rotate-1' : 'translate-y-8 opacity-0'
+                    }`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-xl bg-blue-400/20 flex items-center justify-center">
+                        <Users className="w-6 h-6 text-blue-400" />
+                      </div>
+                      <div>
+                        <div className="text-white font-semibold">Study Groups</div>
+                        <div className="text-white/60 text-sm">Collaborate & Learn</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+
       </div>
+
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0) rotate(0deg);
+          }
+          50% {
+            transform: translateY(-20px) rotate(5deg);
+          }
+        }
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
+      `}</style>
     </section>
   )
 }

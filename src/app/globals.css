@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-/* Load Tailwind config for custom colors */
 @config "../../tailwind.config.ts";
 
 /* Import light theme styles */

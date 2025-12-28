@@ -122,7 +122,7 @@ body.light-theme h3,
 body.light-theme h4,
 body.light-theme h5,
 body.light-theme h6 {
-  color: #1F2937 !important;
+  color: #000000 !important;
 }
 
 body.light-theme p {
@@ -384,13 +384,11 @@ body.light-theme .hero-section .dark-overlay {
 
 body.light-theme .hero-section .light-overlay {
   opacity: 1 !important;
-  background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.92) 0%, 
-    rgba(240, 253, 244, 0.90) 20%,
-    rgba(220, 252, 231, 0.88) 40%,
-    rgba(187, 247, 208, 0.85) 60%,
-    rgba(220, 252, 231, 0.88) 80%,
-    rgba(240, 253, 244, 0.90) 100%) !important;
+  background: linear-gradient(90deg, 
+    rgba(209, 250, 229, 0.95) 0%, 
+    rgba(209, 250, 229, 0.85) 35%,
+    rgba(209, 250, 229, 0.4) 65%,
+    rgba(255, 255, 255, 0) 100%) !important;
   backdrop-filter: blur(2px) !important;
 }
 
@@ -415,7 +413,7 @@ body.light-theme .hero-section h2,
 body.light-theme .hero-section p,
 body.light-theme .hero-section span,
 body.light-theme .hero-section .hero-title {
-  color: #111827 !important;
+  color: #000000 !important;
   text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8), 0 1px 2px rgba(16, 216, 69, 0.1);
   position: relative !important;
   z-index: 2 !important;
@@ -460,7 +458,7 @@ body.light-theme .hero-section input[type="text"] {
   border: 2px solid #10D845 !important;
   box-shadow: 0 4px 12px rgba(16, 216, 69, 0.15) !important;
   position: relative !important;
-  z-index: 2 !important;
+  z-index: 1 !important;
 }
 
 body.light-theme .hero-section input[type="text"]:focus {
@@ -471,6 +469,28 @@ body.light-theme .hero-section input[type="text"]:focus {
 
 body.light-theme .hero-section input::placeholder {
   color: #6B7280 !important;
+}
+
+/* Search Button in Hero */
+body.light-theme .hero-section form button[type="submit"] {
+  background: #10D845 !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  box-shadow: 0 4px 12px rgba(16, 216, 69, 0.3) !important;
+
+  z-index: 10 !important;
+ 
+}
+
+body.light-theme .hero-section form button[type="submit"]:hover {
+  background: #0EBE3A !important;
+  box-shadow: 0 6px 16px rgba(16, 216, 69, 0.4) !important;
+}
+
+body.light-theme .hero-section form button[type="submit"] svg {
+  color: #FFFFFF !important;
+  width: 20px !important;
+  height: 20px !important;
 }
 
 /* Hero Buttons */
@@ -547,6 +567,20 @@ body.light-theme .text-blue-500 {
   color: #10D845 !important;
 }
 
+/* Feature Badges */
+body.light-theme .bg-primary\/10.border.border-primary\/30 {
+  background: rgba(16, 216, 69, 0.1) !important;
+  border-color: rgba(16, 216, 69, 0.3) !important;
+  color: #10D845 !important;
+  transition: all 0.3s ease !important;
+}
+
+body.light-theme .bg-primary\/10.border.border-primary\/30:hover {
+  background: #10D845 !important;
+  border-color: #10D845 !important;
+  color: #000000 !important;
+}
+
 /* =============================================
    FEATURES SECTION
    ============================================= */
@@ -583,10 +617,7 @@ body.light-theme #how-it-works {
 }
 
 body.light-theme #how-it-works h2 {
-  background: linear-gradient(135deg, #1F2937 0%, #10D845 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #000000 !important;
 }
 
 body.light-theme #how-it-works .bg-primary {
@@ -612,10 +643,7 @@ body.light-theme #benefits {
 }
 
 body.light-theme #benefits h2 {
-  background: linear-gradient(135deg, #1F2937 0%, #0EBE3A 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #000000 !important;
 }
 
 body.light-theme #benefits .bg-\[#1A1A1A\] {
@@ -673,10 +701,7 @@ body.light-theme [id*="pricing"] .border-primary {
 
 body.light-theme [class*="pricing"] h2,
 body.light-theme [id*="pricing"] h2 {
-  background: linear-gradient(135deg, #1F2937 0%, #10D845 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #000000 !important;
 }
 
 body.light-theme [class*="pricing"] [class*="badge"],
@@ -750,10 +775,7 @@ body.light-theme #testimonials .card:hover {
 
 body.light-theme [class*="testimonial"] h2,
 body.light-theme #testimonials h2 {
-  background: linear-gradient(135deg, #1F2937 0%, #10D845 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #000000 !important;
 }
 
 body.light-theme [class*="testimonial"] h3,
@@ -791,10 +813,7 @@ body.light-theme [id*="faq"] {
 
 body.light-theme [class*="faq"] h2,
 body.light-theme [id*="faq"] h2 {
-  background: linear-gradient(135deg, #1F2937 0%, #10D845 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #000000 !important;
 }
 
 body.light-theme [class*="faq"] button {
@@ -932,4 +951,81 @@ body.light-theme .hover\:shadow-2xl:hover {
    ============================================= */
 body.light-theme * {
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
+}
+
+/* =============================================
+   PAST PAPERS PAGE
+   ============================================= */
+body.light-theme .year-dropdown {
+  background: #FFFFFF !important;
+  border: 2px solid #10D845 !important;
+  box-shadow: 0 10px 30px rgba(16, 216, 69, 0.15) !important;
+}
+
+body.light-theme .year-dropdown button {
+  color: #1F2937 !important;
+  transition: all 0.2s ease !important;
+}
+
+body.light-theme .year-dropdown button:hover {
+  background: #F3F4F6 !important;
+  color: #111827 !important;
+}
+
+body.light-theme .year-dropdown button.bg-primary {
+  background: #10D845 !important;
+  color: #111827 !important;
+  font-weight: 600 !important;
+}
+
+/* =============================================
+   YOUTUBE PAGE
+   ============================================= */
+body.light-theme .bg-dark-card\/95 {
+  background: #F9FAFB !important;
+  border-color: #E5E7EB !important;
+}
+
+body.light-theme input[placeholder*="calculus"],
+body.light-theme input[placeholder*="physics"] {
+  background: #FFFFFF !important;
+  border-color: #E5E7EB !important;
+  color: #1F2937 !important;
+}
+
+body.light-theme input[placeholder*="calculus"]::placeholder,
+body.light-theme input[placeholder*="physics"]::placeholder {
+  color: #9CA3AF !important;
+}
+
+body.light-theme input[placeholder*="calculus"]:focus,
+body.light-theme input[placeholder*="physics"]:focus {
+  border-color: #10D845 !important;
+  box-shadow: 0 0 0 3px rgba(16, 216, 69, 0.1) !important;
+}
+
+/* Video cards and results */
+body.light-theme [class*="video"] {
+  background: #FFFFFF !important;
+  border-color: #E5E7EB !important;
+}
+
+body.light-theme .video-card {
+  background: #FFFFFF !important;
+  border: 1px solid #E5E7EB !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+}
+
+body.light-theme .video-card:hover {
+  border-color: #10D845 !important;
+  box-shadow: 0 10px 25px rgba(16, 216, 69, 0.15) !important;
+}
+
+body.light-theme .video-card h3,
+body.light-theme .video-card p {
+  color: #1F2937 !important;
+}
+
+body.light-theme .video-card .text-text-gray {
+  color: #6B7280 !important;
 }

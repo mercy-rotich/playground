@@ -1,5 +1,16 @@
 
+
 body.chatbot-page > nav:first-of-type,
 body.chatbot-page > footer {
   display: none !important;
+}
+
+/* Hide scrollbar while keeping functionality */
+.scrollbar-hide {
+  -ms-overflow-style: none;  
+  scrollbar-width: none;     
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; 
 }

@@ -16,7 +16,7 @@ export default function FeatureBadges() {
         return (
           <div
             key={feature.id}
-            className="bg-primary/10 border border-primary/30 text-primary px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2"
+            className="bg-primary/10 border border-primary/30 text-primary px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2 transition-all duration-300 hover:bg-primary hover:text-dark hover:border-primary cursor-pointer"
           >
             <Icon className="w-4 h-4" />
             {feature.label}
