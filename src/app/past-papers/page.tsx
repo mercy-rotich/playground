@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useMemo, useCallback } from 'react'
+import { useState, useEffect, useMemo, useCallback, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { PastPaper } from '@/types'
 import { PAST_PAPERS_SCHOOLS, generateDemoPastPapers } from '@/lib/constants'
@@ -13,7 +13,7 @@ import PreviewModal from './components/PreviewModal'
 import EmptyState from './components/EmptyState'
 import LoadingState from './components/LoadingState'
 
-export default function PastPapersPage() {
+function PastPapersContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   
@@ -233,5 +233,13 @@ export default function PastPapersPage() {
         onUploadToAI={handleUploadToAI}
       />
     </div>
+  )
+}
+
+export default function PastPapersPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-dark flex items-center justify-center text-white">Loading...</div>}>
+      <PastPapersContent />
+    </Suspense>
   )
 }

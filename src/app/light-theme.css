@@ -96,8 +96,8 @@ body.light-theme .min-h-screen.bg-dark {
   background-attachment: fixed !important;
 }
 
-body.light-theme .bg-\[#0F0F0F\],
-body.light-theme .bg-\[#1A1A1A\] {
+body.light-theme .bg-\[\#0F0F0F\],
+body.light-theme .bg-\[\#1A1A1A\] {
   background: #FFFFFF !important;
 }
 
@@ -646,13 +646,13 @@ body.light-theme #benefits h2 {
   color: #000000 !important;
 }
 
-body.light-theme #benefits .bg-\[#1A1A1A\] {
+body.light-theme #benefits .bg-\[\#1A1A1A\] {
   background: #FFFFFF !important;
   border: 2px solid #D1FAE5 !important;
   box-shadow: 0 4px 6px -1px rgba(16, 216, 69, 0.08) !important;
 }
 
-body.light-theme #benefits .bg-\[#1A1A1A\]:hover {
+body.light-theme #benefits .bg-\[\#1A1A1A\]:hover {
   border-color: #10D845 !important;
   box-shadow: 0 20px 25px -5px rgba(16, 216, 69, 0.2) !important;
   background: linear-gradient(to bottom right, #FFFFFF, #F0FDF4) !important;
