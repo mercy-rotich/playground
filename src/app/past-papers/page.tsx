@@ -4,10 +4,10 @@ import { useState, useEffect, useMemo, useCallback } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { PastPaper } from '@/types'
 import { PAST_PAPERS_SCHOOLS, generateDemoPastPapers } from '@/lib/constants'
+import CompactHeader from '@/components/shared/CompactHeader'
 import SchoolTabs from './components/SchoolTabs'
 import YearSelector from './components/YearSelector'
 import SearchBar from './components/SearchBar'
-import FilterTabs from './components/FilterTabs'
 import PaperList from './components/PaperList'
 import PreviewModal from './components/PreviewModal'
 import EmptyState from './components/EmptyState'
@@ -32,7 +32,7 @@ export default function PastPapersPage() {
   const [previewPaper, setPreviewPaper] = useState<PastPaper | null>(null)
   const [isPreviewOpen, setIsPreviewOpen] = useState(false)
 
-  // Update active school when URL changes
+  
   useEffect(() => {
     if (schoolFromUrl) {
       const school = PAST_PAPERS_SCHOOLS.find(s => s.id === schoolFromUrl)
@@ -128,7 +128,7 @@ export default function PastPapersPage() {
   const handleDownload = useCallback((paper: PastPaper) => {
     
     console.log('Downloading:', paper.fileUrl)
-    // Create a temporary link to simulate download
+  
     const link = document.createElement('a')
     link.href = paper.fileUrl
     link.download = `${paper.courseCode}-${paper.year}-${paper.semester}-${paper.examType}.pdf`
@@ -142,6 +142,8 @@ export default function PastPapersPage() {
 
   return (
     <div className="min-h-screen bg-dark flex flex-col">
+      {/* Navigation Header */}
+      <CompactHeader />
       
       {/* Main Content */}
       <main className="flex-1">
@@ -199,13 +201,7 @@ export default function PastPapersPage() {
                 resultsCount={filteredPapers.length}
               />
 
-              {/* Filter Tabs */}
-              <FilterTabs
-                activeFilter={examFilter}
-                onFilterChange={setExamFilter}
-                activeSemester={semesterFilter}
-                onSemesterChange={setSemesterFilter}
-              />
+              
 
               {/* Papers List */}
               {isLoading ? (

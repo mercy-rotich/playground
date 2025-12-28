@@ -15,7 +15,6 @@ export default function FeaturesSection() {
   return (
     <section id="features" className="section-padding bg-dark">
       <div className="container-custom">
-        {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Everything You Need to Excel
@@ -25,7 +24,6 @@ export default function FeaturesSection() {
           </p>
         </div>
 
-        {/* Features Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {FEATURES.map((feature, index) => (
             <div
@@ -33,14 +31,12 @@ export default function FeaturesSection() {
               className="card group"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              {/* Color indicator */}
               <div
                 className={`w-full h-1 rounded-full mb-6 ${
                   colorClasses[feature.color as keyof typeof colorClasses]
                 }`}
               />
 
-              {/* Content */}
               <h3 className="text-xl md:text-2xl font-bold mb-3">
                 {feature.title}
               </h3>

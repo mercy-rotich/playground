@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { UserProfile, UserSubscription, SubscriptionPlan } from '@/types'
 import { PRICING } from '@/lib/constants'
-
+import CompactHeader from '@/components/shared/CompactHeader'
 import ProfileHeader from './components/ProfileHeader'
 import AccountDetails from './components/AccountDetails'
 import SubscriptionCard from './components/SubscriptionCard'
@@ -78,8 +78,9 @@ export default function MyAccountPage() {
   }
 
   return (
-    <div className="min-h-screen bg-dark">
-    
+    <div className="min-h-screen bg-dark flex flex-col">
+      {/* Navigation Header */}
+      <CompactHeader />
 
       {/* Main Content */}
       <main className="container-custom py-8">

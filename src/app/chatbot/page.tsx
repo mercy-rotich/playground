@@ -1,12 +1,10 @@
 'use client'
 
 import { useState, useEffect, useRef, useCallback } from 'react'
-import Link from 'next/link'
-import { ArrowLeft } from 'lucide-react'
 import { ChatMessage as ChatMessageType, ChatHistorySection, SubscriptionPlan, UserSubscription } from '@/types'
 import { CHATBOT_CONFIG, STORAGE_KEYS } from '@/lib/constants'
+import CompactHeader from '@/components/shared/CompactHeader'
 import ChatSidebar from './components/ChatSidebar'
-import SubscriptionBanner from './components/SubscriptionBanner'
 import ChatMessage from './components/ChatMessage'
 import TypingIndicator from './components/TypingIndicator'
 import ChatInput from './components/ChatInput'
@@ -64,8 +62,30 @@ export default function ChatbotPage() {
   const [subscription, setSubscription] = useState<UserSubscription>({ isActive: false })
   const [showSubscriptionModal, setShowSubscriptionModal] = useState(false)
   const [hasCheckedSubscription, setHasCheckedSubscription] = useState(false)
+  const [isLight, setIsLight] = useState(false)
 
   const chatContainerRef = useRef<HTMLDivElement>(null)
+
+  // Detect theme from body class
+  useEffect(() => {
+    const checkTheme = () => {
+      setIsLight(document.body.classList.contains('light-theme'))
+    }
+    
+    checkTheme()
+    
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'class') {
+          checkTheme()
+        }
+      })
+    })
+    
+    observer.observe(document.body, { attributes: true })
+    
+    return () => observer.disconnect()
+  }, [])
 
   // Load subscription and chat history from localStorage
   useEffect(() => {
@@ -236,36 +256,48 @@ export default function ChatbotPage() {
     setShowSubscriptionModal(false)
   }
 
+  // Theme-aware styles
+  const getPageStyle = (): React.CSSProperties => ({
+    backgroundColor: isLight ? '#F9FAFB' : '#0A0A0A',
+  })
+
+  const getMainAreaStyle = (): React.CSSProperties => ({
+    backgroundColor: isLight ? '#FFFFFF' : '#0A0A0A',
+  })
+
+  const getChatContainerStyle = (): React.CSSProperties => ({
+    backgroundColor: isLight ? '#FFFFFF' : '#0A0A0A',
+    scrollbarWidth: 'thin',
+    scrollbarColor: isLight ? '#D1D5DB transparent' : '#2A2A2A transparent',
+  })
+
+  const getLoadingSpinnerStyle = (): React.CSSProperties => ({
+    borderColor: isLight ? 'rgba(16, 216, 69, 0.2)' : 'rgba(16, 216, 69, 0.2)',
+    borderTopColor: '#10D845',
+  })
+
   // Don't render until we've checked subscription status
   if (!hasCheckedSubscription) {
     return (
-      <div className="min-h-screen bg-dark flex items-center justify-center">
-        <div className="w-12 h-12 border-4 border-primary/20 border-t-primary rounded-full animate-spin" />
+      <div 
+        className="min-h-screen flex items-center justify-center"
+        style={getPageStyle()}
+      >
+        <div 
+          className="w-12 h-12 border-4 rounded-full animate-spin"
+          style={getLoadingSpinnerStyle()}
+        />
       </div>
     )
   }
 
   return (
-    <div className="h-screen bg-dark flex flex-col overflow-hidden">
-      {/* Navigation Header - Integrated into the page */}
-      <nav className="bg-dark border-b border-[#2A2A2A] px-4 md:px-[5%] py-4 flex-shrink-0">
-        <div className="max-w-[1400px] mx-auto flex justify-between items-center">
-          <Link href="/" className="flex items-center gap-3 text-primary font-bold text-xl md:text-2xl">
-            <div className="w-10 h-10 md:w-11 md:h-11 bg-primary text-dark rounded-xl flex items-center justify-center font-bold text-lg">
-              OS
-            </div>
-            <span>Okoa Sem</span>
-          </Link>
-          
-          <Link 
-            href="/"
-            className="flex items-center gap-2 px-4 py-2 border-2 border-[#2A2A2A] rounded-lg text-white font-semibold hover:border-primary hover:text-primary transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span className="hidden sm:inline">Back to Home</span>
-          </Link>
-        </div>
-      </nav>
+    <div 
+      className="h-screen flex flex-col overflow-hidden"
+      style={getPageStyle()}
+    >
+      {/* Navigation Header */}
+      <CompactHeader />
 
       {/* Main Container - Full height minus nav */}
       <div className="flex flex-1 min-h-0 overflow-hidden">
@@ -280,17 +312,15 @@ export default function ChatbotPage() {
         />
 
         {/* Chat Area */}
-        <main className="flex-1 flex flex-col min-w-0 overflow-hidden">
-          
-
+        <main 
+          className="flex-1 flex flex-col min-w-0 overflow-hidden"
+          style={getMainAreaStyle()}
+        >
           {/* Messages Container */}
           <div
             ref={chatContainerRef}
             className="flex-1 overflow-y-auto p-4 md:p-8"
-            style={{ 
-              scrollbarWidth: 'thin',
-              scrollbarColor: '#2A2A2A transparent'
-            }}
+            style={getChatContainerStyle()}
           >
             <div className="flex flex-col">
               {messages.map((message) => (

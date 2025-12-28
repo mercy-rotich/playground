@@ -1,5 +1,7 @@
 'use client'
 
+import { useState, useEffect } from 'react'
+
 const testimonials = [
   {
     name: 'James Mwangi',
@@ -46,58 +48,157 @@ const testimonials = [
 ]
 
 export default function TestimonialsSection() {
+  const [isLight, setIsLight] = useState(false)
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+
+  // Detect theme from body class
+  useEffect(() => {
+    const checkTheme = () => {
+      setIsLight(document.body.classList.contains('light-theme'))
+    }
+    
+    checkTheme()
+    
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'class') {
+          checkTheme()
+        }
+      })
+    })
+    
+    observer.observe(document.body, { attributes: true })
+    
+    return () => observer.disconnect()
+  }, [])
+
+  // Theme-aware styles
+  const getSectionStyle = (): React.CSSProperties => ({
+    background: isLight 
+      ? 'linear-gradient(to bottom, #F9FAFB, #FFFFFF)' 
+      : '#0A0A0A',
+  })
+
+  const getHeaderStyle = (): React.CSSProperties => ({
+    color: isLight ? '#1F2937' : '#FFFFFF',
+  })
+
+  const getSubtitleStyle = (): React.CSSProperties => ({
+    color: isLight ? '#6B7280' : '#A0A0A0',
+  })
+
+  const getCardStyle = (isHovered: boolean): React.CSSProperties => ({
+    backgroundColor: isLight ? '#FFFFFF' : '#1A1A1A',
+    border: isHovered 
+      ? '2px solid #10D845' 
+      : (isLight ? '2px solid #E5E7EB' : '2px solid #2A2A2A'),
+    borderRadius: '20px',
+    padding: '40px',
+    transition: 'all 0.4s ease',
+    transform: isHovered ? 'translateY(-8px)' : 'translateY(0)',
+    boxShadow: isHovered 
+      ? (isLight 
+          ? '0 20px 40px rgba(16, 216, 69, 0.15)' 
+          : '0 20px 40px rgba(16, 216, 69, 0.2)')
+      : 'none',
+  })
+
+  const getAvatarStyle = (): React.CSSProperties => ({
+    background: 'linear-gradient(135deg, #10D845, #B4A7FF)',
+    color: isLight ? '#1F2937' : '#0A0A0A',
+    width: '50px',
+    height: '50px',
+    borderRadius: '50%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: '1.125rem',
+    fontWeight: 700,
+    flexShrink: 0,
+  })
+
+  const getNameStyle = (): React.CSSProperties => ({
+    color: isLight ? '#1F2937' : '#FFFFFF',
+    fontSize: '1.125rem',
+    fontWeight: 600,
+    marginBottom: '2px',
+  })
+
+  const getSchoolStyle = (): React.CSSProperties => ({
+    color: isLight ? '#6B7280' : '#A0A0A0',
+    fontSize: '0.875rem',
+  })
+
+  const getTextStyle = (): React.CSSProperties => ({
+    color: isLight ? '#374151' : '#E5E5E5',
+    fontSize: '0.95rem',
+    lineHeight: 1.7,
+  })
+
+  const getDividerStyle = (): React.CSSProperties => ({
+    borderTop: isLight ? '1px solid #E5E7EB' : '1px solid #2A2A2A',
+    paddingTop: '16px',
+  })
+
+  const getDateStyle = (): React.CSSProperties => ({
+    color: isLight ? '#9CA3AF' : '#A0A0A0',
+    fontSize: '0.875rem',
+  })
+
   return (
-    <section id="testimonials" className="section-padding bg-dark">
+    <section 
+      id="testimonials" 
+      className="section-padding"
+      style={getSectionStyle()}
+    >
       <div className="container-custom">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <h2 
+            className="text-4xl md:text-5xl font-bold mb-4"
+            style={getHeaderStyle()}
+          >
             What Students Are Saying
           </h2>
-          <p className="text-xl text-text-gray">
+          <p 
+            className="text-xl"
+            style={getSubtitleStyle()}
+          >
             Join thousands of students who have transformed their exam preparation
           </p>
         </div>
 
         {/* Testimonials Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {testimonials.map((testimonial) => (
+          {testimonials.map((testimonial, index) => (
             <div
               key={testimonial.name}
-              className="relative overflow-hidden rounded-[20px] p-10 transition-all duration-400 hover:-translate-y-2 hover:border-primary hover:shadow-[0_20px_40px_rgba(196,248,42,0.2)]"
-              style={{
-                background: 'linear-gradient(135deg, rgba(26, 26, 26, 0.9), rgba(26, 26, 26, 0.7))',
-                backdropFilter: 'blur(10px)',
-                border: '2px solid #2A2A2A',
-              }}
+              className="relative overflow-hidden"
+              style={getCardStyle(hoveredIndex === index)}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
             >
               {/* Testimonial Header */}
               <div className="relative z-10 flex items-center gap-4 mb-6">
-                <div 
-                  className="w-[50px] h-[50px] rounded-full flex items-center justify-center text-lg font-bold flex-shrink-0"
-                  style={{
-                    background: 'linear-gradient(135deg, var(--primary), var(--secondary))',
-                    color: 'var(--dark)',
-                  }}
-                >
+                <div style={getAvatarStyle()}>
                   {testimonial.initials}
                 </div>
                 <div>
-                  <h4 className="text-lg font-semibold mb-0.5">{testimonial.name}</h4>
-                  <span className="text-text-gray text-sm">{testimonial.school}</span>
+                  <h4 style={getNameStyle()}>{testimonial.name}</h4>
+                  <span style={getSchoolStyle()}>{testimonial.school}</span>
                 </div>
               </div>
 
               {/* Testimonial Text */}
               <div className="relative z-10 mb-6">
-                <p className="text-[#E5E5E5] text-[0.95rem] leading-[1.7]">
+                <p style={getTextStyle()}>
                   "{testimonial.text}"
                 </p>
               </div>
 
               {/* Footer */}
-              <div className="relative z-10 pt-4 border-t border-[#2A2A2A] text-sm">
-                <span className="text-text-gray">{testimonial.date}</span>
+              <div className="relative z-10" style={getDividerStyle()}>
+                <span style={getDateStyle()}>{testimonial.date}</span>
               </div>
             </div>
           ))}

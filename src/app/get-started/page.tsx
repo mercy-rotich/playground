@@ -1,11 +1,12 @@
 'use client'
 
 import { useEffect } from 'react'
-import GetStartedHeader from './components/GetStartedHeader'
+import Navigation from '@/app/home/layout/Navigation/Navigation'
+import Footer from '@/app/home/layout/Footer/Footer'
 import SignUpCard from './components/SignUpCard'
 
 export default function GetStartedPage() {
-  // Add class to body when page mounts to hide main nav/footer
+  // Add class to body when page mounts
   useEffect(() => {
     document.body.classList.add('get-started-page')
 
@@ -16,18 +17,21 @@ export default function GetStartedPage() {
 
   return (
     <div className="min-h-screen bg-dark flex flex-col">
-      {/* Header */}
-      <GetStartedHeader />
+      {/* Navigation */}
+      <Navigation />
 
       {/* Main Container */}
       <div
-        className="flex-1 flex items-center justify-center px-4 md:px-[5%] py-8 md:py-12"
+        className="min-h-screen flex items-center justify-center px-4 md:px-[5%] py-8 md:py-12"
         style={{
           background: 'radial-gradient(circle at 50% 20%, rgba(196, 248, 42, 0.08), transparent 60%)',
         }}
       >
         <SignUpCard />
       </div>
+
+      {/* Footer */}
+      <Footer />
     </div>
   )
 }
