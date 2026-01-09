@@ -16,8 +16,8 @@ const navLinks = [
 export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isLight, setIsLight] = useState(false)
 
-  // Handle scroll for glass effect
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20)
@@ -26,29 +26,46 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  return (
-    <nav 
-      className={`
-        sticky top-0 z-50 transition-all duration-300
-        ${isScrolled 
-          ? 'bg-dark/80 backdrop-blur-xl border-b border-white/5' 
-          : 'bg-transparent'
+  useEffect(() => {
+    const checkTheme = () => {
+      setIsLight(document.body.classList.contains('light-theme'))
+    }
+    
+    checkTheme()
+    
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'class') {
+          checkTheme()
         }
-      `}
-    >
+      })
+    })
+    
+    observer.observe(document.body, { attributes: true })
+    
+    return () => observer.disconnect()
+  }, [])
+
+  const getNavBackground = () => {
+    if (isLight) {
+      return 'bg-white border-b border-gray-100 shadow-sm'
+    }
+    if (isScrolled) {
+      return 'bg-dark/95 backdrop-blur-xl border-b border-white/5'
+    }
+    return 'bg-transparent'
+  }
+
+  return (
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${getNavBackground()}`}>
       <div className="container-custom">
         <div className="flex items-center justify-between h-16 md:h-18">
-          {/* Logo - Clean, not overdone */}
+          {/* Logo */}
           <Link href={ROUTES.HOME} className="flex items-center gap-2.5 group">
-            <div className="
-              w-9 h-9 rounded-lg bg-primary 
-              flex items-center justify-center 
-              font-bold text-dark text-sm
-              group-hover:scale-105 transition-transform
-            ">
+            <div className="w-9 h-9 rounded-lg bg-primary flex items-center justify-center font-bold text-dark text-sm group-hover:scale-105 transition-transform">
               OS
             </div>
-            <span className="font-semibold text-white text-lg hidden sm:block">
+            <span className={`font-semibold text-lg hidden sm:block ${isLight ? 'text-gray-900' : 'text-white'}`}>
               Okoa Sem
             </span>
           </Link>
@@ -59,20 +76,14 @@ export default function Navigation() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="
-                  relative px-4 py-2 text-sm font-medium
-                  text-text-secondary hover:text-white
-                  transition-colors duration-200
-                  group
-                "
+                className={`relative px-4 py-2 text-sm font-medium transition-colors duration-200 group ${
+                  isLight 
+                    ? 'text-gray-700 hover:text-primary' 
+                    : 'text-gray-300 hover:text-white'
+                }`}
               >
                 {link.label}
-                {/* Underline animation */}
-                <span className="
-                  absolute bottom-0 left-4 right-4 h-0.5
-                  bg-primary scale-x-0 group-hover:scale-x-100
-                  transition-transform duration-200 origin-left
-                " />
+                <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left" />
               </Link>
             ))}
           </div>
@@ -83,14 +94,15 @@ export default function Navigation() {
             <div className="hidden sm:inline-flex">
               <ThemeToggle />
             </div>
-            {/* Account link - Subtle */}
+            
+            {/* Account link */}
             <Link
               href={ROUTES.MY_ACCOUNT}
-              className="
-                hidden sm:flex items-center gap-2 px-3 py-2 
-                text-sm text-text-secondary hover:text-white
-                transition-colors
-              "
+              className={`hidden sm:flex items-center gap-2 px-3 py-2 text-sm transition-colors ${
+                isLight 
+                  ? 'text-gray-700 hover:text-primary' 
+                  : 'text-gray-300 hover:text-white'
+              }`}
             >
               <User className="w-4 h-4" />
               <span className="hidden lg:inline">Account</span>
@@ -99,13 +111,7 @@ export default function Navigation() {
             {/* Primary CTA */}
             <Link
               href={ROUTES.SIGNUP}
-              className="
-                hidden sm:inline-flex items-center gap-2
-                px-4 py-2 bg-primary text-dark rounded-lg
-                text-sm font-medium
-                hover:bg-primary-dark transition-colors
-                shadow-lg shadow-primary/20
-              "
+              className="hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-primary text-dark rounded-lg text-sm font-medium hover:bg-primary-dark transition-colors shadow-lg shadow-primary/20"
             >
               Get Started
             </Link>
@@ -113,11 +119,11 @@ export default function Navigation() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="
-                md:hidden p-2 -mr-2
-                text-text-secondary hover:text-white
-                transition-colors
-              "
+              className={`md:hidden p-2 -mr-2 transition-colors ${
+                isLight 
+                  ? 'text-gray-700 hover:text-primary' 
+                  : 'text-gray-300 hover:text-white'
+              }`}
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? (
@@ -130,13 +136,11 @@ export default function Navigation() {
         </div>
       </div>
 
-      {/* Mobile Menu - Full screen, clean */}
+      {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="
-          md:hidden fixed inset-0 top-16 z-40
-          bg-dark/95 backdrop-blur-xl
-          animate-fadeIn
-        ">
+        <div className={`md:hidden fixed inset-0 top-16 z-40 animate-fadeIn ${
+          isLight ? 'bg-white' : 'bg-dark/95 backdrop-blur-xl'
+        }`}>
           <div className="container-custom py-8">
             <nav className="flex flex-col gap-2">
               {navLinks.map((link, index) => (
@@ -144,34 +148,28 @@ export default function Navigation() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="
-                    flex items-center justify-between
-                    px-4 py-4 rounded-xl
-                    text-lg font-medium text-white
-                    hover:bg-white/5 transition-colors
-                    animate-fadeInUp
-                  "
+                  className={`flex items-center justify-between px-4 py-4 rounded-xl text-lg font-medium transition-colors animate-fadeInUp ${
+                    isLight 
+                      ? 'text-gray-900 hover:bg-gray-100' 
+                      : 'text-white hover:bg-white/5'
+                  }`}
                   style={{ animationDelay: `${index * 50}ms` }}
                 >
                   {link.label}
-                  <ChevronDown className="w-5 h-5 -rotate-90 text-text-muted" />
+                  <ChevronDown className={`w-5 h-5 -rotate-90 ${isLight ? 'text-gray-400' : 'text-gray-500'}`} />
                 </Link>
               ))}
             </nav>
 
             {/* Mobile CTAs */}
-            <div className="mt-8 pt-8 border-t border-white/10 flex flex-col gap-3">
+            <div className="mt-8 pt-8 flex flex-col gap-3" style={{ borderTop: isLight ? '1px solid #E5E7EB' : '1px solid rgba(255,255,255,0.1)' }}>
               <div className="flex items-center justify-center gap-3">
                 <ThemeToggle />
               </div>
               <Link
                 href={ROUTES.SIGNUP}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="
-                  w-full py-4 bg-primary text-dark rounded-xl
-                  font-semibold text-center
-                  animate-fadeInUp
-                "
+                className="w-full py-4 bg-primary text-dark rounded-xl font-semibold text-center animate-fadeInUp"
                 style={{ animationDelay: '200ms' }}
               >
                 Get Started Free
@@ -179,11 +177,11 @@ export default function Navigation() {
               <Link
                 href={ROUTES.MY_ACCOUNT}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="
-                  w-full py-4 bg-white/5 text-white rounded-xl
-                  font-semibold text-center flex items-center justify-center gap-2
-                  animate-fadeInUp
-                "
+                className={`w-full py-4 rounded-xl font-semibold text-center flex items-center justify-center gap-2 animate-fadeInUp ${
+                  isLight 
+                    ? 'bg-gray-100 text-gray-900' 
+                    : 'bg-white/5 text-white'
+                }`}
                 style={{ animationDelay: '250ms' }}
               >
                 <User className="w-5 h-5" />
@@ -192,7 +190,7 @@ export default function Navigation() {
             </div>
 
             {/* Mobile footer info */}
-            <div className="mt-auto pt-8 text-center text-sm text-text-muted">
+            <div className={`mt-auto pt-8 text-center text-sm ${isLight ? 'text-gray-500' : 'text-gray-500'}`}>
               <p>24,847 past papers • 8 universities</p>
             </div>
           </div>

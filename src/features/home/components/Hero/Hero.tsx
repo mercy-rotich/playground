@@ -29,15 +29,32 @@ const stats = [
   },
 ]
 
-const floatingElements: Array<{ icon: string; delay: string; duration: string; top: string; left: string }> = []
-
 export default function Hero() {
   const [searchQuery, setSearchQuery] = useState('')
   const [isSearchFocused, setIsSearchFocused] = useState(false)
   const [mounted, setMounted] = useState(false)
+  const [isLight, setIsLight] = useState(false)
 
   useEffect(() => {
     setMounted(true)
+    
+    const checkTheme = () => {
+      setIsLight(document.body.classList.contains('light-theme'))
+    }
+    
+    checkTheme()
+    
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'class') {
+          checkTheme()
+        }
+      })
+    })
+    
+    observer.observe(document.body, { attributes: true })
+    
+    return () => observer.disconnect()
   }, [])
 
   const handleSearch = (e: React.FormEvent) => {
@@ -59,9 +76,9 @@ export default function Hero() {
         />
       </div>
       
-      {/* Dark Theme Overlay - Gradient from left */}
+      {/* Dark Theme Overlay */}
       <div 
-        className="dark-overlay absolute inset-0 z-[1] transition-opacity duration-500"
+        className="absolute inset-0 z-[1] transition-opacity duration-500"
         style={{
           background: `
             linear-gradient(
@@ -72,92 +89,73 @@ export default function Hero() {
               rgba(0, 0, 0, 0.3) 80%,
               rgba(0, 0, 0, 0.15) 100%
             )
-          `
+          `,
+          opacity: isLight ? 0 : 1,
+          pointerEvents: isLight ? 'none' : 'auto',
         }}
       />
       
-      {/* Light Theme Overlay - Sophisticated gradient */}
+      {/* Light Theme Overlay - Solid mint green on left, fading to transparent */}
       <div 
-        className="light-overlay absolute inset-0 z-[1] opacity-0 transition-opacity duration-500"
+        className="absolute inset-0 z-[1] transition-opacity duration-500"
         style={{ 
           background: `
             linear-gradient(
-              105deg,
-              rgba(255, 255, 255, 0.98) 0%,
-              rgba(255, 255, 255, 0.95) 35%,
-              rgba(255, 255, 255, 0.75) 50%,
-              rgba(255, 255, 255, 0.4) 65%,
-              rgba(255, 255, 255, 0) 80%
+              to right,
+              #B8F5CD 0%,
+              #B8F5CD 20%,
+              rgba(184, 245, 205, 0.95) 30%,
+              rgba(184, 245, 205, 0.7) 40%,
+              rgba(184, 245, 205, 0.4) 50%,
+              rgba(184, 245, 205, 0.1) 60%,
+              transparent 80%
             )
-          `
+          `,
+          opacity: isLight ? 1 : 0,
+          pointerEvents: isLight ? 'auto' : 'none',
         }} 
       />
-
-      {/* Accent glow for light theme */}
-      <div 
-        className="light-accent-glow absolute inset-0 z-[1] opacity-0 pointer-events-none transition-opacity duration-500"
-        style={{
-          background: `
-            radial-gradient(ellipse 80% 60% at 0% 50%, rgba(16, 216, 69, 0.12), transparent 60%),
-            radial-gradient(ellipse 50% 50% at 20% 80%, rgba(16, 216, 69, 0.08), transparent 50%)
-          `
-        }}
-      />
-
-      {/* Floating decorative elements */}
-      {mounted && floatingElements.map((el, i) => (
-        <div
-          key={i}
-          className="absolute z-[2] text-3xl opacity-20 animate-float pointer-events-none"
-          style={{
-            top: el.top,
-            left: el.left,
-            animationDelay: el.delay,
-            animationDuration: el.duration,
-          }}
-        >
-          {el.icon}
-        </div>
-      ))}
 
       {/* Main Content Grid */}
       <div className="relative z-10 w-full min-h-screen flex flex-col">
         {/* Hero Content */}
-        <div className="flex-1 flex items-center pt-20 pb-16">
+        <div className="flex-1 flex items-center pt-24 pb-16">
           <div className="w-[90%] max-w-[1800px] mx-auto">
             <div className="grid lg:grid-cols-12 gap-8 items-center">
-              {/* Left Content - Takes up more space */}
+              {/* Left Content */}
               <div className="lg:col-span-7 xl:col-span-6">
                 {/* Animated badge */}
                 <div 
-                  className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6 backdrop-blur-sm transform transition-all duration-700 ${
+                  className={`inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 transform transition-all duration-700 ${
                     mounted ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
                   }`}
+                  style={{
+                    backgroundColor: isLight ? 'rgba(0, 200, 83, 0.2)' : 'rgba(0, 200, 83, 0.1)',
+                    border: '1px solid rgba(0, 200, 83, 0.4)',
+                  }}
                 >
                   <Sparkles className="w-4 h-4 text-primary animate-pulse" />
                   <span className="text-sm font-semibold text-primary">Your Ultimate Study Companion</span>
                 </div>
 
-                {/* Main headline with staggered animation */}
+                {/* Main headline */}
                 <h1 
                   className={`hero-title text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold mb-6 tracking-tight leading-[1.1] transform transition-all duration-700 delay-100 ${
                     mounted ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
                   }`}
                 >
-                  <span className="text-white block">Never Miss An</span>
-                  <span className="text-white block">Exam{' '}
-                    <span className="relative inline-block">
-                      <span className="text-primary relative z-10">Question</span>
-                    </span>
+                  <span className={`block ${isLight ? 'text-gray-900' : 'text-white'}`}>Never Miss An</span>
+                  <span className={`block ${isLight ? 'text-gray-900' : 'text-white'}`}>Exam{' '}
+                    <span className="text-primary">Question</span>
                   </span>
                   <span className="text-primary block">Pattern Again</span>
                 </h1>
 
                 {/* Subtitle */}
                 <p 
-                  className={`hero-subtitle text-lg md:text-xl text-text-gray mb-8 leading-relaxed max-w-xl transform transition-all duration-700 delay-200 ${
+                  className={`hero-subtitle text-lg md:text-xl mb-8 leading-relaxed max-w-xl transform transition-all duration-700 delay-200 ${
                     mounted ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
-                  }`}
+                  } ${isLight ? 'text-gray-700' : 'text-gray-300'}`}
                 >
                   Access thousands of past papers, AI-powered study tools, and collaborative 
                   learning features designed for students who want to excel.
@@ -183,7 +181,11 @@ export default function Hero() {
                       onFocus={() => setIsSearchFocused(true)}
                       onBlur={() => setIsSearchFocused(false)}
                       placeholder="Search for papers, topics, or courses..."
-                      className="w-full px-6 py-4 pr-14 bg-dark-card/90 backdrop-blur-xl border-2 border-dark-lighter/50 rounded-xl text-white placeholder:text-text-gray/70 focus:outline-none focus:border-primary transition-all duration-300 shadow-2xl"
+                      className={`w-full px-6 py-4 pr-14 border-2 rounded-xl focus:outline-none focus:border-primary transition-all duration-300 ${
+                        isLight 
+                          ? 'bg-white border-gray-200 text-gray-900 placeholder:text-gray-400 shadow-lg' 
+                          : 'bg-dark-card/90 backdrop-blur-xl border-dark-lighter/50 text-white placeholder:text-gray-500 shadow-xl'
+                      }`}
                     />
                     <button
                       type="submit"
@@ -203,89 +205,100 @@ export default function Hero() {
                 >
                   <Link
                     href={ROUTES.PAST_PAPERS}
-                    className="group inline-flex items-center gap-2 btn-primary shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all duration-300 hover:-translate-y-1"
+                    className="group inline-flex items-center gap-2 px-6 py-3 bg-primary text-white font-semibold rounded-xl shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all duration-300 hover:-translate-y-1 hover:bg-primary-dark"
                   >
                     Browse Past Papers
                     <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
                   </Link>
                   <Link 
                     href={ROUTES.CHATBOT} 
-                    className="btn-secondary shadow-lg transition-all duration-300 hover:-translate-y-1 backdrop-blur-sm"
+                    className={`inline-flex items-center justify-center px-6 py-3 font-semibold rounded-xl border-2 transition-all duration-300 hover:-translate-y-1 ${
+                      isLight 
+                        ? 'bg-white border-gray-300 text-gray-800 hover:border-primary hover:text-primary shadow-md' 
+                        : 'bg-transparent border-gray-600 text-white hover:border-primary hover:text-primary'
+                    }`}
                   >
                     Try AI Study Bot
                   </Link>
                   <Link 
                     href={ROUTES.YOUTUBE} 
-                    className="btn-secondary shadow-lg transition-all duration-300 hover:-translate-y-1 backdrop-blur-sm"
+                    className={`inline-flex items-center justify-center px-6 py-3 font-semibold rounded-xl border-2 transition-all duration-300 hover:-translate-y-1 ${
+                      isLight 
+                        ? 'bg-white border-gray-300 text-gray-800 hover:border-primary hover:text-primary shadow-md' 
+                        : 'bg-transparent border-gray-600 text-white hover:border-primary hover:text-primary'
+                    }`}
                   >
                     Study with YouTube
                   </Link>
                 </div>
 
-                {/* Quick stats inline - visible on larger screens */}
+                {/* Quick stats */}
                 <div 
                   className={`hidden lg:flex items-center gap-8 mt-10 pt-8 transform transition-all duration-700 delay-500 ${
                     mounted ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
                   }`}
+                  style={{
+                    borderTop: isLight ? '1px solid rgba(0,0,0,0.1)' : '1px solid rgba(255,255,255,0.1)'
+                  }}
                 >
                   {stats.slice(0, 3).map((stat) => (
                     <div key={stat.label} className="flex items-center gap-3">
                       <div>
-                        <div className="text-2xl font-bold text-white">{stat.number}</div>
-                        <div className="text-sm text-text-gray">{stat.label}</div>
+                        <div className={`text-2xl font-bold ${isLight ? 'text-gray-900' : 'text-white'}`}>{stat.number}</div>
+                        <div className={`text-sm ${isLight ? 'text-gray-600' : 'text-gray-400'}`}>{stat.label}</div>
                       </div>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Right side - Can add floating cards or leave for image visibility */}
+              {/* Right side - Floating cards */}
               <div className="hidden lg:block lg:col-span-5 xl:col-span-6">
                 <div className="relative h-[500px]">
                   <div 
-                    className={`absolute top-10 right-20 bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/20 shadow-2xl transform transition-all duration-1000 delay-600 ${
+                    className={`absolute top-10 right-20 rounded-2xl p-4 border shadow-2xl transform transition-all duration-1000 delay-600 ${
                       mounted ? 'translate-y-0 opacity-100 rotate-3' : 'translate-y-8 opacity-0'
-                    }`}
+                    } ${isLight ? 'bg-white/95 border-gray-200' : 'bg-white/10 backdrop-blur-md border-white/20'}`}
                   >
                     <div className="flex items-center gap-3">
                       <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
                         <FileText className="w-6 h-6 text-primary" />
                       </div>
                       <div>
-                        <div className="text-white font-semibold">24,000+</div>
-                        <div className="text-white/60 text-sm">Past Papers</div>
+                        <div className={`font-semibold ${isLight ? 'text-gray-900' : 'text-white'}`}>24,000+</div>
+                        <div className={`text-sm ${isLight ? 'text-gray-500' : 'text-white/60'}`}>Past Papers</div>
                       </div>
                     </div>
                   </div>
 
                   <div 
-                    className={`absolute top-40 right-0 bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/20 shadow-2xl transform transition-all duration-1000 delay-700 ${
+                    className={`absolute top-40 right-0 rounded-2xl p-4 border shadow-2xl transform transition-all duration-1000 delay-700 ${
                       mounted ? 'translate-y-0 opacity-100 -rotate-2' : 'translate-y-8 opacity-0'
-                    }`}
+                    } ${isLight ? 'bg-white/95 border-gray-200' : 'bg-white/10 backdrop-blur-md border-white/20'}`}
                   >
                     <div className="flex items-center gap-3">
                       <div className="w-12 h-12 rounded-xl bg-green-400/20 flex items-center justify-center">
-                        <Sparkles className="w-6 h-6 text-green-400" />
+                        <Sparkles className="w-6 h-6 text-green-500" />
                       </div>
                       <div>
-                        <div className="text-white font-semibold">AI Powered</div>
-                        <div className="text-white/60 text-sm">Study Assistant</div>
+                        <div className={`font-semibold ${isLight ? 'text-gray-900' : 'text-white'}`}>AI Powered</div>
+                        <div className={`text-sm ${isLight ? 'text-gray-500' : 'text-white/60'}`}>Study Assistant</div>
                       </div>
                     </div>
                   </div>
 
                   <div 
-                    className={`absolute bottom-20 right-32 bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/20 shadow-2xl transform transition-all duration-1000 delay-800 ${
+                    className={`absolute bottom-20 right-32 rounded-2xl p-4 border shadow-2xl transform transition-all duration-1000 delay-800 ${
                       mounted ? 'translate-y-0 opacity-100 rotate-1' : 'translate-y-8 opacity-0'
-                    }`}
+                    } ${isLight ? 'bg-white/95 border-gray-200' : 'bg-white/10 backdrop-blur-md border-white/20'}`}
                   >
                     <div className="flex items-center gap-3">
                       <div className="w-12 h-12 rounded-xl bg-blue-400/20 flex items-center justify-center">
-                        <Users className="w-6 h-6 text-blue-400" />
+                        <Users className="w-6 h-6 text-blue-500" />
                       </div>
                       <div>
-                        <div className="text-white font-semibold">Study Groups</div>
-                        <div className="text-white/60 text-sm">Collaborate & Learn</div>
+                        <div className={`font-semibold ${isLight ? 'text-gray-900' : 'text-white'}`}>Study Groups</div>
+                        <div className={`text-sm ${isLight ? 'text-gray-500' : 'text-white/60'}`}>Collaborate & Learn</div>
                       </div>
                     </div>
                   </div>
@@ -294,22 +307,7 @@ export default function Hero() {
             </div>
           </div>
         </div>
-
       </div>
-
-      <style jsx>{`
-        @keyframes float {
-          0%, 100% {
-            transform: translateY(0) rotate(0deg);
-          }
-          50% {
-            transform: translateY(-20px) rotate(5deg);
-          }
-        }
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
-      `}</style>
     </section>
   )
 }

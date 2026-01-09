@@ -355,11 +355,14 @@ export default function AIAssistantSection() {
                     flex: 1,
                     padding: '24px',
                     overflowY: 'auto',
+                    scrollbarWidth: 'none',
+                    msOverflowStyle: 'none',
                     background: isLight ? '#FFFFFF' : '#0A0A0A',
                     display: 'flex',
                     flexDirection: 'column',
                     gap: '20px',
                   }}
+                  className="scrollbar-hidden"
                 >
                   {/* User Message */}
                   <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
@@ -504,7 +507,7 @@ export default function AIAssistantSection() {
                   style={{
                     padding: '16px 24px',
                     borderTop: isLight ? '1px solid #E5E7EB' : '1px solid #374151',
-                    background: isLight ? '#FAFAFA' : '#1F2937',
+                    background: isLight ? '#FFFFFF' : '#0A0A0A',
                   }}
                 >
                   <div
@@ -512,8 +515,8 @@ export default function AIAssistantSection() {
                       display: 'flex',
                       gap: '12px',
                       alignItems: 'center',
-                      background: isLight ? '#FFFFFF' : '#111827',
-                      border: isLight ? '1px solid #E5E7EB' : '1px solid #374151',
+                      background: 'transparent',
+                      border: 'none',
                       borderRadius: '12px',
                       padding: '12px 16px',
                     }}
@@ -565,6 +568,9 @@ export default function AIAssistantSection() {
                 transform: scale(1);
                 opacity: 1;
               }
+            }
+            .scrollbar-hidden::-webkit-scrollbar {
+              display: none;
             }
           `}</style>
         </div>

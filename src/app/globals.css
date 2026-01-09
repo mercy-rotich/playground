@@ -1,17 +1,166 @@
 @import "tailwindcss";
 
-/* Explicitly link your config so v4 finds your custom 'bg-dark' color */
-@config "../../tailwind.config.ts";
-
 @import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=cabinet-grotesk@500,700,800&display=swap');
 
+/* ===== TAILWIND V4 THEME CONFIGURATION ===== */
+@theme {
+  /* Font families */
+  --font-display: 'Cabinet Grotesk', 'Satoshi', system-ui, sans-serif;
+  --font-body: 'Satoshi', 'Inter', system-ui, sans-serif;
 
-@layer base {
-  :root {
-    --font-display: 'Cabinet Grotesk', 'Satoshi', system-ui, sans-serif;
-    --font-body: 'Satoshi', 'Inter', system-ui, sans-serif;
+  /* Primary colors */
+  --color-primary: #00C853;
+  --color-primary-dark: #00A844;
+  --color-primary-light: #69F0AE;
+  --color-primary-soft: rgba(0, 200, 83, 0.1);
+
+  /* Secondary/Accent colors */
+  --color-secondary: #B4A7FF;
+  --color-accent: #FF6B35;
+  --color-accent-soft: rgba(255, 107, 53, 0.1);
+
+  /* Dark theme colors */
+  --color-dark: #0F0F12;
+  --color-dark-card: #18181B;
+  --color-dark-lighter: #27272A;
+  --color-dark-elevated: #3F3F46;
+
+  /* Text colors */
+  --color-text-primary: #FAFAFA;
+  --color-text-secondary: #A1A1AA;
+  --color-text-muted: #71717A;
+  --color-text-gray: #A0A0A0;
+
+  /* Light theme colors */
+  --color-light: #FFFFFF;
+  --color-light-card: #F8FAFC;
+  --color-light-surface: #F1F5F9;
+  --color-light-text: #1E293B;
+  --color-light-text-secondary: #64748B;
+
+  /* Spacing */
+  --spacing-18: 4.5rem;
+  --spacing-22: 5.5rem;
+
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-3xl: 24px;
+
+  /* Shadows */
+  --shadow-soft: 0 2px 8px -2px rgba(0, 0, 0, 0.15);
+  --shadow-medium: 0 4px 16px -4px rgba(0, 0, 0, 0.2);
+  --shadow-large: 0 8px 32px -8px rgba(0, 0, 0, 0.3);
+  --shadow-glow-primary: 0 4px 14px -4px rgba(0, 200, 83, 0.4);
+  --shadow-glow-primary-lg: 0 8px 24px -4px rgba(0, 200, 83, 0.5);
+
+  /* Animations */
+  --animate-fade-in: fadeIn 0.4s ease-out;
+  --animate-fade-in-up: fadeInUp 0.5s ease-out;
+  --animate-fade-in-down: fadeInDown 0.5s ease-out;
+  --animate-slide-in-right: slideInRight 0.5s ease-out;
+  --animate-scale-in: scaleIn 0.3s ease-out;
+  --animate-pulse-soft: pulseSoft 2s ease-in-out infinite;
+  --animate-float: float 3s ease-in-out infinite;
+}
+
+/* ===== KEYFRAMES ===== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(30px); 
   }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
 
+@keyframes fadeInDown {
+  from { 
+    opacity: 0; 
+    transform: translateY(-16px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes slideInRight {
+  from { 
+    opacity: 0; 
+    transform: translateX(16px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateX(0); 
+  }
+}
+
+@keyframes scaleIn {
+  from { 
+    opacity: 0; 
+    transform: scale(0.95); 
+  }
+  to { 
+    opacity: 1; 
+    transform: scale(1); 
+  }
+}
+
+@keyframes pulseSoft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes typing {
+  0%, 100% { 
+    opacity: 0.3; 
+    transform: scale(0.8); 
+  }
+  50% { 
+    opacity: 1; 
+    transform: scale(1); 
+  }
+}
+
+@keyframes progress {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes modalSlideIn {
+  from { 
+    opacity: 0; 
+    transform: scale(0.95) translateY(10px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: scale(1) translateY(0); 
+  }
+}
+
+/* ===== BASE STYLES ===== */
+@layer base {
   html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
@@ -19,12 +168,13 @@
   }
 
   body {
-    @apply bg-dark text-text-primary;
+    background-color: var(--color-dark);
+    color: var(--color-text-primary);
     font-family: var(--font-body);
     line-height: 1.6;
   }
 
-  /* Typography with character */
+  /* Typography */
   h1, h2, h3, h4 {
     font-family: var(--font-display);
     font-weight: 700;
@@ -33,20 +183,16 @@
     text-wrap: balance;
   }
 
-  h1 { @apply text-4xl md:text-5xl lg:text-6xl; }
-  h2 { @apply text-3xl md:text-4xl; }
-  h3 { @apply text-2xl md:text-3xl; }
-  h4 { @apply text-xl md:text-2xl; }
-
-
-  /* Better focus states */
+  /* Focus states */
   :focus-visible {
-    @apply outline-primary outline-offset-2 outline-2;
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
   }
 }
 
+/* ===== COMPONENTS ===== */
 @layer components {
-  /* Scrollbar - Subtle */
+  /* Scrollbar */
   ::-webkit-scrollbar {
     width: 8px;
   }
@@ -56,7 +202,8 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-dark-lighter rounded-full;
+    background-color: var(--color-dark-lighter);
+    border-radius: 9999px;
   }
 
   .scrollbar-hide {
@@ -67,4 +214,159 @@
   .scrollbar-hide::-webkit-scrollbar {
     display: none; 
   }
+
+  /* Container */
+  .container-custom {
+    width: 100%;
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .container-custom {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container-custom {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  /* Section padding */
+  .section-padding {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  @media (min-width: 768px) {
+    .section-padding {
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+  }
+
+  /* Cards */
+  .card {
+    background-color: var(--color-dark-card);
+    border: 1px solid var(--color-dark-lighter);
+    border-radius: var(--radius-2xl);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .card:hover {
+    border-color: rgba(0, 200, 83, 0.5);
+    transform: translateY(-4px);
+  }
+
+  /* Buttons */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--color-primary);
+    color: var(--color-dark);
+    font-weight: 600;
+    border-radius: var(--radius-xl);
+    transition: all 0.2s ease;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-primary-dark);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    background-color: transparent;
+    border: 2px solid var(--color-dark-lighter);
+    color: white;
+    font-weight: 600;
+    border-radius: var(--radius-xl);
+    transition: all 0.2s ease;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  /* Animation classes */
+  .animate-fadeIn {
+    animation: fadeIn 0.4s ease-out;
+  }
+
+  .animate-fadeInUp {
+    animation: fadeInUp 0.5s ease-out;
+  }
+
+  .animate-slideIn {
+    animation: slideInRight 0.3s ease-out;
+  }
+
+  .animate-modalSlideIn {
+    animation: modalSlideIn 0.3s ease-out;
+  }
+
+  .animate-typing {
+    animation: typing 1.4s ease-in-out infinite;
+  }
+
+  .animate-progress {
+    animation: progress 2s ease-in-out infinite;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* Shimmer effect */
+  .shimmer {
+    animation: shimmer 1.5s infinite;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    background-size: 200% 100%;
+  }
+}
+
+/* ===== UTILITIES ===== */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* ===== LIGHT THEME ===== */
+body.light-theme {
+  background-color: var(--color-light);
+  color: var(--color-light-text);
+}
+
+body.light-theme .bg-dark {
+  background-color: var(--color-light);
+}
+
+body.light-theme .bg-dark-card {
+  background-color: var(--color-light-card);
+}
+
+body.light-theme .border-dark-lighter {
+  border-color: #E5E7EB;
+}
+
+body.light-theme .text-white {
+  color: var(--color-light-text);
+}
+
+body.light-theme .text-text-gray {
+  color: var(--color-light-text-secondary);
 }
