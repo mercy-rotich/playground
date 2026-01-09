@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect } from 'react'
-import '@/features/youtube/youtube.css'
 
 export default function YouTubeLayout({
   children,

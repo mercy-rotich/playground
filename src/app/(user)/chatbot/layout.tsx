@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect } from 'react'
-import '@/features/chatbot/chatbot.css'
 
 export default function ChatbotLayout({
   children,
