@@ -64,13 +64,13 @@ export default function BenefitsSection() {
 
   const getSectionStyle = (): React.CSSProperties => ({
     background: isLight 
-      ? 'linear-gradient(to bottom, #F9FAFB, #FFFFFF)' 
+      ? '#E8F6E8' 
       : '#0A0A0A',
     padding: '80px 0',
   })
 
   const getHeaderStyle = (): React.CSSProperties => ({
-    color: '#10D845',
+    color: '#00D666',
   })
 
   const getSubtitleStyle = (): React.CSSProperties => ({
@@ -80,7 +80,7 @@ export default function BenefitsSection() {
   const getCardStyle = (isHovered: boolean): React.CSSProperties => ({
     backgroundColor: isLight ? '#FFFFFF' : '#1A1A1A',
     border: isHovered 
-      ? '2px solid #10D845' 
+      ? '2px solid #00D666' 
       : (isLight ? '2px solid #E5E7EB' : '2px solid #2A2A2A'),
     borderRadius: '20px',
     padding: '32px',
@@ -110,13 +110,13 @@ export default function BenefitsSection() {
   })
 
   const getIconStyle = (): React.CSSProperties => ({
-    color: '#10D845',
+    color: '#00D666',
     width: '28px',
     height: '28px',
   })
 
   const getTitleStyle = (): React.CSSProperties => ({
-    color: '#10D845',
+    color: '#00D666',
     fontSize: '1.25rem',
     fontWeight: 600,
     marginBottom: '8px',
@@ -145,7 +145,7 @@ export default function BenefitsSection() {
   })
 
   const getCheckIconStyle = (): React.CSSProperties => ({
-    color: '#10D845',
+    color: '#00D666',
     width: '18px',
     height: '18px',
     flexShrink: 0,

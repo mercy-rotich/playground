@@ -2,6 +2,7 @@ import Navigation from '@/shared/components/layout/Navigation/Navigation'
 import Footer from '@/shared/components/layout/Footer/Footer'
 import Hero from '@/features/home/components/Hero/Hero'
 import FeaturesSection from '@/features/home/components/Features/FeaturesSection'
+import AIAssistantSection from '@/features/home/components/AIAssistant/AIAssistantSection'
 import SchoolsSection from '@/features/home/components/Schools/SchoolsSection'
 import PricingSection from '@/features/home/components/Pricing/PricingSection'
 import TestimonialsSection from '@/features/home/components/Testimonials/TestimonialsSection'
@@ -19,6 +20,8 @@ export default function HomePage() {
       <Hero />
 
       <FeaturesSection />
+
+      <AIAssistantSection />
 
       <SchoolsSection />
 

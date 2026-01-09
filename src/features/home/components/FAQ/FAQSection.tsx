@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const faqs = [
   {
@@ -47,13 +47,43 @@ const faqs = [
 
 export default function FAQSection() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
+  const [isLight, setIsLight] = useState(false)
+
+  useEffect(() => {
+    const checkTheme = () => {
+      setIsLight(document.body.classList.contains('light-theme'))
+    }
+    
+    checkTheme()
+    
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'class') {
+          checkTheme()
+        }
+      })
+    })
+    
+    observer.observe(document.body, { attributes: true })
+    
+    return () => observer.disconnect()
+  }, [])
 
   const toggleFAQ = (index: number) => {
     setActiveIndex(activeIndex === index ? null : index)
   }
 
+  // Theme-aware styles
+  const getSectionStyle = (): React.CSSProperties => ({
+    background: isLight ? '#81C784' : '#0F0F0F',
+  })
+
   return (
-    <section id="faq" className="section-padding bg-[#0F0F0F]">
+    <section 
+      id="faq" 
+      className="section-padding"
+      style={getSectionStyle()}
+    >
       <div className="container-custom max-w-[1000px]">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">

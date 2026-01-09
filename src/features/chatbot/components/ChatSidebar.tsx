@@ -73,7 +73,7 @@ export default function ChatSidebar({
     backgroundColor: isActive 
       ? (isLight ? '#F3F4F6' : '#1A1A1A')
       : 'transparent',
-    borderLeft: isActive ? '3px solid #10D845' : '3px solid transparent',
+    borderLeft: isActive ? '3px solid #00D666' : '3px solid transparent',
   })
 
   const getChatItemHoverStyle = (): React.CSSProperties => ({

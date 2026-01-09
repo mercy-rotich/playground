@@ -113,7 +113,7 @@ body.light-theme .text-text-gray {
 }
 
 body.light-theme .text-primary {
-  color: #10D845 !important;
+  color: #00D666 !important;
 }
 
 body.light-theme h1,
@@ -151,7 +151,7 @@ body.light-theme .border-\[\#2A2A2A\] {
 }
 
 body.light-theme .hover\:border-primary:hover {
-  border-color: #10D845 !important;
+  border-color: #00D666 !important;
 }
 
 body.light-theme hr {
@@ -177,7 +177,7 @@ body.light-theme textarea::placeholder {
 body.light-theme input:focus,
 body.light-theme textarea:focus,
 body.light-theme select:focus {
-  border-color: #10D845 !important;
+  border-color: #00D666 !important;
   box-shadow: 0 0 0 3px rgba(16, 216, 69, 0.1) !important;
   outline: none !important;
 }
@@ -186,35 +186,35 @@ body.light-theme select:focus {
    BUTTONS
    ============================================= */
 body.light-theme .btn-primary {
-  background: linear-gradient(135deg, #10D845 0%, #4AEE5D 100%) !important;
+  background: linear-gradient(135deg, #00D666 0%, #4AEE5D 100%) !important;
   color: #FFFFFF !important;
   border: none !important;
 }
 
 body.light-theme .btn-primary:hover {
-  background: linear-gradient(135deg, #0EBE3A 0%, #10D845 100%) !important;
+  background: linear-gradient(135deg, #00B355 0%, #00D666 100%) !important;
   box-shadow: 0 8px 20px -4px rgba(16, 216, 69, 0.4) !important;
 }
 
 body.light-theme .btn-secondary {
-  color: #10D845 !important;
-  border: 2px solid #10D845 !important;
+  color: #00D666 !important;
+  border: 2px solid #00D666 !important;
   background: transparent !important;
 }
 
 body.light-theme .btn-secondary:hover {
-  background: #10D845 !important;
+  background: #00D666 !important;
   color: #FFFFFF !important;
   box-shadow: 0 4px 6px -1px rgba(16, 216, 69, 0.3) !important;
 }
 
 body.light-theme button[class*="bg-primary"] {
-  background-color: #10D845 !important;
+  background-color: #00D666 !important;
   color: #FFFFFF !important;
 }
 
 body.light-theme .bg-primary {
-  background: #10D845 !important;
+  background: #00D666 !important;
   color: #FFFFFF !important;
 }
 
@@ -228,7 +228,7 @@ body.light-theme .card {
 }
 
 body.light-theme .card:hover {
-  border-color: #10D845 !important;
+  border-color: #00D666 !important;
   box-shadow: 0 10px 15px -3px rgba(16, 216, 69, 0.1), 0 4px 6px -2px rgba(16, 216, 69, 0.05) !important;
   transform: translateY(-2px) !important;
 }
@@ -237,11 +237,11 @@ body.light-theme .card:hover {
    LINKS
    ============================================= */
 body.light-theme a {
-  color: #10D845 !important;
+  color: #00D666 !important;
 }
 
 body.light-theme a:hover {
-  color: #0EBE3A !important;
+  color: #00B355 !important;
 }
 
 /* =============================================
@@ -299,7 +299,7 @@ body.light-theme ::-webkit-scrollbar-thumb {
 }
 
 body.light-theme ::-webkit-scrollbar-thumb:hover {
-  background: #10D845;
+  background: #00D666;
 }
 
 /* =============================================
@@ -322,7 +322,7 @@ body.light-theme [class*="modal"] > * {
 body.light-theme [class*="dropdown"] > *:hover,
 body.light-theme [class*="menu"] > *:hover {
   background: rgba(16, 216, 69, 0.1) !important;
-  color: #0EBE3A !important;
+  color: #00B355 !important;
 }
 
 /* =============================================
@@ -332,7 +332,7 @@ body.light-theme [class*="alert"],
 body.light-theme [class*="banner"],
 body.light-theme [class*="notification"] {
   background: #F9FAFB !important;
-  border-left: 4px solid #10D845 !important;
+  border-left: 4px solid #00D666 !important;
   color: #1F2937 !important;
 }
 
@@ -342,7 +342,7 @@ body.light-theme [class*="notification"] {
 body.light-theme [class*="badge"],
 body.light-theme [class*="tag"] {
   background: rgba(16, 216, 69, 0.1) !important;
-  color: #0EBE3A !important;
+  color: #00B355 !important;
   border: 1px solid rgba(16, 216, 69, 0.2) !important;
   font-weight: 500 !important;
 }
@@ -353,7 +353,7 @@ body.light-theme [class*="tag"] {
 body.light-theme [class*="success"] {
   background: #ECFDF5 !important;
   color: #065F46 !important;
-  border-color: #10D845 !important;
+  border-color: #00D666 !important;
 }
 
 body.light-theme [class*="warning"] {
@@ -430,7 +430,7 @@ body.light-theme .hero-section .hero-subtitle {
 /* Hero Stat Cards */
 body.light-theme .hero-section .stat-card {
   background: #FFFFFF !important;
-  border: 2px solid #10D845 !important;
+  border: 2px solid #00D666 !important;
   box-shadow: 0 10px 30px -5px rgba(16, 216, 69, 0.25), 
               0 4px 6px -2px rgba(16, 216, 69, 0.1),
               inset 0 1px 0 0 rgba(255, 255, 255, 0.9) !important;
@@ -439,7 +439,7 @@ body.light-theme .hero-section .stat-card {
 }
 
 body.light-theme .hero-section .stat-card:hover {
-  border-color: #0EBE3A !important;
+  border-color: #00B355 !important;
   box-shadow: 0 20px 40px -10px rgba(16, 216, 69, 0.35), 
               0 10px 15px -5px rgba(16, 216, 69, 0.2) !important;
   transform: translateY(-4px) scale(1.02) !important;
@@ -455,14 +455,14 @@ body.light-theme .hero-section .stat-card p {
 body.light-theme .hero-section input[type="text"] {
   background: #FFFFFF !important;
   color: #111827 !important;
-  border: 2px solid #10D845 !important;
+  border: 2px solid #00D666 !important;
   box-shadow: 0 4px 12px rgba(16, 216, 69, 0.15) !important;
   position: relative !important;
   z-index: 1 !important;
 }
 
 body.light-theme .hero-section input[type="text"]:focus {
-  border-color: #0EBE3A !important;
+  border-color: #00B355 !important;
   box-shadow: 0 0 0 4px rgba(16, 216, 69, 0.15),
               0 4px 12px rgba(16, 216, 69, 0.25) !important;
 }
@@ -473,7 +473,7 @@ body.light-theme .hero-section input::placeholder {
 
 /* Search Button in Hero */
 body.light-theme .hero-section form button[type="submit"] {
-  background: #10D845 !important;
+  background: #00D666 !important;
   color: #FFFFFF !important;
   border: none !important;
   box-shadow: 0 4px 12px rgba(16, 216, 69, 0.3) !important;
@@ -483,7 +483,7 @@ body.light-theme .hero-section form button[type="submit"] {
 }
 
 body.light-theme .hero-section form button[type="submit"]:hover {
-  background: #0EBE3A !important;
+  background: #00B355 !important;
   box-shadow: 0 6px 16px rgba(16, 216, 69, 0.4) !important;
 }
 
@@ -495,7 +495,7 @@ body.light-theme .hero-section form button[type="submit"] svg {
 
 /* Hero Buttons */
 body.light-theme .hero-section .btn-primary {
-  background: linear-gradient(135deg, #10D845 0%, #4AEE5D 50%, #10D845 100%) !important;
+  background: linear-gradient(135deg, #00D666 0%, #4AEE5D 50%, #00D666 100%) !important;
   color: #FFFFFF !important;
   border: none !important;
   box-shadow: 0 8px 20px -4px rgba(16, 216, 69, 0.4) !important;
@@ -505,14 +505,14 @@ body.light-theme .hero-section .btn-primary {
 }
 
 body.light-theme .hero-section .btn-primary:hover {
-  background: linear-gradient(135deg, #0EBE3A 0%, #10D845 50%, #0EBE3A 100%) !important;
+  background: linear-gradient(135deg, #00B355 0%, #00D666 50%, #00B355 100%) !important;
   box-shadow: 0 12px 30px -6px rgba(16, 216, 69, 0.5) !important;
   transform: translateY(-3px) scale(1.02) !important;
 }
 
 body.light-theme .hero-section .btn-secondary {
-  border: 2px solid #10D845 !important;
-  color: #10D845 !important;
+  border: 2px solid #00D666 !important;
+  color: #00D666 !important;
   font-weight: 700 !important;
   background: #FFFFFF !important;
   box-shadow: 0 4px 12px rgba(16, 216, 69, 0.15) !important;
@@ -521,9 +521,9 @@ body.light-theme .hero-section .btn-secondary {
 }
 
 body.light-theme .hero-section .btn-secondary:hover {
-  background: linear-gradient(135deg, #10D845 0%, #4AEE5D 100%) !important;
+  background: linear-gradient(135deg, #00D666 0%, #4AEE5D 100%) !important;
   color: #FFFFFF !important;
-  border-color: #10D845 !important;
+  border-color: #00D666 !important;
   box-shadow: 0 8px 20px -4px rgba(16, 216, 69, 0.35) !important;
 }
 
@@ -542,7 +542,7 @@ body.light-theme .bg-dark-card.border-\[\#2A2A2A\] {
 }
 
 body.light-theme .w-20.h-20.bg-primary.rounded-2xl {
-  background: linear-gradient(135deg, #10D845, #4AEE5D) !important;
+  background: linear-gradient(135deg, #00D666, #4AEE5D) !important;
   box-shadow: 0 10px 30px rgba(16, 216, 69, 0.3) !important;
 }
 
@@ -551,7 +551,7 @@ body.light-theme .text-4xl.font-bold {
 }
 
 body.light-theme .text-4xl.font-bold .text-primary {
-  color: #10D845 !important;
+  color: #00D666 !important;
 }
 
 body.light-theme .text-text-gray.text-base {
@@ -564,20 +564,20 @@ body.light-theme .bg-blue-500\/10 {
 }
 
 body.light-theme .text-blue-500 {
-  color: #10D845 !important;
+  color: #00D666 !important;
 }
 
 /* Feature Badges */
 body.light-theme .bg-primary\/10.border.border-primary\/30 {
   background: rgba(16, 216, 69, 0.1) !important;
   border-color: rgba(16, 216, 69, 0.3) !important;
-  color: #10D845 !important;
+  color: #00D666 !important;
   transition: all 0.3s ease !important;
 }
 
 body.light-theme .bg-primary\/10.border.border-primary\/30:hover {
-  background: #10D845 !important;
-  border-color: #10D845 !important;
+  background: #00D666 !important;
+  border-color: #00D666 !important;
   color: #000000 !important;
 }
 
@@ -598,14 +598,14 @@ body.light-theme [class*="feature-card"] {
 
 body.light-theme [id*="features"] .card:hover,
 body.light-theme [class*="feature-card"]:hover {
-  border-color: #10D845 !important;
+  border-color: #00D666 !important;
   box-shadow: 0 20px 25px -5px rgba(16, 216, 69, 0.15) !important;
   background: linear-gradient(to bottom right, #FFFFFF, #F0FDF4) !important;
 }
 
 body.light-theme [class*="feature-icon"],
 body.light-theme [class*="icon-wrapper"] {
-  background: linear-gradient(to bottom right, #10D845, #4AEE5D) !important;
+  background: linear-gradient(to bottom right, #00D666, #4AEE5D) !important;
   color: #FFFFFF !important;
 }
 
@@ -621,7 +621,7 @@ body.light-theme #how-it-works h2 {
 }
 
 body.light-theme #how-it-works .bg-primary {
-  background: linear-gradient(135deg, #10D845, #4AEE5D) !important;
+  background: linear-gradient(135deg, #00D666, #4AEE5D) !important;
   color: #FFFFFF !important;
   box-shadow: 0 10px 15px -3px rgba(16, 216, 69, 0.3) !important;
 }
@@ -653,7 +653,7 @@ body.light-theme #benefits .bg-\[\#1A1A1A\] {
 }
 
 body.light-theme #benefits .bg-\[\#1A1A1A\]:hover {
-  border-color: #10D845 !important;
+  border-color: #00D666 !important;
   box-shadow: 0 20px 25px -5px rgba(16, 216, 69, 0.2) !important;
   background: linear-gradient(to bottom right, #FFFFFF, #F0FDF4) !important;
   transform: translateY(-4px) !important;
@@ -675,7 +675,7 @@ body.light-theme #benefits h3 {
 
 body.light-theme #benefits svg,
 body.light-theme #benefits [class*="lucide"] {
-  color: #10D845 !important;
+  color: #00D666 !important;
 }
 
 /* =============================================
@@ -695,7 +695,7 @@ body.light-theme [id*="pricing"] .card {
 
 body.light-theme [class*="pricing"] .border-primary,
 body.light-theme [id*="pricing"] .border-primary {
-  border-color: #10D845 !important;
+  border-color: #00D666 !important;
   box-shadow: 0 10px 25px -5px rgba(16, 216, 69, 0.2) !important;
 }
 
@@ -706,14 +706,14 @@ body.light-theme [id*="pricing"] h2 {
 
 body.light-theme [class*="pricing"] [class*="badge"],
 body.light-theme [id*="pricing"] [class*="badge"] {
-  background: #10D845 !important;
+  background: #00D666 !important;
   color: #FFFFFF !important;
   font-weight: 700 !important;
 }
 
 body.light-theme [class*="pricing"] button,
 body.light-theme [id*="pricing"] button {
-  background: linear-gradient(135deg, #10D845, #4AEE5D) !important;
+  background: linear-gradient(135deg, #00D666, #4AEE5D) !important;
   color: #FFFFFF !important;
   border: none !important;
   font-weight: 700 !important;
@@ -721,18 +721,18 @@ body.light-theme [id*="pricing"] button {
 
 body.light-theme [class*="pricing"] button:hover,
 body.light-theme [id*="pricing"] button:hover {
-  background: linear-gradient(135deg, #0EBE3A, #10D845) !important;
+  background: linear-gradient(135deg, #00B355, #00D666) !important;
   box-shadow: 0 10px 20px -5px rgba(16, 216, 69, 0.4) !important;
 }
 
 body.light-theme [class*="pricing"] svg,
 body.light-theme [id*="pricing"] svg {
-  color: #10D845 !important;
+  color: #00D666 !important;
 }
 
 body.light-theme [class*="pricing"] [class*="price"],
 body.light-theme [id*="pricing"] [class*="price"] {
-  color: #10D845 !important;
+  color: #00D666 !important;
   font-weight: 700 !important;
 }
 
@@ -768,7 +768,7 @@ body.light-theme #testimonials .card {
 
 body.light-theme [class*="testimonial"] .card:hover,
 body.light-theme #testimonials .card:hover {
-  border-color: #10D845 !important;
+  border-color: #00D666 !important;
   box-shadow: 0 20px 40px rgba(16, 216, 69, 0.2) !important;
   transform: translateY(-8px) !important;
 }
@@ -794,7 +794,7 @@ body.light-theme #testimonials .text-text-gray {
 
 body.light-theme [class*="testimonial"] [class*="avatar"],
 body.light-theme #testimonials [class*="avatar"] {
-  background: linear-gradient(135deg, #10D845, #4AEE5D) !important;
+  background: linear-gradient(135deg, #00D666, #4AEE5D) !important;
   color: #FFFFFF !important;
   font-weight: 700 !important;
 }
@@ -822,7 +822,7 @@ body.light-theme [class*="faq"] button {
 
 body.light-theme [class*="faq"] button:hover,
 body.light-theme [class*="faq"] button[aria-expanded="true"] {
-  border-color: #10D845 !important;
+  border-color: #00D666 !important;
   background: #F0FDF4 !important;
 }
 
@@ -830,7 +830,7 @@ body.light-theme [class*="faq"] button[aria-expanded="true"] {
    CTA SECTION
    ============================================= */
 body.light-theme section.bg-gradient-to-br {
-  background: linear-gradient(135deg, #10D845 0%, #0EBE3A 50%, #0CA030 100%) !important;
+  background: linear-gradient(135deg, #00D666 0%, #00B355 50%, #0CA030 100%) !important;
 }
 
 body.light-theme section.bg-gradient-to-br h2 {
@@ -844,7 +844,7 @@ body.light-theme section.bg-gradient-to-br p {
 
 body.light-theme section.bg-gradient-to-br .bg-dark {
   background: #FFFFFF !important;
-  color: #10D845 !important;
+  color: #00D666 !important;
   font-weight: 600 !important;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
 }
@@ -873,11 +873,11 @@ body.light-theme footer h3,
 body.light-theme footer h4,
 body.light-theme footer h5,
 body.light-theme footer h6 {
-  color: #10D845 !important;
+  color: #00D666 !important;
 }
 
 body.light-theme footer a:hover {
-  color: #10D845 !important;
+  color: #00D666 !important;
 }
 
 /* =============================================
@@ -885,12 +885,12 @@ body.light-theme footer a:hover {
    ============================================= */
 body.light-theme .sticky.top-8 {
   background: linear-gradient(135deg, #FFFFFF 0%, #F0FDF4 100%) !important;
-  border: 2px solid #10D845 !important;
+  border: 2px solid #00D666 !important;
   box-shadow: 0 10px 30px rgba(16, 216, 69, 0.15) !important;
 }
 
 body.light-theme .bg-gradient-to-br.from-primary.to-primary-dark {
-  background: linear-gradient(135deg, #10D845, #4AEE5D) !important;
+  background: linear-gradient(135deg, #00D666, #4AEE5D) !important;
   color: #FFFFFF !important;
   box-shadow: 0 8px 20px rgba(16, 216, 69, 0.3) !important;
 }
@@ -906,7 +906,7 @@ body.light-theme .sticky.top-8 p {
 
 body.light-theme .text-primary.bg-primary\/10 {
   background: rgba(16, 216, 69, 0.15) !important;
-  color: #10D845 !important;
+  color: #00D666 !important;
 }
 
 body.light-theme .bg-primary\/15 {
@@ -923,12 +923,12 @@ body.light-theme .bg-green-500\/15 {
 
 body.light-theme .bg-gradient-to-br.from-secondary\/10.to-primary\/5 {
   background: linear-gradient(135deg, rgba(180, 167, 255, 0.1) 0%, rgba(16, 216, 69, 0.08) 100%) !important;
-  border: 2px solid #10D845 !important;
+  border: 2px solid #00D666 !important;
   box-shadow: 0 8px 24px rgba(16, 216, 69, 0.1) !important;
 }
 
 body.light-theme .text-2xl.font-bold.text-primary {
-  color: #10D845 !important;
+  color: #00D666 !important;
 }
 
 body.light-theme .text-secondary {
@@ -958,7 +958,7 @@ body.light-theme * {
    ============================================= */
 body.light-theme .year-dropdown {
   background: #FFFFFF !important;
-  border: 2px solid #10D845 !important;
+  border: 2px solid #00D666 !important;
   box-shadow: 0 10px 30px rgba(16, 216, 69, 0.15) !important;
 }
 
@@ -973,7 +973,7 @@ body.light-theme .year-dropdown button:hover {
 }
 
 body.light-theme .year-dropdown button.bg-primary {
-  background: #10D845 !important;
+  background: #00D666 !important;
   color: #111827 !important;
   font-weight: 600 !important;
 }
@@ -1000,7 +1000,7 @@ body.light-theme input[placeholder*="physics"]::placeholder {
 
 body.light-theme input[placeholder*="calculus"]:focus,
 body.light-theme input[placeholder*="physics"]:focus {
-  border-color: #10D845 !important;
+  border-color: #00D666 !important;
   box-shadow: 0 0 0 3px rgba(16, 216, 69, 0.1) !important;
 }
 
@@ -1017,7 +1017,7 @@ body.light-theme .video-card {
 }
 
 body.light-theme .video-card:hover {
-  border-color: #10D845 !important;
+  border-color: #00D666 !important;
   box-shadow: 0 10px 25px rgba(16, 216, 69, 0.15) !important;
 }
 

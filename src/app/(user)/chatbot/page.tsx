@@ -233,22 +233,22 @@ export default function ChatbotPage() {
 
   // Theme-aware styles
   const getPageStyle = (): React.CSSProperties => ({
-    backgroundColor: isLight ? '#F9FAFB' : '#0A0A0A',
+    backgroundColor: isLight ? '#F9FAFB' : '#1A1A1A',
   })
 
   const getMainAreaStyle = (): React.CSSProperties => ({
-    backgroundColor: isLight ? '#FFFFFF' : '#0A0A0A',
+    backgroundColor: isLight ? '#FFFFFF' : '#1A1A1A',
   })
 
   const getChatContainerStyle = (): React.CSSProperties => ({
-    backgroundColor: isLight ? '#FFFFFF' : '#0A0A0A',
+    backgroundColor: isLight ? '#FFFFFF' : '#1A1A1A',
     scrollbarWidth: 'thin',
     scrollbarColor: isLight ? '#D1D5DB transparent' : '#2A2A2A transparent',
   })
 
   const getLoadingSpinnerStyle = (): React.CSSProperties => ({
     borderColor: isLight ? 'rgba(16, 216, 69, 0.2)' : 'rgba(16, 216, 69, 0.2)',
-    borderTopColor: '#10D845',
+    borderTopColor: '#00D666',
   })
 
   if (!hasCheckedSubscription) {

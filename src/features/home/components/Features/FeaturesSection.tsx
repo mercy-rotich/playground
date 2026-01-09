@@ -1,5 +1,6 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import { FEATURES } from '@/shared/constants'
 
 const colorClasses = {
@@ -12,8 +13,36 @@ const colorClasses = {
 }
 
 export default function FeaturesSection() {
+  const [isLight, setIsLight] = useState(false)
+
+  useEffect(() => {
+    const checkTheme = () => {
+      setIsLight(document.body.classList.contains('light-theme'))
+    }
+    
+    checkTheme()
+    
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'class') {
+          checkTheme()
+        }
+      })
+    })
+    
+    observer.observe(document.body, { attributes: true })
+    
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <section id="features" className="section-padding bg-dark">
+    <section 
+      id="features" 
+      className="section-padding"
+      style={{
+        background: isLight ? '#F0FFF4' : '#1A1A1A',
+      }}
+    >
       <div className="container-custom">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">

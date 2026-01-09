@@ -1,5 +1,6 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import { Check } from 'lucide-react'
 import { PRICING } from '@/shared/constants'
 
@@ -35,8 +36,36 @@ const plans = [
 ]
 
 export default function PricingSection() {
+  const [isLight, setIsLight] = useState(false)
+
+  useEffect(() => {
+    const checkTheme = () => {
+      setIsLight(document.body.classList.contains('light-theme'))
+    }
+    
+    checkTheme()
+    
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'class') {
+          checkTheme()
+        }
+      })
+    })
+    
+    observer.observe(document.body, { attributes: true })
+    
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <section id="pricing" className="section-padding bg-dark">
+    <section 
+      id="pricing" 
+      className="section-padding"
+      style={{
+        background: isLight ? '#E0F2F1' : '#1A1A1A',
+      }}
+    >
       <div className="container-custom max-w-5xl">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">

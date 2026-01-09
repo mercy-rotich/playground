@@ -63,24 +63,24 @@ export default function ChatInput({ onSend, disabled = false, placeholder = 'Ask
   const isDisabled = disabled || !message.trim()
 
   const getContainerStyle = (): React.CSSProperties => ({
-    backgroundColor: isLight ? '#F9FAFB' : '#0A0A0A',
-    borderTop: isLight ? '2px solid #10D845' : '1px solid #2A2A2A',
+    backgroundColor: isLight ? '#F9FAFB' : '#1A1A1A',
+    borderTop: isLight ? '2px solid #00D666' : '1px solid #2A2A2A',
   })
 
   const getTextareaStyle = (): React.CSSProperties => ({
     backgroundColor: isLight ? '#FFFFFF' : '#1A1A1A',
     borderWidth: '2px',
     borderStyle: 'solid',
-    borderColor: isFocused ? '#10D845' : (isLight ? '#E5E7EB' : '#2A2A2A'),
+    borderColor: isFocused ? '#00D666' : (isLight ? '#E5E7EB' : '#2A2A2A'),
     color: isLight ? '#1F2937' : '#FFFFFF',
-    caretColor: '#10D845',
+    caretColor: '#00D666',
     boxShadow: isFocused && isLight ? '0 0 0 3px rgba(16, 216, 69, 0.15)' : 'none',
   })
 
   const getButtonStyle = (): React.CSSProperties => ({
     backgroundColor: isDisabled 
       ? (isLight ? '#E5E7EB' : '#2A2A2A')
-      : '#10D845',
+      : '#00D666',
     color: isDisabled
       ? (isLight ? '#9CA3AF' : '#6B7280')
       : '#FFFFFF',

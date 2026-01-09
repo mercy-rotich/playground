@@ -50,8 +50,8 @@ export default function ChatMessage({ message }: ChatMessageProps) {
 
   // Theme-aware styles
   const getBotAvatarStyle = (): React.CSSProperties => ({
-    backgroundColor: '#10D845',
-    color: isLight ? '#FFFFFF' : '#0A0A0A',
+    backgroundColor: '#00D666',
+    color: isLight ? '#FFFFFF' : '#1A1A1A',
   })
 
   const getUserAvatarStyle = (): React.CSSProperties => ({
@@ -68,7 +68,7 @@ export default function ChatMessage({ message }: ChatMessageProps) {
   })
 
   const getUserMessageStyle = (): React.CSSProperties => ({
-    backgroundColor: isLight ? '#10D845' : '#3A4A3A',
+    backgroundColor: isLight ? '#00D666' : '#3A4A3A',
     borderRadius: '18px 18px 4px 18px',
   })
 

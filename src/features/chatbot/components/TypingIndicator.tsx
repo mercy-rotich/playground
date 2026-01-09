@@ -35,8 +35,8 @@ export default function TypingIndicator({ isVisible }: TypingIndicatorProps) {
 
   // Theme-aware styles
   const getAvatarStyle = (): React.CSSProperties => ({
-    backgroundColor: '#10D845',
-    color: isLight ? '#FFFFFF' : '#0A0A0A',
+    backgroundColor: '#00D666',
+    color: isLight ? '#FFFFFF' : '#1A1A1A',
   })
 
   const getBubbleStyle = (): React.CSSProperties => ({

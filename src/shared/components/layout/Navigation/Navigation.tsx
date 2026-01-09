@@ -1,73 +1,123 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Menu, X, User } from 'lucide-react'
-import { ROUTES } from '@/shared/constants'
+import { Menu, X, User, ChevronDown } from 'lucide-react'
 import ThemeToggle from '@/shared/components/ThemeToggle'
+import { ROUTES } from '@/shared/constants'
 
 const navLinks = [
-  { href: '/#home', label: 'Home' },
-  { href: '/#features', label: 'Features' },
-  { href: ROUTES.SCHOOLS, label: 'Schools' },
-  { href: ROUTES.PRICING, label: 'Pricing' },
-  { href: '/#how-it-works', label: 'How It Works' },
-  { href: '/#contact', label: 'Contact' },
+  { href: ROUTES.PAST_PAPERS, label: 'Past Papers' },
+  { href: ROUTES.CHATBOT, label: 'AI Study Bot' },
+  { href: ROUTES.YOUTUBE, label: 'YouTube' },
+  { href: '/#pricing', label: 'Pricing' },
 ]
 
 export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  // Handle scroll for glass effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
-    <nav className="sticky top-0 z-50 bg-dark border-b border-dark-lighter backdrop-blur-sm transition-colors duration-300 light-theme:bg-light light-theme:border-light-lighter">
+    <nav 
+      className={`
+        sticky top-0 z-50 transition-all duration-300
+        ${isScrolled 
+          ? 'bg-dark/80 backdrop-blur-xl border-b border-white/5' 
+          : 'bg-transparent'
+        }
+      `}
+    >
       <div className="container-custom">
-        <div className="flex items-center justify-between py-4">
-          {/* Logo */}
-          <Link href={ROUTES.HOME} className="flex items-center gap-3 group">
-            <div className="w-11 h-11 bg-primary rounded-xl flex items-center justify-center text-dark font-bold text-lg transition-transform group-hover:scale-110">
+        <div className="flex items-center justify-between h-16 md:h-18">
+          {/* Logo - Clean, not overdone */}
+          <Link href={ROUTES.HOME} className="flex items-center gap-2.5 group">
+            <div className="
+              w-9 h-9 rounded-lg bg-primary 
+              flex items-center justify-center 
+              font-bold text-dark text-sm
+              group-hover:scale-105 transition-transform
+            ">
               OS
             </div>
-            <span className="text-xl font-bold text-primary">Okoa Sem</span>
+            <span className="font-semibold text-white text-lg hidden sm:block">
+              Okoa Sem
+            </span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <ul className="hidden md:flex items-center gap-8">
+          {/* Desktop Navigation - Centered */}
+          <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className="text-white hover:text-primary transition-colors light-theme:text-light-text light-theme:hover:text-primary"
-                >
-                  {link.label}
-                </Link>
-              </li>
+              <Link
+                key={link.href}
+                href={link.href}
+                className="
+                  relative px-4 py-2 text-sm font-medium
+                  text-text-secondary hover:text-white
+                  transition-colors duration-200
+                  group
+                "
+              >
+                {link.label}
+                {/* Underline animation */}
+                <span className="
+                  absolute bottom-0 left-4 right-4 h-0.5
+                  bg-primary scale-x-0 group-hover:scale-x-100
+                  transition-transform duration-200 origin-left
+                " />
+              </Link>
             ))}
-          </ul>
+          </div>
 
           {/* Right Side Actions */}
-          <div className="hidden md:flex items-center gap-3">
-            <ThemeToggle />
+          <div className="flex items-center gap-3">
+            {/* Theme toggle */}
+            <div className="hidden sm:inline-flex">
+              <ThemeToggle />
+            </div>
+            {/* Account link - Subtle */}
+            <Link
+              href={ROUTES.MY_ACCOUNT}
+              className="
+                hidden sm:flex items-center gap-2 px-3 py-2 
+                text-sm text-text-secondary hover:text-white
+                transition-colors
+              "
+            >
+              <User className="w-4 h-4" />
+              <span className="hidden lg:inline">Account</span>
+            </Link>
+
+            {/* Primary CTA */}
             <Link
               href={ROUTES.SIGNUP}
-              className="btn-primary"
+              className="
+                hidden sm:inline-flex items-center gap-2
+                px-4 py-2 bg-primary text-dark rounded-lg
+                text-sm font-medium
+                hover:bg-primary-dark transition-colors
+                shadow-lg shadow-primary/20
+              "
             >
               Get Started
             </Link>
-            <Link
-              href={ROUTES.MY_ACCOUNT}
-              className="w-11 h-11 bg-dark-card border-2 border-dark-lighter rounded-xl flex items-center justify-center text-text-gray hover:border-primary hover:text-primary transition-all light-theme:bg-light-card light-theme:border-light-lighter light-theme:text-light-text-gray light-theme:hover:text-primary"
-              title="My Account"
-            >
-              <User className="w-5 h-5" />
-            </Link>
-          </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center gap-2">
-            <ThemeToggle />
+            {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-white p-2 light-theme:text-light-text"
+              className="
+                md:hidden p-2 -mr-2
+                text-text-secondary hover:text-white
+                transition-colors
+              "
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? (
@@ -78,45 +128,76 @@ export default function Navigation() {
             </button>
           </div>
         </div>
-
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-dark-lighter light-theme:border-light-lighter">
-            <ul className="flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="block py-2 text-white hover:text-primary transition-colors light-theme:text-light-text light-theme:hover:text-primary"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-              <li className="pt-4 border-t border-dark-lighter light-theme:border-light-lighter">
-                <Link
-                  href={ROUTES.SIGNUP}
-                  className="block w-full btn-primary text-center"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Get Started
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={ROUTES.MY_ACCOUNT}
-                  className="flex items-center gap-2 py-2 text-white hover:text-primary transition-colors light-theme:text-light-text light-theme:hover:text-primary"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  <User className="w-5 h-5" />
-                  My Account
-                </Link>
-              </li>
-            </ul>
-          </div>
-        )}
       </div>
+
+      {/* Mobile Menu - Full screen, clean */}
+      {isMobileMenuOpen && (
+        <div className="
+          md:hidden fixed inset-0 top-16 z-40
+          bg-dark/95 backdrop-blur-xl
+          animate-fadeIn
+        ">
+          <div className="container-custom py-8">
+            <nav className="flex flex-col gap-2">
+              {navLinks.map((link, index) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="
+                    flex items-center justify-between
+                    px-4 py-4 rounded-xl
+                    text-lg font-medium text-white
+                    hover:bg-white/5 transition-colors
+                    animate-fadeInUp
+                  "
+                  style={{ animationDelay: `${index * 50}ms` }}
+                >
+                  {link.label}
+                  <ChevronDown className="w-5 h-5 -rotate-90 text-text-muted" />
+                </Link>
+              ))}
+            </nav>
+
+            {/* Mobile CTAs */}
+            <div className="mt-8 pt-8 border-t border-white/10 flex flex-col gap-3">
+              <div className="flex items-center justify-center gap-3">
+                <ThemeToggle />
+              </div>
+              <Link
+                href={ROUTES.SIGNUP}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="
+                  w-full py-4 bg-primary text-dark rounded-xl
+                  font-semibold text-center
+                  animate-fadeInUp
+                "
+                style={{ animationDelay: '200ms' }}
+              >
+                Get Started Free
+              </Link>
+              <Link
+                href={ROUTES.MY_ACCOUNT}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="
+                  w-full py-4 bg-white/5 text-white rounded-xl
+                  font-semibold text-center flex items-center justify-center gap-2
+                  animate-fadeInUp
+                "
+                style={{ animationDelay: '250ms' }}
+              >
+                <User className="w-5 h-5" />
+                My Account
+              </Link>
+            </div>
+
+            {/* Mobile footer info */}
+            <div className="mt-auto pt-8 text-center text-sm text-text-muted">
+              <p>24,847 past papers • 8 universities</p>
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   )
 }

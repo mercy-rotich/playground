@@ -75,8 +75,8 @@ export default function TestimonialsSection() {
   // Theme-aware styles
   const getSectionStyle = (): React.CSSProperties => ({
     background: isLight 
-      ? 'linear-gradient(to bottom, #F9FAFB, #FFFFFF)' 
-      : '#0A0A0A',
+      ? '#E8F5E9' 
+      : '#1A1A1A',
   })
 
   const getHeaderStyle = (): React.CSSProperties => ({
@@ -90,7 +90,7 @@ export default function TestimonialsSection() {
   const getCardStyle = (isHovered: boolean): React.CSSProperties => ({
     backgroundColor: isLight ? '#FFFFFF' : '#1A1A1A',
     border: isHovered 
-      ? '2px solid #10D845' 
+      ? '2px solid #00D666' 
       : (isLight ? '2px solid #E5E7EB' : '2px solid #2A2A2A'),
     borderRadius: '20px',
     padding: '40px',
@@ -104,8 +104,9 @@ export default function TestimonialsSection() {
   })
 
   const getAvatarStyle = (): React.CSSProperties => ({
-    background: 'linear-gradient(135deg, #10D845, #B4A7FF)',
-    color: isLight ? '#1F2937' : '#0A0A0A',
+    // Use primary app green for avatars and white initials for contrast
+    background: 'linear-gradient(135deg, #00D666, #00B355)',
+    color: '#FFFFFF',
     width: '50px',
     height: '50px',
     borderRadius: '50%',
@@ -148,7 +149,7 @@ export default function TestimonialsSection() {
   return (
     <section 
       id="testimonials" 
-      className="section-padding"
+      className="section-padding" 
       style={getSectionStyle()}
     >
       <div className="container-custom">
@@ -169,7 +170,7 @@ export default function TestimonialsSection() {
         </div>
 
         {/* Testimonials Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
             <div
               key={testimonial.name}

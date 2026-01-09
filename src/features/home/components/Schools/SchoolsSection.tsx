@@ -1,5 +1,6 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { SCHOOLS, ROUTES } from '@/shared/constants'
 
@@ -15,8 +16,36 @@ const colorClasses = {
 }
 
 export default function SchoolsSection() {
+  const [isLight, setIsLight] = useState(false)
+
+  useEffect(() => {
+    const checkTheme = () => {
+      setIsLight(document.body.classList.contains('light-theme'))
+    }
+    
+    checkTheme()
+    
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'class') {
+          checkTheme()
+        }
+      })
+    })
+    
+    observer.observe(document.body, { attributes: true })
+    
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <section id="schools" className="section-padding bg-dark-card">
+    <section 
+      id="schools" 
+      className="section-padding"
+      style={{
+        background: isLight ? '#E8F9F0' : '#151515',
+      }}
+    >
       <div className="container-custom">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
