@@ -16,7 +16,7 @@ export default function SearchSection({ searchQuery, setSearchQuery, onSearch }:
   }
 
   return (
-    <div className="bg-dark-card/95 p-4 md:p-6 rounded-2xl border-2 border-dark-lighter mb-6 backdrop-blur-xl">
+    <div className="bg-dark-card p-4 md:p-6 rounded-2xl border-2 border-dark-lighter mb-6 backdrop-blur-xl opacity-95">
       <div className="flex flex-col sm:flex-row gap-3 max-w-[900px] mx-auto">
         <input
           type="text"

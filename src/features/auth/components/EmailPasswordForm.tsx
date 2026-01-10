@@ -53,15 +53,15 @@ export default function EmailPasswordForm({ onSubmit, isLoading = false }: Email
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-3">
       {/* Email Input */}
       <div>
-        <label htmlFor="email" className="block text-sm font-medium text-text-gray mb-2">
-          Email Address
+        <label htmlFor="email" className="block text-xs font-medium text-text-gray mb-1">
+          Email
         </label>
         <div className="relative">
-          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-            <Mail className="h-5 w-5 text-text-gray" />
+          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <Mail className="h-4 w-4 text-text-gray" />
           </div>
           <input
             id="email"
@@ -71,7 +71,7 @@ export default function EmailPasswordForm({ onSubmit, isLoading = false }: Email
               setEmail(e.target.value)
               if (errors.email) setErrors({ ...errors, email: undefined })
             }}
-            className={`w-full pl-12 pr-4 py-3 bg-dark border rounded-xl text-white placeholder-text-gray focus:outline-none focus:ring-2 focus:ring-primary transition-all ${
+            className={`w-full pl-10 pr-3 py-2.5 bg-dark border rounded-lg text-sm text-white placeholder-text-gray focus:outline-none focus:ring-2 focus:ring-primary transition-all ${
               errors.email ? 'border-red-500' : 'border-[#2A2A2A]'
             }`}
             placeholder="your.email@example.com"
@@ -79,8 +79,8 @@ export default function EmailPasswordForm({ onSubmit, isLoading = false }: Email
           />
         </div>
         {errors.email && (
-          <div className="flex items-center gap-1 mt-2 text-red-500 text-sm">
-            <AlertCircle className="h-4 w-4" />
+          <div className="flex items-center gap-1 mt-1 text-red-500 text-xs">
+            <AlertCircle className="h-3 w-3" />
             <span>{errors.email}</span>
           </div>
         )}
@@ -88,12 +88,12 @@ export default function EmailPasswordForm({ onSubmit, isLoading = false }: Email
 
       {/* Password Input */}
       <div>
-        <label htmlFor="password" className="block text-sm font-medium text-text-gray mb-2">
+        <label htmlFor="password" className="block text-xs font-medium text-text-gray mb-1">
           Password
         </label>
         <div className="relative">
-          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-            <Lock className="h-5 w-5 text-text-gray" />
+          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <Lock className="h-4 w-4 text-text-gray" />
           </div>
           <input
             id="password"
@@ -103,7 +103,7 @@ export default function EmailPasswordForm({ onSubmit, isLoading = false }: Email
               setPassword(e.target.value)
               if (errors.password) setErrors({ ...errors, password: undefined })
             }}
-            className={`w-full pl-12 pr-12 py-3 bg-dark border rounded-xl text-white placeholder-text-gray focus:outline-none focus:ring-2 focus:ring-primary transition-all ${
+            className={`w-full pl-10 pr-10 py-2.5 bg-dark border rounded-lg text-sm text-white placeholder-text-gray focus:outline-none focus:ring-2 focus:ring-primary transition-all ${
               errors.password ? 'border-red-500' : 'border-[#2A2A2A]'
             }`}
             placeholder="Enter your password"
@@ -112,25 +112,25 @@ export default function EmailPasswordForm({ onSubmit, isLoading = false }: Email
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute inset-y-0 right-0 pr-4 flex items-center text-text-gray hover:text-white transition-colors"
+            className="absolute inset-y-0 right-0 pr-3 flex items-center text-text-gray hover:text-white transition-colors"
             disabled={isLoading}
           >
-            {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+            {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
           </button>
         </div>
         {errors.password && (
-          <div className="flex items-center gap-1 mt-2 text-red-500 text-sm">
-            <AlertCircle className="h-4 w-4" />
+          <div className="flex items-center gap-1 mt-1 text-red-500 text-xs">
+            <AlertCircle className="h-3 w-3" />
             <span>{errors.password}</span>
           </div>
         )}
       </div>
 
       {/* Forgot Password Link */}
-      <div className="text-right">
+      <div className="text-right pt-1">
         <a
           href="#"
-          className="text-sm text-primary hover:text-primary-dark transition-colors"
+          className="text-xs text-primary hover:text-primary-dark transition-colors"
           onClick={(e) => {
             e.preventDefault()
             alert('Password reset functionality would be implemented here')
@@ -144,7 +144,7 @@ export default function EmailPasswordForm({ onSubmit, isLoading = false }: Email
       <button
         type="submit"
         disabled={isLoading}
-        className="w-full py-4 bg-primary text-white rounded-xl font-semibold text-base transition-all hover:bg-primary-dark hover:scale-105 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+        className="w-full py-2.5 bg-primary text-white rounded-lg font-semibold text-sm transition-all hover:bg-primary-dark hover:scale-105 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
       >
         {isLoading ? 'Signing in...' : 'Sign In'}
       </button>

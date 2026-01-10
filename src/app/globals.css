@@ -370,3 +370,347 @@ body.light-theme .text-white {
 body.light-theme .text-text-gray {
   color: var(--color-light-text-secondary);
 }
+
+/* Input styling for light theme */
+body.light-theme input[type="text"],
+body.light-theme input[type="email"],
+body.light-theme input[type="password"] {
+  border-color: #D1D5DB !important;
+  background-color: #F9FAFB !important;
+  color: var(--color-light-text) !important;
+}
+
+body.light-theme input[type="text"]::placeholder,
+body.light-theme input[type="email"]::placeholder,
+body.light-theme input[type="password"]::placeholder {
+  color: #9CA3AF !important;
+}
+
+body.light-theme input[type="text"]:focus,
+body.light-theme input[type="email"]:focus,
+body.light-theme input[type="password"]:focus {
+  border-color: var(--color-primary) !important;
+}
+
+/* Divider lines for light theme */
+body.light-theme .border-\[\#2A2A2A\] {
+  border-color: #E5E7EB !important;
+}
+
+/* Additional light theme overrides for form elements and containers */
+body.light-theme .bg-dark-card {
+  background-color: var(--color-light-card) !important;
+  color: var(--color-light-text) !important;
+}
+
+body.light-theme .opacity-95 {
+  opacity: 0.95;
+}
+
+/* Ensure proper styling for inputs in light theme */
+body.light-theme input {
+  background-color: #FFFFFF !important;
+  border-color: #D1D5DB !important;
+  color: var(--color-light-text) !important;
+}
+
+body.light-theme input::placeholder {
+  color: #9CA3AF !important;
+}
+
+body.light-theme input:focus {
+  border-color: var(--color-primary) !important;
+  background-color: #FFFFFF !important;
+}
+
+/* Paper card specific light theme overrides */
+body.light-theme .paper-card {
+  background-color: var(--color-light-card) !important;
+  border-color: #E5E7EB !important;
+}
+
+body.light-theme .paper-card .bg-dark-lighter {
+  background-color: #F1F5F9 !important;
+}
+
+body.light-theme .paper-card .text-white {
+  color: var(--color-light-text) !important;
+}
+
+body.light-theme .paper-card .text-primary {
+  color: var(--color-primary) !important;
+}
+
+/* Preview button in light theme */
+body.light-theme .paper-card button:first-of-type {
+  background-color: #F1F5F9 !important;
+  color: var(--color-light-text) !important;
+}
+
+body.light-theme .paper-card button:first-of-type:hover {
+  background-color: #E2E8F0 !important;
+}
+
+/* Preview modal styling for light theme */
+body.light-theme .preview-overlay {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+body.light-theme .preview-modal {
+  background-color: var(--color-light-card) !important;
+  color: var(--color-light-text) !important;
+}
+
+body.light-theme .preview-modal .border-dark-lighter {
+  border-color: #E5E7EB !important;
+}
+
+body.light-theme .preview-modal .bg-dark-lighter {
+  background-color: #F1F5F9 !important;
+}
+
+body.light-theme .preview-modal .bg-dark {
+  background-color: var(--color-light) !important;
+}
+
+body.light-theme .preview-modal .text-white {
+  color: var(--color-light-text) !important;
+}
+
+body.light-theme .preview-modal .text-text-gray {
+  color: var(--color-light-text-secondary) !important;
+}
+
+body.light-theme .preview-modal .bg-dark-card {
+  background-color: #F1F5F9 !important;
+}
+
+/* Open in New Tab button light theme */
+body.light-theme .preview-modal a[target="_blank"] {
+  background-color: #E2E8F0 !important;
+  color: var(--color-light-text) !important;
+}
+
+body.light-theme .preview-modal a[target="_blank"]:hover {
+  background-color: #CBD5E1 !important;
+}
+
+/* Close button in preview modal light theme */
+body.light-theme .preview-modal button:has(svg):last-child {
+  color: var(--color-light-text) !important;
+}
+
+body.light-theme .preview-modal button:has(svg):last-child:hover {
+  background-color: #E2E8F0 !important;
+  color: var(--color-primary) !important;
+}
+
+/* Year selector dropdown light theme */
+body.light-theme .year-dropdown {
+  background-color: var(--color-light-card) !important;
+  border-color: #E5E7EB !important;
+}
+
+body.light-theme .year-dropdown button {
+  color: var(--color-light-text) !important;
+}
+
+body.light-theme .year-dropdown button:hover {
+  background-color: #E0E7FF !important;
+}
+
+body.light-theme .year-dropdown button:has(.bg-primary) {
+  background-color: var(--color-primary) !important;
+  color: var(--color-dark) !important;
+}
+
+/* Year dropdown scrollbar light theme */
+body.light-theme .year-dropdown .custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+body.light-theme .year-dropdown .custom-scrollbar::-webkit-scrollbar-track {
+  background-color: #F1F5F9 !important;
+}
+
+body.light-theme .year-dropdown .custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #64748B !important;
+  border-radius: 4px;
+}
+
+body.light-theme .year-dropdown .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #475569 !important;
+}
+
+/* YouTube Sidebar light theme */
+body.light-theme .bg-dark-card {
+  background-color: var(--color-light-card) !important;
+}
+
+body.light-theme .bg-dark-card .text-white {
+  color: var(--color-light-text) !important;
+}
+
+body.light-theme .bg-dark-card .text-text-gray {
+  color: var(--color-light-text-secondary) !important;
+}
+
+body.light-theme .bg-dark-card .text-primary {
+  color: var(--color-primary) !important;
+}
+
+body.light-theme .bg-dark-card .text-text-gray:hover {
+  color: var(--color-light-text) !important;
+}
+
+body.light-theme .bg-dark-card .border-dark-lighter {
+  border-color: #E5E7EB !important;
+}
+
+body.light-theme .bg-dark-card .hover\:bg-dark-lighter:hover {
+  background-color: #F1F5F9 !important;
+}
+
+/* Empty state icon styling for light theme */
+body.light-theme .bg-dark-card .w-16.h-16.mx-auto.bg-dark-lighter {
+  background-color: #E2E8F0 !important;
+}
+
+body.light-theme .bg-dark-card .w-16.h-16.mx-auto.bg-dark-lighter svg {
+  color: var(--color-light-text-secondary) !important;
+}
+
+body.light-theme .bg-dark-card .bg-dark {
+  background-color: var(--color-light) !important;
+}
+
+body.light-theme .bg-dark-card .bg-dark .text-white {
+  color: var(--color-light-text) !important;
+}
+
+body.light-theme .bg-dark-card .bg-dark .bg-dark-lighter {
+  background-color: #F1F5F9 !important;
+}
+
+/* Video Player Modal light theme */
+body.light-theme .fixed.inset-0.z-\[100\] {
+  background-color: transparent !important;
+}
+
+body.light-theme .fixed.inset-0.z-\[100\] > .absolute.inset-0 {
+  background-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+body.light-theme .fixed.inset-0.z-\[100\] .relative.bg-dark-card {
+  background-color: var(--color-light-card) !important;
+  border-color: #E5E7EB !important;
+}
+
+/* Ensure the entire page background is light in light theme */
+body.light-theme {
+  background-color: var(--color-light) !important;
+}
+
+body.light-theme main {
+  background-color: var(--color-light) !important;
+}
+
+body.light-theme [class*="bg-dark"]:not(.bg-dark-card):not(.bg-dark-lighter):not(.bg-dark-elevated) {
+  background-color: var(--color-light) !important;
+}
+
+/* Hide any dark elements appearing in the background */
+body.light-theme > *:not(.light-theme) {
+  background-color: var(--color-light) !important;
+}
+
+/* Tutor profile gradient - both themes */
+.bg-gradient-to-br.from-primary.to-secondary {
+  background: var(--color-primary) !important;
+}
+
+/* Ensure all sections and containers have light background */
+body.light-theme section,
+body.light-theme div[role="main"] {
+  background-color: var(--color-light) !important;
+}
+
+/* Fix any dark cards or containers visible in background */
+body.light-theme .bg-dark,
+body.light-theme .bg-dark-card,
+body.light-theme .bg-dark-lighter {
+  background-color: var(--color-light-card) !important;
+}
+
+/* For elements specifically in the video page background */
+body.light-theme .lg\:flex-1 > *:not(.lg\:w-\[400px\]) {
+  background-color: var(--color-light) !important;
+}
+
+
+
+
+
+/* Video info sidebar */
+body.light-theme .lg\:w-\[400px\].flex-shrink-0.overflow-y-auto.border-l {
+  background-color: var(--color-light-card) !important;
+  border-color: #E5E7EB !important;
+}
+
+/* Modal header */
+body.light-theme .border-b.border-dark-lighter.bg-dark-card\/95 {
+  background-color: var(--color-light-card) !important;
+  border-color: #E5E7EB !important;
+}
+
+body.light-theme .border-b.border-dark-lighter.bg-dark-card\/95 h2 {
+  color: var(--color-light-text) !important;
+}
+
+/* Modal text colors */
+body.light-theme .fixed.inset-0.z-\[100\] .text-white {
+  color: var(--color-light-text) !important;
+}
+
+body.light-theme .fixed.inset-0.z-\[100\] .text-text-gray {
+  color: var(--color-light-text-secondary) !important;
+}
+
+/* Buttons in modal */
+body.light-theme .fixed.inset-0.z-\[100\] .bg-dark-lighter {
+  background-color: #E2E8F0 !important;
+  color: var(--color-light-text) !important;
+}
+
+body.light-theme .fixed.inset-0.z-\[100\] .bg-dark-lighter:hover {
+  background-color: #CBD5E1 !important;
+}
+
+body.light-theme .fixed.inset-0.z-\[100\] .bg-dark {
+  background-color: var(--color-light) !important;
+  border-color: #E5E7EB !important;
+}
+
+body.light-theme .fixed.inset-0.z-\[100\] .border-dark-lighter {
+  border-color: #E5E7EB !important;
+}
+
+/* Playlist dropdown in modal */
+body.light-theme .bg-dark.border.border-dark-lighter.rounded-xl {
+  background-color: var(--color-light-card) !important;
+  border-color: #E5E7EB !important;
+}
+
+body.light-theme .bg-dark.border.border-dark-lighter.rounded-xl .text-white {
+  color: var(--color-light-text) !important;
+}
+
+body.light-theme .bg-dark.border.border-dark-lighter.rounded-xl button:hover {
+  background-color: #F1F5F9 !important;
+}
+
+
+
+
+
+

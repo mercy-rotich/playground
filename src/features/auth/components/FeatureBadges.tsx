@@ -10,15 +10,15 @@ const FEATURES = [
 
 export default function FeatureBadges() {
   return (
-    <div className="flex flex-wrap gap-3 mb-8">
+    <div className="flex flex-wrap gap-2 justify-center">
       {FEATURES.map((feature) => {
         const Icon = feature.icon
         return (
           <div
             key={feature.id}
-            className="bg-primary/10 border border-primary/30 text-primary px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2 transition-all duration-300 hover:bg-primary hover:text-dark hover:border-primary cursor-pointer"
+            className="bg-primary/10 border border-primary/30 text-primary px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5 transition-all duration-300 hover:bg-primary hover:text-dark hover:border-primary cursor-pointer"
           >
-            <Icon className="w-4 h-4" />
+            <Icon className="w-3.5 h-3.5" />
             {feature.label}
           </div>
         )

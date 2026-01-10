@@ -2,16 +2,15 @@
 
 import { useEffect } from 'react'
 import Navigation from '@/shared/components/layout/Navigation/Navigation'
-import Footer from '@/shared/components/layout/Footer/Footer'
-import SignUpCard from '@/features/auth/components/SignUpCard'
+import LoginFormPanel from '@/features/auth/components/LoginFormPanel'
 
 export default function LoginPage() {
   // Add class to body when page mounts
   useEffect(() => {
-    document.body.classList.add('get-started-page')
+    document.body.classList.add('auth-page')
 
     return () => {
-      document.body.classList.remove('get-started-page')
+      document.body.classList.remove('auth-page')
     }
   }, [])
 
@@ -20,18 +19,15 @@ export default function LoginPage() {
       {/* Navigation */}
       <Navigation />
 
-      {/* Main Container */}
+      {/* Main Content */}
       <div
-        className="min-h-screen flex items-center justify-center px-4 md:px-[5%] py-8 md:py-12"
-        style={{
-          background: 'radial-gradient(circle at 50% 20%, rgba(196, 248, 42, 0.08), transparent 60%)',
-        }}
+        className="flex-1 flex items-center justify-center overflow-hidden px-4 pt-20 pb-8 bg-dark"
       >
-        <SignUpCard />
+        {/* Login Form */}
+        <div className="w-full lg:w-auto lg:min-w-[450px] max-w-md bg-dark-card rounded-2xl shadow-2xl p-6 border border-dark-lighter">
+          <LoginFormPanel />
+        </div>
       </div>
-
-      {/* Footer */}
-      <Footer />
     </div>
   )
 }

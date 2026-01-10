@@ -50,62 +50,64 @@ export default function LoginFormPanel() {
   }
 
   return (
-    <div className="h-full flex flex-col justify-center py-12 px-8 lg:px-16 max-w-xl mx-auto w-full">
+    <div className="w-full flex flex-col">
       {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold text-white mb-3">
+      <div className="text-center mb-6">
+        <h1 className="text-3xl font-bold text-white mb-2 font-display">
           Welcome Back!
         </h1>
-        <p className="text-text-gray text-lg">
-          Sign in to continue your academic journey
+        <p className="text-text-gray text-sm leading-relaxed">
+          Sign in to your account to continue learning
         </p>
       </div>
 
       {/* Error Message */}
       {error && (
-        <div className="mb-6 bg-red-500/10 border border-red-500/30 rounded-xl p-4 flex gap-3">
-          <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
-          <p className="text-red-500 text-sm leading-relaxed">{error}</p>
+        <div className="mb-4 bg-red-500/10 border border-red-500/30 rounded-lg p-3 flex gap-2">
+          <AlertCircle className="w-4 h-4 text-red-500 flex-shrink-0 mt-0.5" />
+          <p className="text-red-500 text-xs leading-relaxed">{error}</p>
         </div>
       )}
 
       {/* Email/Password Form */}
-      <div className="mb-6">
+      <div className="mb-4">
         <EmailPasswordForm onSubmit={handleEmailPasswordLogin} isLoading={isLoading} />
       </div>
 
-      {/* Divider */}
-      <div className="relative my-6">
+      {/* Divider Section */}
+      <div className="relative my-5">
         <div className="absolute inset-0 flex items-center">
           <div className="w-full border-t border-[#2A2A2A]"></div>
         </div>
-        <div className="relative flex justify-center text-sm">
-          <span className="px-4 bg-dark text-text-gray">or continue with</span>
+        <div className="relative flex justify-center">
+          <span className="px-3 bg-dark text-text-gray text-xs font-medium">or continue with</span>
         </div>
       </div>
 
-      {/* Google Sign In Button */}
-      <GoogleSignInButton onClick={handleGoogleSignIn} isLoading={isLoading} />
+      {/* Google Sign In Button  */}
+      <div className="mb-5">
+        <GoogleSignInButton onClick={handleGoogleSignIn} isLoading={isLoading} />
+      </div>
 
       {/* Sign Up Link */}
-      <div className="mt-6 text-center">
-        <p className="text-text-gray text-sm">
+      <div className="text-center mb-4 pt-1">
+        <p className="text-text-gray text-xs">
           Don't have an account?{' '}
-          <Link href="/register" className="text-primary hover:text-primary-dark transition-colors font-semibold">
-            Create one now
+          <Link href="/register" className="text-primary hover:text-primary-light transition-colors font-semibold">
+            Create one
           </Link>
         </p>
       </div>
 
       {/* Terms */}
-      <div className="mt-8 text-center text-text-gray text-xs leading-relaxed">
+      <div className="text-center text-text-gray text-xs leading-relaxed border-t border-[#2A2A2A] pt-4">
         By signing in, you agree to our{' '}
         <Link href="/terms" className="text-primary hover:text-primary-dark transition-colors">
-          Terms of Service
+          Terms
         </Link>
-        {' '}and{' '}
+        {' & '}
         <Link href="/privacy" className="text-primary hover:text-primary-dark transition-colors">
-          Privacy Policy
+          Privacy
         </Link>
       </div>
     </div>

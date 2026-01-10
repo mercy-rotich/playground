@@ -1,9 +1,8 @@
-
-
-export default function GetStartedLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  return <>{children}</>
+// src/app/(auth)/layout.tsx
+export default function AuthLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="bg-dark">
+      {children}
+    </div>
+  );
 }

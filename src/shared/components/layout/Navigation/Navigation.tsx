@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { Menu, X, User, ChevronDown } from 'lucide-react'
 import ThemeToggle from '@/shared/components/ThemeToggle'
 import { ROUTES } from '@/shared/constants'
@@ -17,6 +18,9 @@ export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isLight, setIsLight] = useState(false)
+  const pathname = usePathname()
+  
+  const isHomePage = pathname === '/'
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,11 +54,15 @@ export default function Navigation() {
     if (isLight) {
       return 'bg-white border-b border-gray-100 shadow-sm'
     }
-    if (isScrolled) {
-      return 'bg-dark/95 backdrop-blur-xl border-b border-white/5'
+    
+    if (isHomePage && !isScrolled) {
+      return 'bg-transparent'
     }
-    return 'bg-transparent'
+    
+    return 'bg-dark/95 backdrop-blur-xl border-b border-white/10 shadow-lg shadow-black/20'
   }
+
+ 
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${getNavBackground()}`}>

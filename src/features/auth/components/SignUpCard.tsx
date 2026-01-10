@@ -51,30 +51,30 @@ export default function SignUpCard() {
   }
 
   return (
-    <div className="bg-dark-card border-2 border-[#2A2A2A] rounded-3xl p-12 md:p-10 max-w-[480px] w-full animate-fadeInUp shadow-2xl relative overflow-hidden">
+    <div className="bg-dark-card border-2 border-[#2A2A2A] rounded-3xl p-8 md:p-8 max-w-[440px] w-full animate-fadeInUp shadow-2xl relative overflow-hidden">
       {/* Gradient background effect */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
       
       {/* Content */}
       <div className="relative z-10">
         {/* Header */}
-        <div className="text-center mb-8">
-          <div className="w-20 h-20 bg-primary rounded-2xl flex items-center justify-center text-white mx-auto mb-4">
-            <BookOpen className="w-10 h-10" />
+        <div className="text-center mb-6">
+          <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center text-white mx-auto mb-3">
+            <BookOpen className="w-8 h-8" />
           </div>
-          <h1 className="text-4xl font-bold mb-2">
+          <h1 className="text-3xl font-bold mb-1">
             <span className="text-primary">Welcome Back!</span>
           </h1>
-          <p className="text-text-gray text-base leading-relaxed">
+          <p className="text-text-gray text-sm leading-relaxed">
             Sign in to continue your academic journey
           </p>
         </div>
 
         {/* Error Message */}
         {error && (
-          <div className="mb-6 bg-red-500/10 border border-red-500/30 rounded-xl p-4 flex gap-3">
-            <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
-            <p className="text-red-500 text-sm leading-relaxed">{error}</p>
+          <div className="mb-4 bg-red-500/10 border border-red-500/30 rounded-lg p-3 flex gap-2">
+            <AlertCircle className="w-4 h-4 text-red-500 flex-shrink-0 mt-0.5" />
+            <p className="text-red-500 text-xs leading-relaxed">{error}</p>
           </div>
         )}
 
@@ -82,22 +82,22 @@ export default function SignUpCard() {
         <EmailPasswordForm onSubmit={handleEmailPasswordLogin} isLoading={isLoading} />
 
         {/* Divider */}
-        <div className="relative my-6">
+        <div className="relative my-4">
           <div className="absolute inset-0 flex items-center">
             <div className="w-full border-t border-[#2A2A2A]"></div>
           </div>
-          <div className="relative flex justify-center text-sm">
-            <span className="px-4 bg-dark-card text-text-gray">or continue with</span>
+          <div className="relative flex justify-center text-xs">
+            <span className="px-3 bg-dark-card text-text-gray">or continue with</span>
           </div>
         </div>
 
         {/* Google Sign In Button */}
         <GoogleSignInButton onClick={handleGoogleSignIn} isLoading={isLoading} />
 
-        {/* Info Box */}
-        <div className="bg-blue-500/10 border border-blue-500/30 rounded-xl p-4 flex gap-3 mb-8">
-          <Info className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" />
-          <p className="text-text-gray text-sm leading-relaxed">
+        {/* Info Box - Compact */}
+        <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-3 flex gap-2 mb-5 text-xs">
+          <Info className="w-4 h-4 text-blue-500 flex-shrink-0 mt-0.5" />
+          <p className="text-text-gray leading-snug">
             New to Okoa SEM?{' '}
             <Link href="/register" className="text-primary hover:text-primary-dark transition-colors font-semibold">
               Create an account
@@ -105,18 +105,20 @@ export default function SignUpCard() {
           </p>
         </div>
 
-        {/* Feature Badges */}
-        <FeatureBadges />
+        {/* Feature Badges - Compact */}
+        <div className="flex flex-wrap gap-2 mb-4 justify-center">
+          <FeatureBadges />
+        </div>
 
-        {/* Terms */}
-        <div className="text-center text-text-gray text-sm leading-relaxed mb-6">
+        {/* Terms - Compact */}
+        <div className="text-center text-text-gray text-xs leading-relaxed mb-4">
           By signing in, you agree to our{' '}
           <Link href="/terms" className="text-primary hover:text-primary-dark transition-colors">
-            Terms of Service
+            Terms
           </Link>
-          {' '}and{' '}
+          {' & '}
           <Link href="/privacy" className="text-primary hover:text-primary-dark transition-colors">
-            Privacy Policy
+            Privacy
           </Link>
         </div>
 
@@ -124,7 +126,7 @@ export default function SignUpCard() {
         <div className="text-center">
           <Link
             href="/"
-            className="text-text-gray hover:text-primary transition-colors text-base"
+            className="text-text-gray hover:text-primary transition-colors text-xs"
           >
             ← Back to Home
           </Link>
