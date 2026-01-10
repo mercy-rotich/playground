@@ -78,7 +78,7 @@ export default function Navigation() {
             </span>
           </Link>
 
-          {/* Desktop Navigation - Centered */}
+          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
               <Link
@@ -97,16 +97,36 @@ export default function Navigation() {
           </div>
 
           {/* Right Side Actions */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
             {/* Theme toggle */}
             <div className="hidden sm:inline-flex">
               <ThemeToggle />
             </div>
-            
-            {/* Account link */}
+
+            {/* Login Button */}
+            <Link
+              href={ROUTES.LOGIN}
+              className={`hidden sm:inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold transition-all duration-200 rounded-lg ${
+                isLight 
+                  ? 'bg-white text-primary border-2 border-primary hover:bg-primary/5 shadow-sm' 
+                  : 'bg-dark-card text-primary border-2 border-primary/50 hover:border-primary hover:bg-primary/5 shadow-lg shadow-primary/10'
+              }`}
+            >
+              Login
+            </Link>
+
+            {/* Sign Up CTA */}
+            <Link
+              href={ROUTES.SIGNUP}
+              className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-dark rounded-lg text-sm font-semibold hover:bg-primary-dark transition-colors shadow-lg shadow-primary/20"
+            >
+              Register
+            </Link>
+
+            {/* Account link - On far right */}
             <Link
               href={ROUTES.MY_ACCOUNT}
-              className={`hidden sm:flex items-center gap-2 px-3 py-2 text-sm transition-colors ${
+              className={`hidden sm:flex items-center gap-2 px-3 py-2 text-sm transition-colors ml-2 ${
                 isLight 
                   ? 'text-gray-700 hover:text-primary' 
                   : 'text-gray-300 hover:text-white'
@@ -114,14 +134,6 @@ export default function Navigation() {
             >
               <User className="w-4 h-4" />
               <span className="hidden lg:inline">Account</span>
-            </Link>
-
-            {/* Primary CTA */}
-            <Link
-              href={ROUTES.SIGNUP}
-              className="hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-primary text-dark rounded-lg text-sm font-medium hover:bg-primary-dark transition-colors shadow-lg shadow-primary/20"
-            >
-              Get Started
             </Link>
 
             {/* Mobile Menu Button */}
@@ -175,12 +187,24 @@ export default function Navigation() {
                 <ThemeToggle />
               </div>
               <Link
+                href={ROUTES.LOGIN}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`w-full py-4 rounded-xl font-semibold text-center border-2 transition-all animate-fadeInUp ${
+                  isLight 
+                    ? 'bg-white text-primary border-primary hover:bg-primary/5' 
+                    : 'bg-dark-card text-primary border-primary/50 hover:border-primary hover:bg-primary/5 shadow-lg shadow-primary/10'
+                }`}
+                style={{ animationDelay: '200ms' }}
+              >
+                Login
+              </Link>
+              <Link
                 href={ROUTES.SIGNUP}
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="w-full py-4 bg-primary text-dark rounded-xl font-semibold text-center animate-fadeInUp"
-                style={{ animationDelay: '200ms' }}
+                style={{ animationDelay: '250ms' }}
               >
-                Get Started Free
+                Register
               </Link>
               <Link
                 href={ROUTES.MY_ACCOUNT}
@@ -190,7 +214,7 @@ export default function Navigation() {
                     ? 'bg-gray-100 text-gray-900' 
                     : 'bg-white/5 text-white'
                 }`}
-                style={{ animationDelay: '250ms' }}
+                style={{ animationDelay: '300ms' }}
               >
                 <User className="w-5 h-5" />
                 My Account
