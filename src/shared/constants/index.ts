@@ -128,6 +128,7 @@ export const ROUTES = {
   DOWNLOADS: '/downloads',
   PAPERS: '/papers',
   PAST_PAPERS: '/past-papers',
+  MARKING_SCHEMES: '/marking-schemes',
   SCHOOLS: '/schools',
   CHATBOT: '/chatbot',
   STUDY_GROUPS: '/study-groups',

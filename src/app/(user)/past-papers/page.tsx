@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo, useCallback, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { PastPaper } from '@/types'
+import { PastPaper, MarkingScheme } from '@/types'
 import { PAST_PAPERS_SCHOOLS, generateDemoPastPapers } from '@/shared/constants'
 import CompactHeader from '@/shared/components/CompactHeader'
 import SchoolTabs from '@/features/past-papers/components/SchoolTabs'
@@ -10,6 +10,7 @@ import YearSelector from '@/features/past-papers/components/YearSelector'
 import SearchBar from '@/features/past-papers/components/SearchBar'
 import PaperList from '@/features/past-papers/components/PaperList'
 import PreviewModal from '@/features/past-papers/components/PreviewModal'
+import GenerateMarkingSchemeModal from '@/features/past-papers/components/GenerateMarkingSchemeModal'
 import EmptyState from '@/features/past-papers/components/EmptyState'
 import LoadingState from '@/features/past-papers/components/LoadingState'
 
@@ -31,6 +32,8 @@ function PastPapersContent() {
   const [isLoading, setIsLoading] = useState(false)
   const [previewPaper, setPreviewPaper] = useState<PastPaper | null>(null)
   const [isPreviewOpen, setIsPreviewOpen] = useState(false)
+  const [markingSchemePaper, setMarkingSchemePaper] = useState<PastPaper | null>(null)
+  const [isMarkingSchemeOpen, setIsMarkingSchemeOpen] = useState(false)
 
   
   useEffect(() => {
@@ -125,14 +128,24 @@ function PastPapersContent() {
     setPreviewPaper(null)
   }, [])
 
-  const handleDownload = useCallback((paper: PastPaper) => {
+  const handleGenerateMarkingScheme = useCallback((paper: PastPaper) => {
+    setMarkingSchemePaper(paper)
+    setIsMarkingSchemeOpen(true)
+  }, [])
+
+  const handleCloseMarkingScheme = useCallback(() => {
+    setIsMarkingSchemeOpen(false)
+    setMarkingSchemePaper(null)
+  }, [])
+
+  const handleGenerateMarkingSchemeSubmit = useCallback(async (paper: PastPaper, markingScheme: MarkingScheme) => {
+    // Save to localStorage (in production, this would be an API call)
+    const existing = localStorage.getItem('marking-schemes')
+    const schemes = existing ? JSON.parse(existing) : []
+    schemes.push(markingScheme)
+    localStorage.setItem('marking-schemes', JSON.stringify(schemes))
     
-    console.log('Downloading:', paper.fileUrl)
-  
-    const link = document.createElement('a')
-    link.href = paper.fileUrl
-    link.download = `${paper.courseCode}-${paper.year}-${paper.semester}-${paper.examType}.pdf`
-    link.click()
+    console.log('Marking scheme generated:', markingScheme)
   }, [])
 
   const handleUploadToAI = useCallback((paper: PastPaper) => {
@@ -210,7 +223,7 @@ function PastPapersContent() {
                 <PaperList
                   papers={filteredPapers}
                   onPreview={handlePreview}
-                  onDownload={handleDownload}
+                  onGenerateMarkingScheme={handleGenerateMarkingScheme}
                   onUploadToAI={handleUploadToAI}
                 />
               )}
@@ -229,8 +242,16 @@ function PastPapersContent() {
         paper={previewPaper}
         isOpen={isPreviewOpen}
         onClose={handleClosePreview}
-        onDownload={handleDownload}
+        onGenerateMarkingScheme={handleGenerateMarkingScheme}
         onUploadToAI={handleUploadToAI}
+      />
+
+      {/* Generate Marking Scheme Modal */}
+      <GenerateMarkingSchemeModal
+        paper={markingSchemePaper}
+        isOpen={isMarkingSchemeOpen}
+        onClose={handleCloseMarkingScheme}
+        onGenerate={handleGenerateMarkingSchemeSubmit}
       />
     </div>
   )

@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowLeft, User } from 'lucide-react'
+import { ArrowLeft, User, Award } from 'lucide-react'
 import { ROUTES } from '@/shared/constants'
 import ThemeToggle from './ThemeToggle'
 
@@ -30,6 +30,14 @@ export default function CompactHeader({
         {/* Right Actions */}
         <div className="flex items-center gap-2 md:gap-3">
           <ThemeToggle />
+          
+          <Link
+            href={ROUTES.MARKING_SCHEMES}
+            className="w-10 h-10 md:w-11 md:h-11 bg-dark-card border-2 border-dark-lighter rounded-xl flex items-center justify-center text-text-gray hover:border-primary hover:text-primary transition-colors"
+            title="Marking Schemes"
+          >
+            <Award className="w-5 h-5" />
+          </Link>
           
           <Link
             href={ROUTES.MY_ACCOUNT}

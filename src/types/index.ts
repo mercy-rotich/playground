@@ -287,3 +287,24 @@ export interface AccountDetails {
   }
 }
 
+// Marking Scheme Types
+export interface MarkingScheme {
+  id: string
+  userId: string
+  paperId: string
+  paper?: PastPaper
+  content: string
+  createdAt: Date
+  updatedAt: Date
+}
+
+export interface MarkingSchemeHistory {
+  id: string
+  title: string
+  courseCode: string
+  year: number
+  semester: 'first' | 'second'
+  examType: 'main' | 'supplementary' | 'special' | 'cat'
+  createdAt: Date
+}
+

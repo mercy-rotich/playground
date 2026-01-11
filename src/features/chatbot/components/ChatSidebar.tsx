@@ -1,12 +1,12 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Plus, X, Menu, MessageCircle } from 'lucide-react'
+import { Plus, MessageCircle } from 'lucide-react'
 import { ChatHistorySection } from '@/types'
 
 interface ChatSidebarProps {
   isOpen: boolean
-  onToggle: () => void
+  onClose: () => void
   chatHistory: ChatHistorySection[]
   activeChatId: string | null
   onSelectChat: (chatId: string) => void
@@ -15,7 +15,7 @@ interface ChatSidebarProps {
 
 export default function ChatSidebar({
   isOpen,
-  onToggle,
+  onClose,
   chatHistory,
   activeChatId,
   onSelectChat,
@@ -23,7 +23,6 @@ export default function ChatSidebar({
 }: ChatSidebarProps) {
   const [isLight, setIsLight] = useState(false)
 
-  // Detect theme from body class
   useEffect(() => {
     const checkTheme = () => {
       setIsLight(document.body.classList.contains('light-theme'))
@@ -44,25 +43,13 @@ export default function ChatSidebar({
     return () => observer.disconnect()
   }, [])
 
-  // Theme-aware styles
-  const getMobileMenuButtonStyle = (): React.CSSProperties => ({
-    backgroundColor: isLight ? '#FFFFFF' : '#1A1A1A',
-    borderColor: isLight ? '#E5E7EB' : '#2A2A2A',
-    color: isLight ? '#1F2937' : '#FFFFFF',
-  })
-
   const getSidebarStyle = (): React.CSSProperties => ({
     backgroundColor: isLight ? '#FFFFFF' : '#0F0F0F',
     borderRightColor: isLight ? '#E5E7EB' : '#2A2A2A',
   })
 
-  const getNewChatButtonStyle = (): React.CSSProperties => ({
-    backgroundColor: '#10D845',
-    color: '#FFFFFF',
-  })
-
-  const getNewChatButtonHoverStyle = (): React.CSSProperties => ({
-    backgroundColor: '#0EBE3A',
+  const getBorderStyle = (): React.CSSProperties => ({
+    borderColor: isLight ? '#E5E7EB' : '#2A2A2A',
   })
 
   const getSectionLabelStyle = (): React.CSSProperties => ({
@@ -74,10 +61,6 @@ export default function ChatSidebar({
       ? (isLight ? '#F3F4F6' : '#1A1A1A')
       : 'transparent',
     borderLeft: isActive ? '3px solid #00D666' : '3px solid transparent',
-  })
-
-  const getChatItemHoverStyle = (): React.CSSProperties => ({
-    backgroundColor: isLight ? '#F9FAFB' : '#1A1A1A',
   })
 
   const getChatTitleStyle = (): React.CSSProperties => ({
@@ -92,55 +75,48 @@ export default function ChatSidebar({
     color: isLight ? '#9CA3AF' : '#A0A0A0',
   })
 
-  const getBorderStyle = (): React.CSSProperties => ({
-    borderColor: isLight ? '#E5E7EB' : '#2A2A2A',
-  })
-
   const getEmptyStateStyle = (): React.CSSProperties => ({
     color: isLight ? '#6B7280' : '#A0A0A0',
   })
 
   return (
     <>
-      {/* Mobile Menu Button */}
-      <button
-        onClick={onToggle}
-        className="lg:hidden fixed top-[72px] left-4 z-[60] p-2 rounded-lg border transition-colors"
-        style={getMobileMenuButtonStyle()}
-      >
-        {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-      </button>
-
       {/* Mobile Overlay */}
       {isOpen && (
         <div
           className="lg:hidden fixed inset-0 bg-black/50 z-40"
-          onClick={onToggle}
+          onClick={onClose}
         />
       )}
 
       {/* Sidebar */}
       <aside
-        className={`fixed lg:relative top-[65px] lg:top-0 left-0 h-[calc(100vh-65px)] lg:h-full w-[280px] border-r flex flex-col z-50 lg:z-auto transition-transform duration-300 ${
+        className={`fixed lg:relative top-0 left-0 h-full w-[280px] border-r flex flex-col z-50 lg:z-auto transition-transform duration-300 ${
           isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
         }`}
         style={getSidebarStyle()}
       >
+        {/* Sidebar Header - Visible on mobile when sidebar is open */}
+        <div 
+          className="lg:hidden p-4 border-b flex items-center justify-between"
+          style={getBorderStyle()}
+        >
+          <span className={`font-semibold ${isLight ? 'text-gray-900' : 'text-white'}`}>
+            Chat History
+          </span>
+        </div>
+
         {/* New Chat Button */}
         <div 
-          className="p-6 border-b"
+          className="p-4 border-b"
           style={getBorderStyle()}
         >
           <button
-            onClick={onNewChat}
-            className="w-full flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl font-semibold text-base transition-colors hover:opacity-90"
-            style={getNewChatButtonStyle()}
-            onMouseEnter={(e) => {
-              Object.assign(e.currentTarget.style, getNewChatButtonHoverStyle())
+            onClick={() => {
+              onNewChat()
+              onClose()
             }}
-            onMouseLeave={(e) => {
-              Object.assign(e.currentTarget.style, getNewChatButtonStyle())
-            }}
+            className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-semibold text-base transition-colors bg-primary text-white hover:bg-primary-dark"
           >
             <Plus className="w-5 h-5" />
             <span>New Chat</span>
@@ -168,17 +144,12 @@ export default function ChatSidebar({
                 return (
                   <button
                     key={item.id}
-                    onClick={() => onSelectChat(item.id)}
-                    className="w-full flex items-center gap-3 py-3 px-4 rounded-lg mb-1 transition-all text-left"
+                    onClick={() => {
+                      onSelectChat(item.id)
+                      onClose()
+                    }}
+                    className="w-full flex items-center gap-3 py-3 px-4 rounded-lg mb-1 transition-all text-left hover:opacity-80"
                     style={getChatItemStyle(isActive)}
-                    onMouseEnter={(e) => {
-                      if (!isActive) {
-                        Object.assign(e.currentTarget.style, getChatItemHoverStyle())
-                      }
-                    }}
-                    onMouseLeave={(e) => {
-                      Object.assign(e.currentTarget.style, getChatItemStyle(isActive))
-                    }}
                   >
                     <MessageCircle 
                       className="w-4 h-4 flex-shrink-0" 

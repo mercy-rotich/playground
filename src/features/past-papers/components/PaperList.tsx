@@ -6,11 +6,11 @@ import PaperCard from './PaperCard'
 interface PaperListProps {
   papers: PastPaper[]
   onPreview: (paper: PastPaper) => void
-  onDownload: (paper: PastPaper) => void
   onUploadToAI: (paper: PastPaper) => void
+  onGenerateMarkingScheme: (paper: PastPaper) => void
 }
 
-export default function PaperList({ papers, onPreview, onDownload, onUploadToAI }: PaperListProps) {
+export default function PaperList({ papers, onPreview, onUploadToAI, onGenerateMarkingScheme }: PaperListProps) {
   if (papers.length === 0) {
     return (
       <div className="bg-dark-card border border-dark-lighter rounded-xl p-12 text-center">
@@ -43,7 +43,7 @@ export default function PaperList({ papers, onPreview, onDownload, onUploadToAI 
             key={paper.id}
             paper={paper}
             onPreview={onPreview}
-            onDownload={onDownload}
+            onGenerateMarkingScheme={onGenerateMarkingScheme}
             onUploadToAI={onUploadToAI}
             index={index}
           />

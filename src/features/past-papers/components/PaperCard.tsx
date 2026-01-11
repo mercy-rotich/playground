@@ -1,17 +1,17 @@
 'use client'
 
-import { Download, Eye, Upload, FileText } from 'lucide-react'
+import { Eye, Upload, FileText, Award } from 'lucide-react'
 import { PastPaper } from '@/types'
 
 interface PaperCardProps {
   paper: PastPaper
   onPreview: (paper: PastPaper) => void
-  onDownload: (paper: PastPaper) => void
   onUploadToAI: (paper: PastPaper) => void
+  onGenerateMarkingScheme: (paper: PastPaper) => void
   index: number
 }
 
-export default function PaperCard({ paper, onPreview, onDownload, onUploadToAI, index }: PaperCardProps) {
+export default function PaperCard({ paper, onPreview, onUploadToAI, onGenerateMarkingScheme, index }: PaperCardProps) {
   const getExamTypeBadgeColor = (examType: string) => {
     switch (examType) {
       case 'main':
@@ -71,12 +71,12 @@ export default function PaperCard({ paper, onPreview, onDownload, onUploadToAI, 
           </button>
           
           <button
-            onClick={() => onDownload(paper)}
-            className="flex items-center gap-2 px-4 py-2.5 bg-primary text-dark rounded-lg font-medium text-sm hover:bg-primary-dark transition-colors"
-            title="Download"
+            onClick={() => onGenerateMarkingScheme(paper)}
+            className="flex items-center gap-2 px-4 py-2.5 bg-primary/20 text-primary rounded-lg font-medium text-sm hover:bg-primary/30 transition-colors"
+            title="Generate AI-powered marking scheme"
           >
-            <Download className="w-4 h-4" />
-            <span className="hidden sm:inline">Download</span>
+            <Award className="w-4 h-4" />
+            <span className="hidden sm:inline">Generate Answers</span>
           </button>
           
           <button
