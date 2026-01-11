@@ -6,7 +6,7 @@ import { BookOpen, Info, AlertCircle } from 'lucide-react'
 import FeatureBadges from './FeatureBadges'
 import GoogleSignInButton from './GoogleSignInButton'
 import EmailPasswordForm from './EmailPasswordForm'
-import { loginWithEmail, loginWithGoogle } from '@/services/auth/authService'
+import { login } from '@/features/auth/services/authService'
 
 export default function SignUpCard() {
   const [isLoading, setIsLoading] = useState(false)
@@ -17,13 +17,15 @@ export default function SignUpCard() {
     setError(null)
     try {
       // Call the login API
-      const response = await loginWithEmail({ email, password })
+      const response = await login({ email, password })
       
-    
-      localStorage.setItem('authToken', response.token)
+      // This component seems to be a mix of login and signup logic.
+      // The `login` service now triggers a 2FA flow and doesn't return tokens directly.
+      // For now, I'll just log the response.
+      // A proper implementation would navigate to an OTP/2FA screen.
+      console.log('Login initiated, OTP sent:', response)
      
-      alert('Login successful!\n\nIn a real application, you would be redirected to the dashboard.')
-      console.log('User logged in:', response.user)
+      alert('Login initiated! Please check your email for a 2FA code.\n\nIn a real application, you would be redirected to a verification page.')
       
      
     } catch (error: any) {
